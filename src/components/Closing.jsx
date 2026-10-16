@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom';
 import { CONFIG } from '../config';
-import { CTA_POINTS } from '../content';
+import { AREAS, CTA, NAV_LINKS } from '../content';
 import { useEnquiry } from '../lib/enquiry';
 import { CallLink, phoneLabel, WhatsAppLink } from './ContactLinks';
 import EnquiryForm from './EnquiryForm';
@@ -7,16 +8,18 @@ import Icon from './Icon';
 import { Brand } from './Nav';
 import Reveal from './Reveal';
 
-export function FinalCta() {
+/* The closing form, worded for the page it sits on (CTA in content.js). */
+export function FinalCta({ variant = 'home', kicker = 'Start here', tight }) {
+  const c = CTA[variant];
   return (
-    <section className="block tight" id="contact">
+    <section className={'block' + (tight ? ' tight' : '')} id="contact">
       <div className="wrap">
         <Reveal className="cta-panel">
           <div className="cta-copy">
-            <div className="kicker">Start here</div>
-            <h2>Get your free <span className="grad">verified shortlist.</span></h2>
+            <div className="kicker">{kicker}</div>
+            <h2>{c.title[0]}<span className="grad">{c.title[1]}</span></h2>
             <ul>
-              {CTA_POINTS.map(([b, rest]) => (
+              {c.points.map(([b, rest]) => (
                 <li key={b}><Icon name="check" /><span><b>{b}</b>{rest}</span></li>
               ))}
             </ul>
@@ -26,7 +29,7 @@ export function FinalCta() {
             </div>
           </div>
           <div className="form-card">
-            <EnquiryForm idPrefix="cta" />
+            <EnquiryForm idPrefix="cta" intent={c.intent} />
           </div>
         </Reveal>
       </div>
@@ -41,24 +44,21 @@ export function Footer() {
         <div>
           <Brand />
           <p className="about">
-            Verified real estate across West Hyderabad. Homes, land and commercial property, with documents and RERA
-            checked first.
+            Verified real estate across West Hyderabad. Homes for families, offices and commercial property for
+            businesses, and land, with documents and RERA checked first.
           </p>
         </div>
         <div>
           <h4>Explore</h4>
           <ul>
-            <li><a href="#offers">Why Xspace</a></li>
-            <li><a href="#process">How it works</a></li>
-            <li><a href="#areas">Locations</a></li>
-            <li><a href="#business">Offices &amp; commercial</a></li>
-            <li><a href="#budget">Budget planner</a></li>
+            <li><Link to="/">Home</Link></li>
+            {NAV_LINKS.map(([to, label]) => <li key={to}><Link to={to}>{label}</Link></li>)}
           </ul>
         </div>
         <div>
           <h4>Locations</h4>
           <ul>
-            {['Kokapet', 'Narsingi', 'Tellapur', 'Gachibowli'].map((a) => <li key={a}><a href="#areas">{a}</a></li>)}
+            {AREAS.slice(0, 5).map((a) => <li key={a.name}><Link to="/locations">{a.name}</Link></li>)}
           </ul>
         </div>
         <div>
@@ -80,7 +80,7 @@ export function Footer() {
   );
 }
 
-/* WhatsApp bubble on desktop; Call / WhatsApp / Book bar on phones. */
+/* WhatsApp bubble on desktop; Call / WhatsApp / Book dock on phones. */
 export function StickyContact() {
   const openEnquiry = useEnquiry();
   return (

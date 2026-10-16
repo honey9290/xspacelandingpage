@@ -20,24 +20,43 @@ Enquiries go to WhatsApp as a pre-filled message. Set `enquiryEndpoint` to a URL
 that accepts a JSON POST to capture them somewhere as well. The payload is built
 in `buildLead()` in [`src/lib/enquiry.js`](src/lib/enquiry.js).
 
+## Pages
+
+| Route | Page |
+|---|---|
+| `/` | Home: hero with Residential / Commercial paths, free offers, process |
+| `/residential` | Family finder, "Made for families", home types, budget planner, FAQ |
+| `/commercial` | Business finder, commercial types, business section, FAQ |
+| `/locations` | Corridor map and area cards |
+| `/why-xspace` | Comparison, pledges, general FAQ |
+| `/contact` | Contact cards and the enquiry form |
+
+Routing is client-side (React Router), so the host must serve `index.html`
+for every path. `public/_redirects` (Netlify) and `vercel.json` (Vercel)
+already do; on other hosts add the equivalent rewrite.
+
 ## Where things are
 
 ```
 src/
   config.js          contact details, form options, per-button form headings
-  content.js         all list copy: offers, steps, areas, FAQ, comparison…
+  content.js         all list copy, grouped by page: nav, slides, types, FAQs…
+  App.jsx            routes + shared layout (nav, footer, sticky dock)
+  pages/             Home, Residential, Commercial, Locations, WhyXspace, Contact
   lib/enquiry.js     useEnquiry() + lead building / sending
   lib/format.js      ₹ formatting, WhatsApp / tel links
   components/
     EnquiryProvider  the modal + exit-intent prompt; useEnquiry()(intent) opens it
     EnquiryForm      the one form (closing section and modal)
-    Hero             photo slideshow, headline, home finder, stats
-    Families         "Made for families" band + closing dream-home banner
-    Business         offices, commercial buildings, retail, warehouses
-    Sections         offers, process, property types, areas, compare, pledges, FAQ
+    PageHero         photo-slideshow hero + PageHeader for text-led pages
+    Finder           chip finder; residential and commercial versions via props
+    Families         "Made for families" band (Residential)
+    Business         how we help businesses + what we check (Commercial)
+    Sections         paths, offers, process, property grid, areas, compare, pledges, FAQ
     CorridorMap      schematic map of the west corridor (Locations)
-    BudgetPlanner    EMI → budget calculator
-    Closing          final CTA, footer, sticky WhatsApp / mobile dock
+    BudgetPlanner    EMI → budget calculator (Residential)
+    Closing          final CTA (per-page wording), footer, sticky WhatsApp / mobile dock
+    Nav              header links + phone menu
 public/images/       stock photos (Unsplash licence: free to use, no attribution
                      required). Representative only; the page says so.
 legacy/index.html    the original single-file version, for reference

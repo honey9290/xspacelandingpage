@@ -1,10 +1,9 @@
-import { BUSINESS_CHECKS, BUSINESS_TYPES } from '../content';
+import { BUSINESS_CHECKS, BUSINESS_HELP } from '../content';
 import { useEnquiry } from '../lib/enquiry';
 import Icon from './Icon';
 import Reveal from './Reveal';
 
-/* Offices, commercial buildings, retail and warehouses. Same verification
-   promise as the homes, pitched at owners and businesses. */
+/* How we help businesses and investors, plus what we check. */
 export default function Business() {
   const openEnquiry = useEnquiry();
   return (
@@ -18,14 +17,14 @@ export default function Business() {
         <div>
           <Reveal>
             <div className="kicker">For business &amp; investors</div>
-            <h2>Offices and commercial property, <span className="grad">checked like a home.</span></h2>
+            <h2>Business property, <span className="grad">without the guesswork.</span></h2>
             <p className="section-lead">
-              Looking for your company's next office, a whole commercial building, a showroom or a warehouse? We find,
-              verify and negotiate business property with the same care we take for families.
+              We find, verify and negotiate commercial property with the same care we take for families, so your next
+              office, showroom or warehouse comes with clean paperwork.
             </p>
           </Reveal>
           <div className="biz-grid">
-            {BUSINESS_TYPES.map((b, i) => (
+            {BUSINESS_HELP.map((b, i) => (
               <Reveal className="biz-item" key={b.title} delay={(i % 2) * 70}>
                 <div className="icon"><Icon name={b.icon} /></div>
                 <h3>{b.title}</h3>

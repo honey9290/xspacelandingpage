@@ -3,9 +3,9 @@ import { useEnquiry } from '../lib/enquiry';
 import Icon from './Icon';
 import Reveal from './Reveal';
 
-/* "Made for families": a light section, so the page breathes between the
-   dark, technical parts. */
-export function Families() {
+/* "Made for families": a light section, so the Residential page breathes
+   between the dark, technical parts. */
+export default function Families() {
   const openEnquiry = useEnquiry();
   return (
     <section className="light-band" id="families">
@@ -39,33 +39,6 @@ export function Families() {
             </button>
           </Reveal>
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* Full-bleed emotional close before the final form. */
-export function DreamBanner() {
-  const openEnquiry = useEnquiry();
-  return (
-    <section className="dream">
-      <img src="/images/family-sunset.webp" alt="" aria-hidden="true" loading="lazy" />
-      <div className="dream-shade" />
-      <div className="wrap">
-        <Reveal className="dream-copy">
-          <Icon name="home" className="dream-icon" />
-          <h2>Every family deserves a home <span className="grad">they're sure about.</span></h2>
-          <p>
-            No guesswork, no pressure, no surprises at registration. Just verified homes, honest advice and a team that
-            stays with you until you're home.
-          </p>
-          <div className="hero-actions">
-            <button className="btn btn-primary btn-lg" onClick={() => openEnquiry('Free 24-hour shortlist')}>
-              Start finding my dream home <Icon name="arrow" />
-            </button>
-            <button className="btn btn-ghost btn-lg" onClick={() => openEnquiry('Book a site visit')}>Book a free site visit</button>
-          </div>
-        </Reveal>
       </div>
     </section>
   );

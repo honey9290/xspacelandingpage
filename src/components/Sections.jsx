@@ -1,14 +1,14 @@
-import { AREAS, COMPARE, FAQS, OFFERS, PLEDGES, PROPERTY_TYPES, STEPS } from '../content';
+import { Link } from 'react-router-dom';
+import { AREAS, COMPARE, OFFERS, PATHS, PLEDGES, STEPS } from '../content';
 import { useEnquiry } from '../lib/enquiry';
-import { WhatsAppLink } from './ContactLinks';
 import CorridorMap from './CorridorMap';
 import Icon from './Icon';
 import Reveal from './Reveal';
 
-/* The content sections between the hero and the closing form. Each is a
-   layout over a list in content.js. */
+/* Sections shared across pages. Each is a layout over a list in
+   content.js; the pages decide which ones they show. */
 
-function Head({ kicker, title, lead, split, aside, children }) {
+export function Head({ kicker, title, lead, split, aside }) {
   return (
     <Reveal className={'head' + (split ? ' split' : '')}>
       <div>
@@ -17,8 +17,27 @@ function Head({ kicker, title, lead, split, aside, children }) {
         {lead && <p className="section-lead">{lead}</p>}
       </div>
       {aside}
-      {children}
     </Reveal>
+  );
+}
+
+/* Home hero aside: one card per side of the business. */
+export function Paths() {
+  return (
+    <div className="paths">
+      {PATHS.map((p, i) => (
+        <Reveal key={p.to} delay={i * 90}>
+          <Link to={p.to} className="path">
+            <img src={p.img} alt="" />
+            <span className="path-body">
+              <span className="path-kicker">{p.kicker}</span>
+              <span className="path-title">{p.title} <Icon name="arrowUpRight" /></span>
+              <span className="path-text">{p.text}</span>
+            </span>
+          </Link>
+        </Reveal>
+      ))}
+    </div>
   );
 }
 
@@ -29,8 +48,8 @@ export function Offers() {
       <div className="wrap">
         <Head
           kicker="What you get, free"
-          title={<>Buying a home is a big decision. <span className="grad">We do the checking first.</span></>}
-          lead="These four things are free for every buyer, with no booking amount and no commitment."
+          title={<>A big decision deserves a team <span className="grad">that checks first.</span></>}
+          lead="Whether it's a home or an office, these four things are free, with no booking amount and no commitment."
         />
         <div className="offers">
           {OFFERS.map((o, i) => (
@@ -76,17 +95,15 @@ export function Process() {
   );
 }
 
-export function PropertyTypes() {
+/* Photo cards for a set of property types. */
+export function PropertyGrid({ kicker, title, lead, types }) {
   const openEnquiry = useEnquiry();
   return (
-    <section className="block tight" id="types">
+    <section className="block" id="types">
       <div className="wrap">
-        <Head
-          kicker="Everything real estate" title={<>Every kind of property. <span className="grad">One trusted team.</span></>}
-          lead="Homes for your family, offices for your business, land for your future. Pick one and an advisor who specialises in it will call you."
-        />
+        <Head kicker={kicker} title={title} lead={lead} />
         <div className="types">
-          {PROPERTY_TYPES.map((t, i) => (
+          {types.map((t, i) => (
             <Reveal as="button" className="type" key={t.title} delay={(i % 4) * 70} onClick={() => openEnquiry(t.intent)}>
               <img src={t.img} alt="" loading="lazy" />
               <span className="type-body">
@@ -102,17 +119,11 @@ export function PropertyTypes() {
   );
 }
 
-export function Areas() {
+export function AreaGrid() {
   const openEnquiry = useEnquiry();
   return (
     <section className="block tight" id="areas">
       <div className="wrap">
-        <Head
-          split kicker="Where we work"
-          title={<>We know West Hyderabad <span className="grad">street by street.</span></>}
-          lead="Our area partners live and work in these neighbourhoods. They know which school bus comes by, where the parks are, and about new launches before the listing portals do."
-          aside={<div className="areas-map"><CorridorMap onPick={(area) => openEnquiry(area)} /></div>}
-        />
         <div className="areas">
           {AREAS.map((a, i) => (
             <Reveal as="article" className="area" key={a.name} delay={(i % 3) * 70}>
@@ -122,13 +133,18 @@ export function Areas() {
                 <p>{a.text}</p>
                 <div className="tags">{a.tags.map((t) => <span key={t}>{t}</span>)}</div>
               </div>
-              <button onClick={() => openEnquiry(a.name)}>{a.cta || `See verified homes in ${a.name}`} →</button>
+              <button onClick={() => openEnquiry(a.name)}>{a.cta || `See verified property in ${a.name}`} →</button>
             </Reveal>
           ))}
         </div>
       </div>
     </section>
   );
+}
+
+export function AreasMap() {
+  const openEnquiry = useEnquiry();
+  return <div className="areas-map"><CorridorMap onPick={(area) => openEnquiry(area)} /></div>;
 }
 
 export function Compare() {
@@ -157,7 +173,7 @@ export function Compare() {
 
 export function Pledges() {
   return (
-    <section className="block tight" id="promise">
+    <section className="block" id="promise">
       <div className="wrap">
         <Head
           kicker="Our promise" title="Rules we hold ourselves to."
@@ -177,20 +193,17 @@ export function Pledges() {
   );
 }
 
-export function Faq() {
+export function Faq({ items, title = 'Questions people ask us.' }) {
   return (
-    <section className="block tight" id="faq">
+    <section className="block" id="faq">
       <div className="wrap faq">
         <Reveal>
           <div className="kicker">FAQ</div>
-          <h2>Questions buyers ask us.</h2>
+          <h2>{title}</h2>
           <p className="section-lead">Have a question that isn't here? Ask us on WhatsApp. A real person replies.</p>
-          <div className="faq-cta">
-            <WhatsAppLink className="btn btn-ghost"><Icon name="whatsapp" />Ask on WhatsApp</WhatsAppLink>
-          </div>
         </Reveal>
         <Reveal>
-          {FAQS.map(([q, a]) => (
+          {items.map(([q, a]) => (
             <details key={q}>
               <summary>{q}</summary>
               <p>{a}</p>
