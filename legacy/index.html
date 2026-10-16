@@ -1,0 +1,1189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Xspace & Co. — Verified Homes in West Hyderabad</title>
+  <meta name="description" content="Verified homes, villas and land across Kokapet, Narsingi, Tellapur, Gachibowli and beyond. A free shortlist in 24 hours, studio video walkthroughs, and TG RERA registered advisors." />
+  <meta name="theme-color" content="#050607" />
+  <meta property="og:title" content="Xspace & Co. — Verified Homes in West Hyderabad" />
+  <meta property="og:description" content="Only verified inventory. Your free shortlist in 24 hours." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%23000'/%3E%3Cg transform='translate(58 70) scale(0.86)'%3E%3Cpolygon fill='%23fff' points='10,13 138,13 437,330 320,330'/%3E%3Cpolygon fill='%23fff' points='175,180 198,202 63,330 16,330'/%3E%3Cpolygon fill='%23fff' points='248,95 326,13 452,13 304,152'/%3E%3C/g%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050607;
+      --bg-2: #0a0c0e;
+      --panel: rgba(255, 255, 255, 0.035);
+      --panel-2: rgba(255, 255, 255, 0.06);
+      --line: rgba(255, 255, 255, 0.09);
+      --line-2: rgba(255, 255, 255, 0.16);
+      --fg: #f4f6f8;
+      --muted: #9aa3ad;
+      --dim: #6b737c;
+      --accent: #5ef0d0;
+      --accent-2: #8ab4ff;
+      --accent-ink: #03110e;
+      --glow: rgba(94, 240, 208, 0.35);
+      --radius: 18px;
+      --max: 1180px;
+      --display: 'Space Grotesk', Inter, system-ui, sans-serif;
+      --body: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; color: inherit; }
+    .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    /* Background: a faint blueprint grid and two slow glows */
+    .bg-grid {
+      position: fixed; inset: 0; z-index: -2; pointer-events: none;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 80%);
+      opacity: 0.55;
+    }
+    .bg-glow {
+      position: fixed; z-index: -1; pointer-events: none; border-radius: 50%;
+      filter: blur(90px); opacity: 0.22;
+    }
+    .bg-glow.a { width: 520px; height: 520px; background: var(--accent); top: -180px; right: -120px; }
+    .bg-glow.b { width: 480px; height: 480px; background: var(--accent-2); top: 40vh; left: -260px; opacity: 0.12; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 14px 22px; border-radius: 999px; border: 1px solid transparent;
+      font-weight: 600; font-size: 15px; line-height: 1; cursor: pointer; white-space: nowrap;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+    }
+    .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .btn-primary { background: var(--accent); color: var(--accent-ink); box-shadow: 0 0 0 0 var(--glow), 0 10px 30px -10px var(--glow); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 0 6px rgba(94,240,208,.12), 0 14px 40px -10px var(--glow); }
+    .btn-ghost { background: var(--panel); border-color: var(--line-2); color: var(--fg); }
+    .btn-ghost:hover { background: var(--panel-2); border-color: rgba(255,255,255,.3); }
+    .btn-lg { padding: 18px 28px; font-size: 16px; }
+    .btn svg { width: 18px; height: 18px; flex: none; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%);
+      background: rgba(5, 6, 7, 0.65); border-bottom: 1px solid transparent;
+      transition: border-color .3s ease, background .3s ease;
+    }
+    .nav.scrolled { border-bottom-color: var(--line); background: rgba(5, 6, 7, 0.85); }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-weight: 600; font-size: 19px; letter-spacing: -0.01em; }
+    .brand .mark { width: 36px; height: 36px; border-radius: 10px; background: #000; border: 1px solid var(--line-2); display: grid; place-items: center; }
+    .brand .mark svg { width: 22px; height: 22px; color: #fff; }
+    .nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--muted); }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-cta { display: flex; gap: 10px; align-items: center; }
+    .nav-cta .btn { padding: 11px 18px; font-size: 14px; }
+
+    /* Hero */
+    .hero { padding: 72px 0 56px; position: relative; }
+    .hero .wrap { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 56px; align-items: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 8px; border-radius: 999px;
+      border: 1px solid var(--line-2); background: var(--panel); font-size: 13px; color: var(--muted);
+    }
+    .eyebrow .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: pulse 2.2s ease-in-out infinite; margin-left: 6px; }
+    @keyframes pulse { 50% { opacity: .35; } }
+    h1, h2, h3 { font-family: var(--display); letter-spacing: -0.03em; line-height: 1.05; margin: 0; font-weight: 600; }
+    h1 { font-size: clamp(40px, 6vw, 72px); margin: 22px 0 20px; }
+    h1 .grad, h2 .grad {
+      background: linear-gradient(100deg, #fff 10%, var(--accent) 55%, var(--accent-2) 95%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .lead { font-size: clamp(17px, 1.6vw, 19px); color: var(--muted); max-width: 560px; margin: 0 0 30px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 34px; }
+    .proof { display: flex; flex-wrap: wrap; gap: 22px 28px; font-size: 14px; color: var(--muted); }
+    .proof div { display: flex; align-items: center; gap: 8px; }
+    .proof svg { width: 18px; height: 18px; color: var(--accent); flex: none; }
+
+    /* Hero finder card */
+    .finder {
+      position: relative; border-radius: 24px; padding: 26px; border: 1px solid var(--line-2);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: 0 40px 80px -40px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .finder::before {
+      content: ""; position: absolute; inset: -1px; border-radius: 24px; padding: 1px; pointer-events: none;
+      background: linear-gradient(140deg, rgba(94,240,208,.6), transparent 35%, transparent 65%, rgba(138,180,255,.5));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+    }
+    .finder-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .finder h3 { font-size: 22px; }
+    .live { font-size: 12px; color: var(--accent); display: flex; align-items: center; gap: 6px; font-weight: 500; }
+    .live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 1.6s infinite; }
+    .finder p.sub { color: var(--muted); font-size: 14px; margin: 0 0 18px; }
+    .map { border-radius: 14px; border: 1px solid var(--line); background: rgba(0,0,0,.35); margin-bottom: 18px; overflow: hidden; }
+    .map svg { width: 100%; height: auto; }
+    .map .node { cursor: pointer; }
+    .map .node circle.core { fill: var(--accent); }
+    .map .node circle.ring { fill: none; stroke: var(--accent); opacity: .5; transform-box: fill-box; transform-origin: center; animation: ring 2.6s ease-out infinite; }
+    .map .node:nth-of-type(2) circle.ring { animation-delay: .5s; }
+    .map .node:nth-of-type(3) circle.ring { animation-delay: 1s; }
+    .map .node:nth-of-type(4) circle.ring { animation-delay: 1.5s; }
+    .map .node:nth-of-type(5) circle.ring { animation-delay: 2s; }
+    .map .node text { fill: var(--fg); font: 500 11px var(--body); }
+    .map .node.on circle.core { fill: #fff; }
+    .map .node.on text { fill: var(--accent); }
+    @keyframes ring { 0% { transform: scale(1); opacity: .6; } 100% { transform: scale(3.2); opacity: 0; } }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .chip {
+      padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line-2); background: transparent;
+      font-size: 13px; color: var(--muted); cursor: pointer; transition: all .15s ease;
+    }
+    .chip:hover { color: var(--fg); border-color: rgba(255,255,255,.3); }
+    .chip[aria-pressed="true"] { background: rgba(94,240,208,.12); border-color: var(--accent); color: var(--fg); }
+    .field-label { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--dim); margin: 0 0 8px; font-weight: 600; }
+    .finder .btn { width: 100%; margin-top: 6px; }
+    .finder .fine { font-size: 12px; color: var(--dim); text-align: center; margin: 12px 0 0; }
+
+    /* Ticker */
+    .ticker { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; background: rgba(255,255,255,.015); }
+    .ticker-track { display: flex; gap: 48px; padding: 16px 0; width: max-content; animation: scroll 40s linear infinite; }
+    .ticker span { font-family: var(--display); font-size: 15px; color: var(--muted); white-space: nowrap; display: flex; align-items: center; gap: 48px; }
+    .ticker span::after { content: "✦"; color: var(--accent); font-size: 11px; }
+    @keyframes scroll { to { transform: translateX(-50%); } }
+
+    /* Sections */
+    section.block { padding: 110px 0; position: relative; }
+    .kicker { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .kicker::before { content: ""; width: 22px; height: 1px; background: var(--accent); }
+    h2 { font-size: clamp(32px, 4.4vw, 52px); max-width: 760px; }
+    .section-lead { color: var(--muted); font-size: 18px; max-width: 620px; margin: 18px 0 0; }
+    .head { margin-bottom: 56px; }
+    .head.split { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+
+    /* Offers */
+    .offers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .offer {
+      position: relative; padding: 28px 24px 26px; border-radius: var(--radius); border: 1px solid var(--line);
+      background: var(--panel); overflow: hidden; transition: transform .25s ease, border-color .25s ease, background .25s ease;
+      display: flex; flex-direction: column;
+    }
+    .offer:hover { transform: translateY(-4px); border-color: rgba(94,240,208,.45); background: rgba(94,240,208,.04); }
+    .offer .free { position: absolute; top: 18px; right: 18px; font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--accent-ink); background: var(--accent); padding: 4px 9px; border-radius: 999px; }
+    .icon { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; background: rgba(94,240,208,.1); border: 1px solid rgba(94,240,208,.25); color: var(--accent); margin-bottom: 22px; }
+    .icon svg { width: 22px; height: 22px; }
+    .offer h3 { font-size: 20px; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .offer p { color: var(--muted); font-size: 15px; margin: 0 0 20px; flex: 1; }
+    .offer a { font-size: 14px; font-weight: 600; color: var(--accent); display: inline-flex; align-items: center; gap: 6px; }
+    .offer a:hover { gap: 10px; }
+
+    /* Process */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .step { padding: 32px 26px; border-right: 1px solid var(--line); position: relative; background: var(--panel); }
+    .step:last-child { border-right: 0; }
+    .step .n { font-family: var(--display); font-size: 13px; color: var(--accent); letter-spacing: .1em; margin-bottom: 40px; display: flex; align-items: center; gap: 10px; }
+    .step .n::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(94,240,208,.5), transparent); }
+    .step h3 { font-size: 21px; margin-bottom: 10px; letter-spacing: -0.02em; }
+    .step p { color: var(--muted); font-size: 15px; margin: 0; }
+    .step .when { display: inline-block; margin-top: 18px; font-size: 12px; color: var(--fg); border: 1px solid var(--line-2); border-radius: 999px; padding: 4px 10px; }
+
+    /* Property types */
+    .types { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .type {
+      padding: 22px; border-radius: 16px; border: 1px solid var(--line); background: var(--panel);
+      display: flex; flex-direction: column; gap: 6px; cursor: pointer; text-align: left; transition: all .2s ease;
+    }
+    .type:hover { border-color: rgba(94,240,208,.45); transform: translateY(-2px); }
+    .type .t { font-family: var(--display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; display: flex; justify-content: space-between; align-items: center; }
+    .type .t svg { width: 18px; height: 18px; color: var(--dim); transition: color .2s, transform .2s; }
+    .type:hover .t svg { color: var(--accent); transform: translate(2px, -2px); }
+    .type .d { color: var(--muted); font-size: 14px; }
+
+    /* Areas */
+    .areas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .area {
+      position: relative; padding: 28px; border-radius: var(--radius); border: 1px solid var(--line); overflow: hidden;
+      background: radial-gradient(120% 120% at 100% 0%, rgba(94,240,208,.08), transparent 50%), var(--panel);
+      min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; transition: border-color .25s;
+    }
+    .area:hover { border-color: rgba(94,240,208,.4); }
+    .area .coord { font-family: var(--display); font-size: 12px; color: var(--dim); letter-spacing: .08em; }
+    .area h3 { font-size: 28px; margin: 14px 0 8px; }
+    .area p { color: var(--muted); font-size: 15px; margin: 0 0 18px; }
+    .area .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .area .tags span { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--muted); }
+    .area button { margin-top: 20px; align-self: flex-start; background: none; border: 0; padding: 0; color: var(--accent); font-weight: 600; font-size: 14px; cursor: pointer; display: inline-flex; gap: 6px; }
+
+    /* Calculator */
+    .calc {
+      display: grid; grid-template-columns: 1fr 1fr; border-radius: 24px; border: 1px solid var(--line-2); overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
+    }
+    .calc-in { padding: 40px; border-right: 1px solid var(--line); }
+    .calc-out {
+      padding: 40px; display: flex; flex-direction: column; justify-content: center;
+      background: radial-gradient(100% 80% at 50% 0%, rgba(94,240,208,.12), transparent 70%);
+    }
+    .range { margin-bottom: 30px; }
+    .range-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+    .range-top label { font-size: 14px; color: var(--muted); }
+    .range-top output { font-family: var(--display); font-size: 20px; font-weight: 600; }
+    input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 999px; background: var(--line-2); outline: none; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 6px rgba(94,240,208,.18); cursor: pointer; border: 0; }
+    input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 6px rgba(94,240,208,.18); cursor: pointer; border: 0; }
+    input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 8px rgba(94,240,208,.35); }
+    .calc-out .label { font-size: 13px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+    .calc-out .big { font-family: var(--display); font-size: clamp(48px, 6vw, 72px); font-weight: 600; letter-spacing: -0.04em; line-height: 1; margin: 14px 0 10px; }
+    .calc-out .split { display: flex; gap: 28px; color: var(--muted); font-size: 14px; margin-bottom: 30px; flex-wrap: wrap; }
+    .calc-out .split b { color: var(--fg); font-weight: 600; display: block; font-size: 17px; font-family: var(--display); }
+    .calc-out .fine { font-size: 12px; color: var(--dim); margin: 16px 0 0; }
+
+    /* Comparison */
+    .compare { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .compare .row { display: grid; grid-template-columns: 1.1fr 1fr 1fr; border-bottom: 1px solid var(--line); }
+    .compare .row:last-child { border-bottom: 0; }
+    .compare .row > div { padding: 18px 24px; font-size: 15px; display: flex; align-items: center; gap: 10px; }
+    .compare .row > div:nth-child(2) { color: var(--dim); }
+    .compare .row > div:nth-child(3) { background: rgba(94,240,208,.05); border-left: 1px solid rgba(94,240,208,.2); }
+    .compare .hd > div { font-family: var(--display); font-weight: 600; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); background: var(--panel); }
+    .compare .hd > div:nth-child(3) { color: var(--accent); }
+    .compare svg { width: 18px; height: 18px; flex: none; }
+    .compare .x { color: #6b737c; }
+    .compare .ok { color: var(--accent); }
+
+    /* Promise */
+    .promise { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .pledge { padding: 28px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--panel); }
+    .pledge h3 { font-size: 19px; margin: 0 0 8px; letter-spacing: -0.02em; }
+    .pledge p { color: var(--muted); font-size: 15px; margin: 0; }
+
+    /* FAQ */
+    .faq { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 56px; align-items: start; }
+    .faq details { border-bottom: 1px solid var(--line); }
+    .faq details:first-child { border-top: 1px solid var(--line); }
+    .faq summary {
+      list-style: none; cursor: pointer; padding: 22px 0; font-family: var(--display); font-weight: 500; font-size: 19px;
+      display: flex; justify-content: space-between; gap: 20px; align-items: center; letter-spacing: -0.01em;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; font-size: 24px; color: var(--accent); transition: transform .2s ease; flex: none; }
+    .faq details[open] summary::after { transform: rotate(45deg); }
+    .faq details p { color: var(--muted); margin: 0 0 22px; max-width: 640px; }
+
+    /* Final CTA + form */
+    .cta-panel {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 28px; overflow: hidden;
+      border: 1px solid var(--line-2); position: relative;
+      background: radial-gradient(80% 120% at 0% 0%, rgba(94,240,208,.16), transparent 60%), radial-gradient(80% 120% at 100% 100%, rgba(138,180,255,.12), transparent 60%), var(--bg-2);
+    }
+    .cta-copy { padding: 56px 48px; }
+    .cta-copy h2 { font-size: clamp(32px, 4vw, 48px); }
+    .cta-copy ul { list-style: none; padding: 0; margin: 30px 0 34px; display: grid; gap: 14px; }
+    .cta-copy li { display: flex; gap: 12px; color: var(--muted); }
+    .cta-copy li svg { width: 20px; height: 20px; color: var(--accent); flex: none; margin-top: 2px; }
+    .cta-copy li b { color: var(--fg); font-weight: 600; }
+    .direct { display: flex; flex-wrap: wrap; gap: 10px; }
+    .form-card { padding: 48px; background: rgba(0,0,0,.35); border-left: 1px solid var(--line); }
+    .form-card h3 { font-size: 24px; margin-bottom: 6px; }
+    .form-card .sub { color: var(--muted); font-size: 14px; margin: 0 0 24px; }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .f { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
+    .f label { font-size: 13px; color: var(--muted); font-weight: 500; }
+    .f input, .f select, .f textarea {
+      width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid var(--line-2);
+      background: rgba(255,255,255,.04); font-size: 15px; outline: none; transition: border-color .15s, box-shadow .15s;
+    }
+    .f select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%239aa3ad' stroke-width='1.6'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+    .f select option { background: #111; }
+    .f input:focus, .f select:focus, .f textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(94,240,208,.12); }
+    .f input[aria-invalid="true"] { border-color: #ff7a7a; }
+    .f .err { color: #ff9a9a; font-size: 12px; display: none; }
+    .f input[aria-invalid="true"] + .err { display: block; }
+    .phone-wrap { display: flex; }
+    .phone-wrap span { padding: 13px 12px; border: 1px solid var(--line-2); border-right: 0; border-radius: 12px 0 0 12px; background: rgba(255,255,255,.06); color: var(--muted); font-size: 15px; }
+    .phone-wrap input { border-radius: 0 12px 12px 0; }
+    .phone-f .err { display: none; }
+    .phone-f.bad .err { display: block; }
+    .phone-f.bad input { border-color: #ff7a7a; }
+    .consent { font-size: 12px; color: var(--dim); margin: 14px 0 0; }
+    .form-card .btn { width: 100%; margin-top: 4px; }
+    .done { text-align: center; padding: 30px 0; display: none; }
+    .done .tick { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 20px; display: grid; place-items: center; background: rgba(94,240,208,.12); border: 1px solid var(--accent); color: var(--accent); }
+    .done .tick svg { width: 32px; height: 32px; }
+    .done h3 { margin-bottom: 10px; }
+    .done p { color: var(--muted); margin: 0 0 24px; }
+    .form-card.sent form { display: none; }
+    .form-card.sent .done { display: block; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--line); padding: 56px 0 120px; margin-top: 40px; color: var(--muted); font-size: 14px; }
+    footer .wrap { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
+    footer h4 { font-family: var(--display); color: var(--fg); font-size: 14px; margin: 0 0 14px; font-weight: 600; }
+    footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    footer a:hover { color: var(--fg); }
+    footer .legal { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 24px; margin-top: 16px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--dim); }
+
+    /* Floating + mobile bar */
+    .wa-float {
+      position: fixed; right: 24px; bottom: 24px; z-index: 40; width: 58px; height: 58px; border-radius: 50%;
+      background: #25d366; color: #fff; display: grid; place-items: center; box-shadow: 0 12px 30px -8px rgba(37,211,102,.6);
+      transition: transform .2s ease;
+    }
+    .wa-float:hover { transform: scale(1.08); }
+    .wa-float svg { width: 28px; height: 28px; }
+    .wa-float .tip {
+      position: absolute; right: 70px; white-space: nowrap; background: #fff; color: #111; font-size: 13px; font-weight: 600;
+      padding: 8px 12px; border-radius: 10px; opacity: 0; transform: translateX(6px); transition: all .25s; pointer-events: none;
+    }
+    .wa-float:hover .tip { opacity: 1; transform: none; }
+    .mbar { display: none; }
+
+    /* Modal */
+    .modal { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(0,0,0,.7); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+    .modal.open { display: flex; animation: fade .2s ease; }
+    @keyframes fade { from { opacity: 0; } }
+    .modal-box {
+      width: 100%; max-width: 480px; max-height: calc(100vh - 32px); overflow-y: auto; border-radius: 24px; border: 1px solid var(--line-2);
+      background: radial-gradient(100% 60% at 50% 0%, rgba(94,240,208,.14), transparent 70%), #0b0d0f; position: relative;
+    }
+    .modal-box .form-card { border-left: 0; background: transparent; padding: 40px 32px 32px; }
+    .modal-close { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--panel); cursor: pointer; display: grid; place-items: center; z-index: 2; }
+    .modal-close svg { width: 16px; height: 16px; }
+    .badge-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .badge-row span { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; background: rgba(94,240,208,.12); color: var(--accent); border: 1px solid rgba(94,240,208,.3); }
+
+    /* Reveal on scroll */
+    .rv { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .rv.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .rv { opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* Responsive */
+    @media (max-width: 1040px) {
+      .nav-links { display: none; }
+      .hero .wrap { grid-template-columns: 1fr; gap: 40px; }
+      .offers, .types { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .step:nth-child(2) { border-right: 0; }
+      .step:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .areas, .promise { grid-template-columns: repeat(2, 1fr); }
+      .calc, .cta-panel { grid-template-columns: 1fr; }
+      .calc-in { border-right: 0; border-bottom: 1px solid var(--line); }
+      .form-card { border-left: 0; border-top: 1px solid var(--line); }
+      .faq { grid-template-columns: 1fr; gap: 32px; }
+      footer .wrap { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .wrap { padding: 0 16px; }
+      .nav .wrap { height: 64px; }
+      .nav-cta .call-btn { display: none; }
+      .hero { padding: 44px 0 40px; }
+      .hero-actions .btn { flex: 1 1 100%; }
+      .finder { padding: 20px; }
+      section.block { padding: 76px 0; }
+      .head { margin-bottom: 36px; }
+      .offers, .types, .areas, .promise, .steps { grid-template-columns: 1fr; }
+      .step { border-right: 0; border-bottom: 1px solid var(--line); }
+      .step:last-child { border-bottom: 0; }
+      .step .n { margin-bottom: 22px; }
+      .calc-in, .calc-out, .cta-copy, .form-card { padding: 28px 20px; }
+      .modal-box .form-card { padding: 36px 20px 24px; }
+      .grid2 { grid-template-columns: 1fr; gap: 0; }
+      .compare .row { grid-template-columns: 1fr 1fr; }
+      .compare .row > div:first-child { grid-column: 1 / -1; padding-bottom: 4px; font-weight: 600; background: var(--panel); }
+      .compare .hd > div:first-child { display: none; }
+      .compare .row > div { padding: 12px 14px; font-size: 14px; }
+      .compare .row > div:nth-child(3) { border-left: 1px solid rgba(94,240,208,.2); }
+      footer .wrap { grid-template-columns: 1fr; }
+      .wa-float { display: none; }
+      .mbar {
+        display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
+        padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: rgba(5,6,7,.92); border-top: 1px solid var(--line);
+        backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      }
+      .mbar .btn { padding: 13px 10px; font-size: 14px; }
+      .mbar .wa { background: #25d366; color: #fff; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow a" aria-hidden="true"></div>
+  <div class="bg-glow b" aria-hidden="true"></div>
+
+  <!-- SVG sprites -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-x" viewBox="280 340 470 345"><polygon fill="currentColor" points="290,353 418,353 717,670 600,670"/><polygon fill="currentColor" points="455,520 478,542 343,670 296,670"/><polygon fill="currentColor" points="528,435 606,353 732,353 584,492"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="15" height="14" rx="3"/><path d="m17 10 5-3v10l-5-3"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.5 19H17a3.5 3.5 0 0 0 0-7H7a3.5 3.5 0 0 1 0-7h8.5"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6Z"/><path d="M14 3v6h6M9 14l2 2 4-4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-ur" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2Z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4ZM12 21.8h0a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8Zm8.4-18.3A11.8 11.8 0 0 0 1.8 17.7L.1 24l6.4-1.7a11.8 11.8 0 0 0 5.6 1.4h0A11.8 11.8 0 0 0 20.4 3.5Z"/></symbol>
+  </svg>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a href="#top" class="brand" aria-label="Xspace & Co. home">
+        <span class="mark"><svg><use href="#i-x"/></svg></span>
+        Xspace &amp; Co.
+      </a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#offers">Why us</a>
+        <a href="#process">How it works</a>
+        <a href="#areas">Locations</a>
+        <a href="#budget">Budget</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-ghost call-btn" data-call href="#"><svg><use href="#i-phone"/></svg><span data-phone-text>Call us</span></a>
+        <button class="btn btn-primary" data-open="Book a site visit">Book a free visit</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow rv"><span class="dot"></span>Verified homes · West Hyderabad</span>
+          <h1 class="rv">Find your home.<br /><span class="grad">Skip the guesswork.</span></h1>
+          <p class="lead rv">Every property we show you is checked first: documents, approvals and RERA. You get a shortlist that fits your budget, video walkthroughs before you drive anywhere, and one advisor from first call to registration.</p>
+          <div class="hero-actions rv">
+            <button class="btn btn-primary btn-lg" data-open="Free 24-hour shortlist">Get my free shortlist <svg><use href="#i-arrow"/></svg></button>
+            <a class="btn btn-ghost btn-lg" data-wa href="#"><svg><use href="#i-wa"/></svg>Chat on WhatsApp</a>
+          </div>
+          <div class="proof rv">
+            <div><svg><use href="#i-shield"/></svg>Verified listings only</div>
+            <div><svg><use href="#i-doc"/></svg>TG RERA registered advisors</div>
+            <div><svg><use href="#i-bolt"/></svg>Shortlist in 24 hours</div>
+          </div>
+        </div>
+
+        <!-- Finder card -->
+        <div class="finder rv" id="finder">
+          <div class="finder-head">
+            <h3>Home finder</h3>
+            <span class="live">Advisors online</span>
+          </div>
+          <p class="sub">Choose an area and a home type. We'll send you verified options that match.</p>
+          <div class="map" aria-hidden="true">
+            <svg viewBox="0 0 400 190">
+              <defs>
+                <linearGradient id="road" x1="0" x2="1"><stop offset="0" stop-color="#5ef0d0" stop-opacity=".1"/><stop offset=".5" stop-color="#5ef0d0" stop-opacity=".6"/><stop offset="1" stop-color="#8ab4ff" stop-opacity=".1"/></linearGradient>
+              </defs>
+              <g stroke="rgba(255,255,255,.06)">
+                <path d="M0 38H400M0 76H400M0 114H400M0 152H400M50 0V190M100 0V190M150 0V190M200 0V190M250 0V190M300 0V190M350 0V190"/>
+              </g>
+              <path d="M10 150 C 90 160, 150 40, 240 60 S 360 150, 395 120" fill="none" stroke="url(#road)" stroke-width="2" stroke-dasharray="4 6"/>
+              <text x="300" y="182" fill="#6b737c" style="font:500 9px Inter,sans-serif;letter-spacing:.1em">ORR · WEST CORRIDOR</text>
+              <g class="node" data-area="Shankarpally"><circle class="ring" cx="42" cy="132" r="5"/><circle class="core" cx="42" cy="132" r="4"/><text x="22" y="118">Shankarpally</text></g>
+              <g class="node" data-area="Tellapur"><circle class="ring" cx="128" cy="78" r="5"/><circle class="core" cx="128" cy="78" r="4"/><text x="106" y="64">Tellapur</text></g>
+              <g class="node" data-area="Narsingi"><circle class="ring" cx="222" cy="142" r="5"/><circle class="core" cx="222" cy="142" r="4"/><text x="200" y="166">Narsingi</text></g>
+              <g class="node" data-area="Kokapet"><circle class="ring" cx="252" cy="96" r="5"/><circle class="core" cx="252" cy="96" r="4"/><text x="262" y="100">Kokapet</text></g>
+              <g class="node" data-area="Gachibowli"><circle class="ring" cx="320" cy="44" r="5"/><circle class="core" cx="320" cy="44" r="4"/><text x="296" y="30">Gachibowli</text></g>
+            </svg>
+          </div>
+          <p class="field-label">Area</p>
+          <div class="chips" id="areaChips" role="group" aria-label="Preferred area">
+            <button class="chip" aria-pressed="false">Kokapet</button>
+            <button class="chip" aria-pressed="false">Narsingi</button>
+            <button class="chip" aria-pressed="false">Tellapur</button>
+            <button class="chip" aria-pressed="false">Gachibowli</button>
+            <button class="chip" aria-pressed="false">Shankarpally</button>
+            <button class="chip" aria-pressed="false">Open to suggestions</button>
+          </div>
+          <p class="field-label">Looking for</p>
+          <div class="chips" id="typeChips" role="group" aria-label="Property type">
+            <button class="chip" aria-pressed="false">2 BHK</button>
+            <button class="chip" aria-pressed="false">3 BHK</button>
+            <button class="chip" aria-pressed="false">4+ BHK</button>
+            <button class="chip" aria-pressed="false">Villa</button>
+            <button class="chip" aria-pressed="false">Land / Plot</button>
+            <button class="chip" aria-pressed="false">Commercial</button>
+          </div>
+          <button class="btn btn-primary btn-lg" id="finderGo">Show me verified options <svg><use href="#i-arrow"/></svg></button>
+          <p class="fine">Free · No spam · Takes 30 seconds</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TICKER -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Gated community apartments</span><span>High-rise residences</span><span>Villas</span><span>Independent houses</span><span>Land &amp; open plots</span><span>Office space</span><span>Retail shops</span><span>Industrial &amp; godowns</span>
+        <span>Gated community apartments</span><span>High-rise residences</span><span>Villas</span><span>Independent houses</span><span>Land &amp; open plots</span><span>Office space</span><span>Retail shops</span><span>Industrial &amp; godowns</span>
+      </div>
+    </div>
+
+    <!-- OFFERS -->
+    <section class="block" id="offers">
+      <div class="wrap">
+        <div class="head rv">
+          <div class="kicker">What you get, free</div>
+          <h2>Buying a home is a big decision. <span class="grad">We do the checking first.</span></h2>
+          <p class="section-lead">These four things are free for every buyer, with no booking amount and no commitment.</p>
+        </div>
+        <div class="offers">
+          <article class="offer rv">
+            <span class="free">FREE</span>
+            <div class="icon"><svg><use href="#i-bolt"/></svg></div>
+            <h3>A shortlist in 24 hours</h3>
+            <p>Tell us your budget, area and must-haves. Within a day you get a short list of verified homes that match, with prices, sizes and possession dates.</p>
+            <a href="#" data-open="Free 24-hour shortlist">Get my shortlist <svg width="14" height="14"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="offer rv">
+            <span class="free">FREE</span>
+            <div class="icon"><svg><use href="#i-shield"/></svg></div>
+            <h3>Checked before you see it</h3>
+            <p>We check the survey number, approvals, title status and RERA registration before a property reaches your shortlist. If it fails a check, you never see it.</p>
+            <a href="#" data-open="Document check">Ask about a property <svg width="14" height="14"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="offer rv">
+            <span class="free">FREE</span>
+            <div class="icon"><svg><use href="#i-play"/></svg></div>
+            <h3>Video walkthroughs</h3>
+            <p>Our in-house studio films the projects we list. Watch the walkthrough and the floor plan before you spend a Saturday driving to a site.</p>
+            <a href="#" data-open="Video walkthrough">Send me walkthroughs <svg width="14" height="14"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="offer rv">
+            <span class="free">FREE</span>
+            <div class="icon"><svg><use href="#i-route"/></svg></div>
+            <h3>Site visits planned for you</h3>
+            <p>We plan one visit day across the projects you like, confirm each site the day before, and walk you through them. Can't make it? We can do the visit live on a video call.</p>
+            <a href="#" data-open="Book a site visit">Plan my visit <svg width="14" height="14"><use href="#i-arrow"/></svg></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="block" id="process" style="padding-top:20px">
+      <div class="wrap">
+        <div class="head split rv">
+          <div>
+            <div class="kicker">How it works</div>
+            <h2>From first call to keys, in four steps.</h2>
+          </div>
+          <button class="btn btn-ghost" data-open="Start with a call">Start with a 10-minute call <svg><use href="#i-arrow"/></svg></button>
+        </div>
+        <div class="steps rv">
+          <div class="step">
+            <div class="n">01</div>
+            <h3>Tell us what you need</h3>
+            <p>A short call or WhatsApp chat about your budget, area, home size and timeline.</p>
+            <span class="when">10 minutes</span>
+          </div>
+          <div class="step">
+            <div class="n">02</div>
+            <h3>Get your shortlist</h3>
+            <p>Verified homes that fit your brief, with RERA numbers, floor plans, brochures and videos.</p>
+            <span class="when">Within 24 hours</span>
+          </div>
+          <div class="step">
+            <div class="n">03</div>
+            <h3>Visit what you like</h3>
+            <p>One planned visit day, in person or by video call. Tell us what you liked and we refine the list.</p>
+            <span class="when">When it suits you</span>
+          </div>
+          <div class="step">
+            <div class="n">04</div>
+            <h3>Close with confidence</h3>
+            <p>Your advisor helps with the negotiation, home loan coordination and paperwork until registration.</p>
+            <span class="when">One advisor throughout</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROPERTY TYPES -->
+    <section class="block" id="types" style="padding-top:20px">
+      <div class="wrap">
+        <div class="head rv">
+          <div class="kicker">What we deal in</div>
+          <h2>Homes, land and commercial property.</h2>
+          <p class="section-lead">Pick a category and tell us what you need. An advisor who knows that kind of property will call you.</p>
+        </div>
+        <div class="types">
+          <button class="type rv" data-open="Gated Community Apartments"><span class="t">Gated apartments <svg><use href="#i-arrow-ur"/></svg></span><span class="d">Amenities, security, community living</span></button>
+          <button class="type rv" data-open="Gated Community High-Rise"><span class="t">High-rise living <svg><use href="#i-arrow-ur"/></svg></span><span class="d">Skyline views, premium towers</span></button>
+          <button class="type rv" data-open="Villa"><span class="t">Villas <svg><use href="#i-arrow-ur"/></svg></span><span class="d">Private space, gated villa communities</span></button>
+          <button class="type rv" data-open="Independent House"><span class="t">Independent houses <svg><use href="#i-arrow-ur"/></svg></span><span class="d">Your own plot, your own rules</span></button>
+          <button class="type rv" data-open="Semi-Gated / Standalone"><span class="t">Semi-gated &amp; standalone <svg><use href="#i-arrow-ur"/></svg></span><span class="d">Lower cost per sq ft, quicker possession</span></button>
+          <button class="type rv" data-open="Land"><span class="t">Land &amp; plots <svg><use href="#i-arrow-ur"/></svg></span><span class="d">Acreage and plots with clear title</span></button>
+          <button class="type rv" data-open="Commercial"><span class="t">Commercial <svg><use href="#i-arrow-ur"/></svg></span><span class="d">Office space and retail shops</span></button>
+          <button class="type rv" data-open="Industrial"><span class="t">Industrial <svg><use href="#i-arrow-ur"/></svg></span><span class="d">Open plots, godowns, units</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- AREAS -->
+    <section class="block" id="areas" style="padding-top:20px">
+      <div class="wrap">
+        <div class="head split rv">
+          <div>
+            <div class="kicker">Where we work</div>
+            <h2>We know West Hyderabad <span class="grad">street by street.</span></h2>
+          </div>
+          <p class="section-lead" style="margin:0;max-width:420px">Our area partners live and work in these neighbourhoods. They hear about new launches, price changes and problems before the listing portals do.</p>
+        </div>
+        <div class="areas">
+          <article class="area rv">
+            <div>
+              <span class="coord">17.39° N · 78.33° E</span>
+              <h3>Kokapet</h3>
+              <p>High-rise gated communities near the Financial District, with fast ORR access.</p>
+              <div class="tags"><span>High-rise</span><span>Gated</span><span>3–4 BHK</span></div>
+            </div>
+            <button data-open="Kokapet">See verified homes in Kokapet →</button>
+          </article>
+          <article class="area rv">
+            <div>
+              <span class="coord">17.38° N · 78.36° E</span>
+              <h3>Narsingi</h3>
+              <p>Right on the ORR, with gated apartments and villas close to the IT corridor.</p>
+              <div class="tags"><span>Apartments</span><span>Villas</span><span>ORR</span></div>
+            </div>
+            <button data-open="Narsingi">See verified homes in Narsingi →</button>
+          </article>
+          <article class="area rv">
+            <div>
+              <span class="coord">17.47° N · 78.27° E</span>
+              <h3>Tellapur</h3>
+              <p>Quieter and greener, with villa communities and newer gated projects.</p>
+              <div class="tags"><span>Villas</span><span>Gated</span><span>Family</span></div>
+            </div>
+            <button data-open="Tellapur">See verified homes in Tellapur →</button>
+          </article>
+          <article class="area rv">
+            <div>
+              <span class="coord">17.44° N · 78.35° E</span>
+              <h3>Gachibowli</h3>
+              <p>The IT hub, with ready-to-move apartments within walking distance of work.</p>
+              <div class="tags"><span>Ready to move</span><span>IT corridor</span></div>
+            </div>
+            <button data-open="Gachibowli">See verified homes in Gachibowli →</button>
+          </article>
+          <article class="area rv">
+            <div>
+              <span class="coord">17.48° N · 78.31° E</span>
+              <h3>Nallagandla</h3>
+              <p>An established neighbourhood with schools, hospitals and daily needs close by.</p>
+              <div class="tags"><span>Established</span><span>Schools</span></div>
+            </div>
+            <button data-open="Nallagandla">See verified homes in Nallagandla →</button>
+          </article>
+          <article class="area rv">
+            <div>
+              <span class="coord">17.45° N · 78.13° E</span>
+              <h3>Shankarpally</h3>
+              <p>Land and plots for long-term buyers. Every parcel's title is checked first.</p>
+              <div class="tags"><span>Land</span><span>Plots</span><span>Acreage</span></div>
+            </div>
+            <button data-open="Shankarpally">See land in Shankarpally →</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUDGET CALCULATOR -->
+    <section class="block" id="budget" style="padding-top:20px">
+      <div class="wrap">
+        <div class="head rv">
+          <div class="kicker">Budget planner</div>
+          <h2>Find out what you can afford.</h2>
+          <p class="section-lead">Move the sliders. We'll show you an approximate home budget, then send verified homes within it.</p>
+        </div>
+        <div class="calc rv">
+          <div class="calc-in">
+            <div class="range">
+              <div class="range-top"><label for="emi">Monthly EMI you're comfortable with</label><output id="emiOut"></output></div>
+              <input type="range" id="emi" min="20000" max="500000" step="5000" value="80000" />
+            </div>
+            <div class="range">
+              <div class="range-top"><label for="down">Down payment available</label><output id="downOut"></output></div>
+              <input type="range" id="down" min="500000" max="30000000" step="250000" value="2500000" />
+            </div>
+            <div class="range">
+              <div class="range-top"><label for="tenure">Loan tenure</label><output id="tenureOut"></output></div>
+              <input type="range" id="tenure" min="5" max="30" step="1" value="20" />
+            </div>
+            <div class="range" style="margin-bottom:0">
+              <div class="range-top"><label for="rate">Interest rate (approx.)</label><output id="rateOut"></output></div>
+              <input type="range" id="rate" min="7" max="12" step="0.1" value="8.5" />
+            </div>
+          </div>
+          <div class="calc-out">
+            <div class="label">Your approximate home budget</div>
+            <div class="big" id="budgetOut">₹—</div>
+            <div class="split">
+              <div>Home loan<b id="loanOut">—</b></div>
+              <div>Down payment<b id="downOut2">—</b></div>
+            </div>
+            <button class="btn btn-primary btn-lg" id="budgetGo">Show verified homes in this budget <svg><use href="#i-arrow"/></svg></button>
+            <p class="fine">This is an estimate, not a loan offer. Your actual loan depends on the bank, your income and your credit score. We can connect you with lenders.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section class="block" id="compare" style="padding-top:20px">
+      <div class="wrap">
+        <div class="head rv">
+          <div class="kicker">The difference</div>
+          <h2>Not another listing site.</h2>
+        </div>
+        <div class="compare rv">
+          <div class="row hd"><div>&nbsp;</div><div>Typical listing / broker</div><div>Xspace &amp; Co.</div></div>
+          <div class="row"><div>Property verification</div><div><svg class="x"><use href="#i-close"/></svg>Often after you've visited</div><div><svg class="ok"><use href="#i-check"/></svg>Before it reaches your shortlist</div></div>
+          <div class="row"><div>RERA registration</div><div><svg class="x"><use href="#i-close"/></svg>You ask, they check</div><div><svg class="ok"><use href="#i-check"/></svg>Quoted upfront on every RERA project</div></div>
+          <div class="row"><div>Seeing the property</div><div><svg class="x"><use href="#i-close"/></svg>Photos, then a long drive</div><div><svg class="ok"><use href="#i-check"/></svg>Studio-shot video walkthroughs first</div></div>
+          <div class="row"><div>Who calls you</div><div><svg class="x"><use href="#i-close"/></svg>Ten different agents</div><div><svg class="ok"><use href="#i-check"/></svg>One dedicated advisor</div></div>
+          <div class="row"><div>Your phone number</div><div><svg class="x"><use href="#i-close"/></svg>Shared, then spam</div><div><svg class="ok"><use href="#i-check"/></svg>Never shared, never broadcast</div></div>
+          <div class="row"><div>Pressure tactics</div><div><svg class="x"><use href="#i-close"/></svg>"Only one unit left!"</div><div><svg class="ok"><use href="#i-check"/></svg>Honest facts. You decide when you're ready.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMISE -->
+    <section class="block" id="promise" style="padding-top:20px">
+      <div class="wrap">
+        <div class="head rv">
+          <div class="kicker">Our promise</div>
+          <h2>Rules we hold ourselves to.</h2>
+          <p class="section-lead">Every Xspace advisor signs these before they can work with a client.</p>
+        </div>
+        <div class="promise">
+          <div class="pledge rv"><div class="icon"><svg><use href="#i-shield"/></svg></div><h3>Only verified inventory</h3><p>We pitch a property only after it passes verification. If something changes, such as the price, availability or a legal issue, we tell you the same day.</p></div>
+          <div class="pledge rv"><div class="icon"><svg><use href="#i-doc"/></svg></div><h3>No false promises</h3><p>We never quote a price, discount, possession date or approval that hasn't been confirmed. We never claim "guaranteed returns" and never use fake urgency.</p></div>
+          <div class="pledge rv"><div class="icon"><svg><use href="#i-phone"/></svg></div><h3>Your data stays private</h3><p>Your name, number and requirements are used only to find your home. We never add you to a broadcast list without your consent.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="block" id="faq" style="padding-top:20px">
+      <div class="wrap faq">
+        <div class="rv">
+          <div class="kicker">FAQ</div>
+          <h2>Questions buyers ask us.</h2>
+          <p class="section-lead">Have a question that isn't here? Ask us on WhatsApp. A real person replies.</p>
+          <div style="margin-top:28px"><a class="btn btn-ghost" data-wa href="#"><svg><use href="#i-wa"/></svg>Ask on WhatsApp</a></div>
+        </div>
+        <div class="rv">
+          <details><summary>Do I pay anything for the shortlist or site visits?</summary><p>No. The shortlist, video walkthroughs and site visits are free. Your advisor will explain any fees for closing a deal before you commit to anything.</p></details>
+          <details><summary>What does "verified" actually mean?</summary><p>Before we list a property, we check its survey number, approvals, title status and, where it applies, its TG RERA registration. Listings with incomplete documents are not verified, and we don't show them to you.</p></details>
+          <details><summary>I live outside Hyderabad or abroad. Can you still help?</summary><p>Yes. Many buyers start with our video walkthroughs and a live video-call site visit. We can coordinate the paperwork remotely and plan an in-person visit for when you're in town.</p></details>
+          <details><summary>Will I get calls from lots of different agents?</summary><p>No. You get one advisor. Your details stay inside Xspace and are never sold or shared.</p></details>
+          <details><summary>Do you help with home loans?</summary><p>We help you understand what you can borrow, show you bank-approved projects, and coordinate with your lender. The loan itself is approved by the bank.</p></details>
+          <details><summary>Can I sell or list my property with you?</summary><p>Yes. Share the property details and documents with us. Once it passes verification, we present it to buyers looking for that kind of home.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="block" id="contact" style="padding-top:20px">
+      <div class="wrap">
+        <div class="cta-panel rv">
+          <div class="cta-copy">
+            <div class="kicker">Start here</div>
+            <h2>Get your free <span class="grad">verified shortlist.</span></h2>
+            <ul>
+              <li><svg><use href="#i-check"/></svg><span><b>Within 24 hours</b>: homes that match your budget and area</span></li>
+              <li><svg><use href="#i-check"/></svg><span><b>Checked first</b>: documents, approvals and RERA</span></li>
+              <li><svg><use href="#i-check"/></svg><span><b>Video walkthroughs</b> so you only visit the homes you really like</span></li>
+              <li><svg><use href="#i-check"/></svg><span><b>No spam, no pressure.</b> Your number stays with us.</span></li>
+            </ul>
+            <div class="direct">
+              <a class="btn btn-ghost" data-call href="#"><svg><use href="#i-phone"/></svg>Call now</a>
+              <a class="btn btn-ghost" data-wa href="#"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+            </div>
+          </div>
+          <div class="form-card" id="mainForm"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div>
+        <a href="#top" class="brand"><span class="mark"><svg><use href="#i-x"/></svg></span>Xspace &amp; Co.</a>
+        <p style="max-width:320px;margin:16px 0 0">Verified real estate across West Hyderabad. Homes, land and commercial property, with documents and RERA checked first.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#offers">Why Xspace</a></li>
+          <li><a href="#process">How it works</a></li>
+          <li><a href="#areas">Locations</a></li>
+          <li><a href="#budget">Budget planner</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Locations</h4>
+        <ul>
+          <li><a href="#areas">Kokapet</a></li>
+          <li><a href="#areas">Narsingi</a></li>
+          <li><a href="#areas">Tellapur</a></li>
+          <li><a href="#areas">Gachibowli</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a data-call href="#"><span data-phone-text>Call us</span></a></li>
+          <li><a data-wa href="#">WhatsApp</a></li>
+          <li><a data-mail href="#" data-mail-text>Email us</a></li>
+          <li data-office></li>
+        </ul>
+      </div>
+      <div class="legal">
+        <span>© <span id="yr"></span> Xspace &amp; Co. All rights reserved.</span>
+        <span data-rera></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp (desktop) -->
+  <a class="wa-float" data-wa href="#" aria-label="Chat on WhatsApp"><span class="tip">Questions? Chat with us</span><svg><use href="#i-wa"/></svg></a>
+
+  <!-- Sticky bar (mobile) -->
+  <div class="mbar">
+    <a class="btn btn-ghost" data-call href="#"><svg><use href="#i-phone"/></svg>Call</a>
+    <a class="btn wa" data-wa href="#"><svg><use href="#i-wa"/></svg>WhatsApp</a>
+    <button class="btn btn-primary" data-open="Book a site visit">Book visit</button>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <button class="modal-close" aria-label="Close" data-close><svg><use href="#i-close"/></svg></button>
+      <div class="form-card" id="modalForm"></div>
+    </div>
+  </div>
+
+  <!-- One form, rendered into the page and into the modal -->
+  <template id="formTpl">
+    <form novalidate>
+      <div class="badge-row"><span data-intent>Free shortlist</span></div>
+      <h3 data-title>Tell us what you're looking for</h3>
+      <p class="sub" data-sub>An advisor will call you back with verified options. No spam.</p>
+      <div class="f">
+        <label>Your name</label>
+        <input name="name" autocomplete="name" placeholder="Full name" required />
+        <span class="err">Please enter your name</span>
+      </div>
+      <div class="f phone-f">
+        <label>Mobile number</label>
+        <div class="phone-wrap"><span>+91</span><input name="phone" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit mobile" maxlength="14" required /></div>
+        <span class="err">Please enter a valid 10-digit mobile number</span>
+      </div>
+      <div class="grid2">
+        <div class="f">
+          <label>Looking for</label>
+          <select name="type">
+            <option value="">Select</option>
+            <option>2 BHK</option><option>3 BHK</option><option>4+ BHK</option>
+            <option>Villa</option><option>Independent House</option>
+            <option>Gated Community Apartments</option><option>Gated Community High-Rise</option><option>Semi-Gated / Standalone</option>
+            <option>Land</option><option>Commercial</option><option>Industrial</option>
+          </select>
+        </div>
+        <div class="f">
+          <label>Preferred area</label>
+          <select name="area">
+            <option value="">Select</option>
+            <option>Kokapet</option><option>Narsingi</option><option>Tellapur</option><option>Gachibowli</option>
+            <option>Nallagandla</option><option>Shankarpally</option><option>Open to suggestions</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="f">
+          <label>Budget</label>
+          <select name="budget">
+            <option value="">Select</option>
+            <option>Under ₹75 L</option><option>₹75 L – 1.2 Cr</option><option>₹1.2 – 2 Cr</option>
+            <option>₹2 – 3.5 Cr</option><option>₹3.5 Cr +</option>
+          </select>
+        </div>
+        <div class="f">
+          <label>When are you buying?</label>
+          <select name="timeline">
+            <option value="">Select</option>
+            <option>Immediately</option><option>Within 3 months</option><option>3–6 months</option><option>Just exploring</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-lg" type="submit">Get my free shortlist <svg><use href="#i-arrow"/></svg></button>
+      <p class="consent">By submitting, you agree that Xspace &amp; Co. can contact you about your enquiry by call, SMS or WhatsApp. We never share your details.</p>
+    </form>
+    <div class="done" role="status">
+      <div class="tick"><svg><use href="#i-check"/></svg></div>
+      <h3>Thank you. We have your request.</h3>
+      <p>Your advisor will call you soon. To start right away, send the message to us on WhatsApp.</p>
+      <a class="btn btn-primary" data-wa-done href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Continue on WhatsApp</a>
+    </div>
+  </template>
+
+  <script>
+    /* ============================================================
+       EDIT THESE before going live. Everything on the page reads from here.
+       ============================================================ */
+    const CONFIG = {
+      phone: '',            // e.g. '+919876543210'  (call button + WhatsApp)
+      whatsapp: '',         // defaults to phone if left empty
+      email: '',            // e.g. 'hello@xspace.co'
+      office: 'Kokapet, Hyderabad',
+      reraAgentNo: '',      // TG RERA agent registration number, shown in the footer
+      /* Optional: a URL that accepts a JSON POST of the enquiry (your API,
+         a Google Apps Script, Formspree…). Left empty, enquiries go to WhatsApp. */
+      enquiryEndpoint: '',
+    };
+
+    const digits = (s) => String(s || '').replace(/\D/g, '');
+    const waNumber = digits(CONFIG.whatsapp || CONFIG.phone);
+    const waLink = (text) => `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
+
+    // Wire contact links
+    document.querySelectorAll('[data-call]').forEach((a) => {
+      if (CONFIG.phone) a.href = 'tel:' + CONFIG.phone.replace(/\s/g, '');
+      else a.addEventListener('click', (e) => { e.preventDefault(); openModal('Request a call back'); });
+    });
+    document.querySelectorAll('[data-phone-text]').forEach((s) => { if (CONFIG.phone) s.textContent = CONFIG.phone; });
+    document.querySelectorAll('[data-wa]').forEach((a) => {
+      if (waNumber) { a.href = waLink("Hi Xspace & Co., I'm looking for a property and would like some help."); a.target = '_blank'; a.rel = 'noopener'; }
+      else a.addEventListener('click', (e) => { e.preventDefault(); openModal('Chat with an advisor'); });
+    });
+    document.querySelectorAll('[data-mail]').forEach((a) => {
+      if (CONFIG.email) { a.href = 'mailto:' + CONFIG.email; a.textContent = CONFIG.email; } else a.closest('li').remove();
+    });
+    document.querySelectorAll('[data-office]').forEach((li) => { li.textContent = CONFIG.office; });
+    document.querySelectorAll('[data-rera]').forEach((s) => { s.textContent = CONFIG.reraAgentNo ? 'TG RERA Agent Reg. No. ' + CONFIG.reraAgentNo : ''; });
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Nav border on scroll
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.rv').forEach((el, i) => { el.style.transitionDelay = (i % 4) * 70 + 'ms'; io.observe(el); });
+
+    /* ---------- Forms ---------- */
+    const TYPES = ['2 BHK', '3 BHK', '4+ BHK', 'Villa', 'Independent House', 'Gated Community Apartments', 'Gated Community High-Rise', 'Semi-Gated / Standalone', 'Land', 'Commercial', 'Industrial'];
+    const AREAS = ['Kokapet', 'Narsingi', 'Tellapur', 'Gachibowli', 'Nallagandla', 'Shankarpally', 'Open to suggestions'];
+    const COPY = {
+      'Book a site visit': ['Book a free site visit', 'We plan the visit day, confirm each site and walk you through. In person or by video call.', 'Book my visit'],
+      'Video walkthrough': ['Get video walkthroughs', 'Watch verified homes before you visit. We send them straight to your WhatsApp.', 'Send me walkthroughs'],
+      'Document check': ['Ask about a property', 'Tell us what you are considering. We will tell you what we know about its documents, approvals and RERA status.', 'Request a call back'],
+      'Request a call back': ['Request a call back', 'Leave your number and an advisor will call you back.', 'Call me back'],
+      'Chat with an advisor': ['Talk to an advisor', 'Share a few details and an advisor will reach out on WhatsApp.', 'Contact me'],
+    };
+
+    function mountForm(container) {
+      container.innerHTML = '';
+      container.classList.remove('sent');
+      container.appendChild(document.getElementById('formTpl').content.cloneNode(true));
+      const form = container.querySelector('form');
+      form.addEventListener('submit', (e) => { e.preventDefault(); submit(container); });
+      form.phone.addEventListener('input', () => container.querySelector('.phone-f').classList.remove('bad'));
+      form.name.addEventListener('input', () => form.name.removeAttribute('aria-invalid'));
+      return container;
+    }
+
+    function prefill(container, intent, extra = {}) {
+      const form = container.querySelector('form');
+      const copy = COPY[intent];
+      container.querySelector('[data-intent]').textContent = intent || 'Free shortlist';
+      if (copy) {
+        container.querySelector('[data-title]').textContent = copy[0];
+        container.querySelector('[data-sub]').textContent = copy[1];
+        form.querySelector('button[type=submit]').firstChild.textContent = copy[2] + ' ';
+      }
+      if (TYPES.includes(intent)) form.type.value = intent;
+      if (AREAS.includes(intent)) form.area.value = intent;
+      if (extra.type && TYPES.includes(extra.type)) form.type.value = extra.type;
+      if (extra.area && AREAS.includes(extra.area)) form.area.value = extra.area;
+      if (extra.budget) form.budget.value = extra.budget;
+      container.dataset.intent = intent || 'Free shortlist';
+      container.dataset.note = extra.note || '';
+    }
+
+    async function submit(container) {
+      const form = container.querySelector('form');
+      const name = form.name.value.trim();
+      let phone = digits(form.phone.value);
+      if (phone.length === 12 && phone.startsWith('91')) phone = phone.slice(2);
+      if (phone.length === 11 && phone.startsWith('0')) phone = phone.slice(1);
+      let ok = true;
+      if (!name) { form.name.setAttribute('aria-invalid', 'true'); ok = false; }
+      if (!/^[6-9]\d{9}$/.test(phone)) { container.querySelector('.phone-f').classList.add('bad'); ok = false; }
+      if (!ok) return;
+
+      const lead = {
+        name, phone: '+91' + phone,
+        propertyType: form.type.value, preferredArea: form.area.value,
+        budget: form.budget.value, timeline: form.timeline.value,
+        intent: container.dataset.intent, note: container.dataset.note,
+        source: 'Website', page: location.href, submittedAt: new Date().toISOString(),
+      };
+      const msg = [
+        `Hi Xspace & Co., I'm ${name}.`,
+        `Request: ${lead.intent}`,
+        lead.propertyType && `Looking for: ${lead.propertyType}`,
+        lead.preferredArea && `Area: ${lead.preferredArea}`,
+        lead.budget && `Budget: ${lead.budget}`,
+        lead.timeline && `Timeline: ${lead.timeline}`,
+        lead.note,
+        `Phone: ${lead.phone}`,
+      ].filter(Boolean).join('\n');
+
+      const btn = form.querySelector('button[type=submit]');
+      btn.disabled = true;
+      if (CONFIG.enquiryEndpoint) {
+        try {
+          await fetch(CONFIG.enquiryEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(lead) });
+        } catch (_) { /* WhatsApp below still gets it to us */ }
+      }
+      btn.disabled = false;
+
+      const done = container.querySelector('[data-wa-done]');
+      if (waNumber) done.href = waLink(msg); else done.remove();
+      container.classList.add('sent');
+      if (waNumber && !CONFIG.enquiryEndpoint) window.open(waLink(msg), '_blank', 'noopener');
+      try { sessionStorage.setItem('xs_enquired', '1'); } catch (_) {}
+    }
+
+    // Main form
+    prefill(mountForm(document.getElementById('mainForm')), 'Free 24-hour shortlist');
+
+    // Modal
+    const modal = document.getElementById('modal');
+    const modalForm = document.getElementById('modalForm');
+    let lastFocus = null;
+    function openModal(intent, extra) {
+      lastFocus = document.activeElement;
+      prefill(mountForm(modalForm), intent, extra);
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => modalForm.querySelector('input[name=name]').focus(), 50);
+    }
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+    modal.addEventListener('click', (e) => { if (e.target === modal || e.target.closest('[data-close]')) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+    document.querySelectorAll('[data-open]').forEach((el) => el.addEventListener('click', (e) => { e.preventDefault(); openModal(el.dataset.open); }));
+
+    /* ---------- Hero finder ---------- */
+    function single(groupId) {
+      const group = document.getElementById(groupId);
+      group.addEventListener('click', (e) => {
+        const chip = e.target.closest('.chip'); if (!chip) return;
+        const on = chip.getAttribute('aria-pressed') !== 'true';
+        group.querySelectorAll('.chip').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+        chip.setAttribute('aria-pressed', String(on));
+        if (groupId === 'areaChips') syncMap();
+      });
+      return () => group.querySelector('.chip[aria-pressed="true"]')?.textContent || '';
+    }
+    const pickedArea = single('areaChips');
+    const pickedType = single('typeChips');
+    const nodes = document.querySelectorAll('.map .node');
+    function syncMap() { const a = pickedArea(); nodes.forEach((n) => n.classList.toggle('on', n.dataset.area === a)); }
+    nodes.forEach((n) => n.addEventListener('click', () => {
+      document.querySelectorAll('#areaChips .chip').forEach((c) => c.setAttribute('aria-pressed', String(c.textContent === n.dataset.area)));
+      syncMap();
+    }));
+    document.getElementById('finderGo').addEventListener('click', () => {
+      const area = pickedArea(), type = pickedType();
+      openModal('Free 24-hour shortlist', {
+        area, type: type === 'Land / Plot' ? 'Land' : type,
+      });
+    });
+
+    /* ---------- Budget calculator ---------- */
+    const inr = (n) => {
+      if (n >= 1e7) return '₹' + (n / 1e7).toFixed(n >= 1e8 ? 1 : 2).replace(/\.?0+$/, '') + ' Cr';
+      if (n >= 1e5) return '₹' + (n / 1e5).toFixed(1).replace(/\.0$/, '') + ' L';
+      return '₹' + Math.round(n).toLocaleString('en-IN');
+    };
+    const $ = (id) => document.getElementById(id);
+    let budgetValue = 0;
+    function calc() {
+      const emi = +$('emi').value, down = +$('down').value, years = +$('tenure').value, rate = +$('rate').value;
+      const r = rate / 12 / 100, n = years * 12;
+      const loan = emi * (1 - Math.pow(1 + r, -n)) / r;
+      budgetValue = loan + down;
+      $('emiOut').textContent = '₹' + emi.toLocaleString('en-IN');
+      $('downOut').textContent = inr(down);
+      $('tenureOut').textContent = years + ' yrs';
+      $('rateOut').textContent = rate.toFixed(1) + '%';
+      $('budgetOut').textContent = inr(budgetValue);
+      $('loanOut').textContent = inr(loan);
+      $('downOut2').textContent = inr(down);
+    }
+    ['emi', 'down', 'tenure', 'rate'].forEach((id) => $(id).addEventListener('input', calc));
+    calc();
+    function bucket(v) {
+      if (v < 75e5) return 'Under ₹75 L';
+      if (v < 1.2e7) return '₹75 L – 1.2 Cr';
+      if (v < 2e7) return '₹1.2 – 2 Cr';
+      if (v < 3.5e7) return '₹2 – 3.5 Cr';
+      return '₹3.5 Cr +';
+    }
+    $('budgetGo').addEventListener('click', () => openModal('Homes in my budget', {
+      budget: bucket(budgetValue), note: `Budget planner: approx. ${inr(budgetValue)} (EMI ₹${(+$('emi').value).toLocaleString('en-IN')}/mo)`,
+    }));
+
+    /* ---------- Exit intent (desktop, once per session) ---------- */
+    let exitShown = false;
+    try { exitShown = sessionStorage.getItem('xs_exit') === '1' || sessionStorage.getItem('xs_enquired') === '1'; } catch (_) {}
+    document.addEventListener('mouseout', (e) => {
+      if (exitShown || e.relatedTarget || e.clientY > 0 || modal.classList.contains('open') || window.innerWidth < 900) return;
+      exitShown = true;
+      try { sessionStorage.setItem('xs_exit', '1'); } catch (_) {}
+      openModal('Free 24-hour shortlist');
+      modalForm.querySelector('[data-title]').textContent = 'Before you go: get your free shortlist';
+      modalForm.querySelector('[data-sub]').textContent = 'Verified homes that match your budget, on WhatsApp within 24 hours. No spam, no obligation.';
+    });
+  </script>
+</body>
+</html>
