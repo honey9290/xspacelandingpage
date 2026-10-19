@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CONFIG } from '../config';
-import { AREAS, CTA, NAV_LINKS } from '../content';
+import { CTA, FOOTER_AUDIENCES, NAV_LINKS } from '../content';
 import { useEnquiry } from '../lib/enquiry';
 import { CallLink, phoneLabel, WhatsAppLink } from './ContactLinks';
 import EnquiryForm from './EnquiryForm';
@@ -8,23 +8,25 @@ import Icon from './Icon';
 import { Brand } from './Nav';
 import Reveal from './Reveal';
 
-/* The closing form, worded for the page it sits on (CTA in content.js). */
-export function FinalCta({ variant = 'home', kicker = 'Start here', tight }) {
+/* The closing form, worded for the page it sits on (CTA in content.js).
+   `talk` swaps "Call now" for the brief's "Talk to Xspace". */
+export function FinalCta({ variant = 'home', kicker, tight, talk }) {
   const c = CTA[variant];
   return (
     <section className={'block' + (tight ? ' tight' : '')} id="contact">
       <div className="wrap">
         <Reveal className="cta-panel">
           <div className="cta-copy">
-            <div className="kicker">{kicker}</div>
+            <div className="kicker">{kicker || c.kicker || 'Start here'}</div>
             <h2>{c.title[0]}<span className="grad">{c.title[1]}</span></h2>
+            {c.lead && <p className="section-lead">{c.lead}</p>}
             <ul>
               {c.points.map(([b, rest]) => (
                 <li key={b}><Icon name="check" /><span><b>{b}</b>{rest}</span></li>
               ))}
             </ul>
             <div className="direct">
-              <CallLink className="btn btn-ghost"><Icon name="phone" />Call now</CallLink>
+              <CallLink className="btn btn-ghost"><Icon name="phone" />{talk ? 'Talk to Xspace' : 'Call now'}</CallLink>
               <WhatsAppLink className="btn btn-ghost"><Icon name="whatsapp" />WhatsApp</WhatsAppLink>
             </div>
           </div>
@@ -37,28 +39,34 @@ export function FinalCta({ variant = 'home', kicker = 'Start here', tight }) {
   );
 }
 
+const SOCIAL = [
+  ['instagram', 'Instagram'],
+  ['youtube', 'YouTube'],
+  ['linkedin', 'LinkedIn'],
+].filter(([key]) => CONFIG.social[key]);
+
 export function Footer() {
   return (
     <footer>
       <div className="wrap">
         <div>
           <Brand />
+          <p className="motto">Know Before You Own.</p>
           <p className="about">
-            Verified real estate across West Hyderabad. Homes for families, offices and commercial property for
-            businesses, and land, with documents and RERA checked first.
+            Xspace doesn&apos;t just show you property. Xspace helps you understand it, verify it, experience it and
+            make a better decision.
           </p>
         </div>
         <div>
           <h4>Explore</h4>
           <ul>
-            <li><Link to="/">Home</Link></li>
             {NAV_LINKS.map(([to, label]) => <li key={to}><Link to={to}>{label}</Link></li>)}
           </ul>
         </div>
         <div>
-          <h4>Locations</h4>
+          <h4>For</h4>
           <ul>
-            {AREAS.slice(0, 5).map((a) => <li key={a.name}><Link to="/locations">{a.name}</Link></li>)}
+            {FOOTER_AUDIENCES.map(([to, label]) => <li key={to}><Link to={to}>{label}</Link></li>)}
           </ul>
         </div>
         <div>
@@ -67,11 +75,17 @@ export function Footer() {
             <li><CallLink className="plain">{phoneLabel}</CallLink></li>
             <li><WhatsAppLink className="plain">WhatsApp</WhatsAppLink></li>
             {CONFIG.email && <li><a href={'mailto:' + CONFIG.email}>{CONFIG.email}</a></li>}
-            <li>{CONFIG.office}</li>
           </ul>
+          {SOCIAL.length > 0 && (
+            <ul className="social">
+              {SOCIAL.map(([key, label]) => (
+                <li key={key}><a href={CONFIG.social[key]} target="_blank" rel="noopener noreferrer">{label}</a></li>
+              ))}
+            </ul>
+          )}
         </div>
         <div className="legal">
-          <span>© {new Date().getFullYear()} Xspace &amp; Co. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Xspace &amp; Co. All Rights Reserved.</span>
           {CONFIG.reraAgentNo && <span>TG RERA Agent Reg. No. {CONFIG.reraAgentNo}</span>}
           <span>Photos are representative stock images (Unsplash), not specific listings.</span>
         </div>

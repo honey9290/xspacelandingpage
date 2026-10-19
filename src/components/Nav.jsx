@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { NAV_LINKS } from '../content';
-import { useEnquiry } from '../lib/enquiry';
 import { CallLink, phoneLabel } from './ContactLinks';
 import Icon, { Logo } from './Icon';
 
@@ -15,7 +14,6 @@ export function Brand() {
 }
 
 export default function Nav() {
-  const openEnquiry = useEnquiry();
   const { pathname } = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState({ open: false, at: pathname });
@@ -39,7 +37,7 @@ export default function Nav() {
         </nav>
         <div className="nav-cta">
           <CallLink className="btn btn-ghost call-btn"><Icon name="phone" />{phoneLabel}</CallLink>
-          <button className="btn btn-primary" onClick={() => openEnquiry('Book a site visit')}>Book a free visit</button>
+          <Link className="btn btn-primary" to="/property">Find your property</Link>
         </div>
         <button
           className="menu-btn" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open}

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { STATS } from '../content';
 import Reveal from './Reveal';
 
 const SLIDE_MS = 6500;
@@ -36,7 +35,7 @@ function Backdrop({ slides }) {
 
 /* Full-bleed photo hero shared by the Home, Residential and Commercial
    pages: copy on the left, `aside` (finder or path cards) on the right. */
-export default function PageHero({ slides, eyebrow, title, lead, actions, aside, stats }) {
+export default function PageHero({ slides, eyebrow, title, tagline, lead, actions, aside }) {
   return (
     <section className="hero">
       <Backdrop slides={slides} />
@@ -44,23 +43,17 @@ export default function PageHero({ slides, eyebrow, title, lead, actions, aside,
         <div>
           <Reveal as="span" className="eyebrow"><span className="dot" />{eyebrow}</Reveal>
           <Reveal as="h1">{title}</Reveal>
+          {tagline && <Reveal as="p" className="tagline">{tagline}</Reveal>}
           <Reveal as="p" className="lead">{lead}</Reveal>
           {actions && <Reveal className="hero-actions">{actions}</Reveal>}
         </div>
         {aside}
       </div>
-      {stats && (
-        <div className="wrap">
-          <Reveal className="stats">
-            {STATS.map(([big, small]) => <div key={big}><b>{big}</b><span>{small}</span></div>)}
-          </Reveal>
-        </div>
-      )}
     </section>
   );
 }
 
-/* Text-led header for Locations, Why Xspace and Contact. */
+/* Text-led header for the other pages. */
 export function PageHeader({ kicker, title, lead, aside }) {
   return (
     <section className="page-head">

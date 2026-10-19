@@ -14,6 +14,7 @@ function initialFields(intent, extra) {
     area: pick(AREA_OPTIONS, extra.area, intent),
     budget: pick(BUDGET_OPTIONS, extra.budget),
     timeline: '',
+    detail: '',
   };
 }
 
@@ -39,6 +40,7 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
   const [sent, setSent] = useState(null); // { waLink } once submitted
 
   const copy = INTENT_COPY[intent] || INTENT_COPY[DEFAULT_INTENT];
+  const detailLabel = copy[3]; // partner forms ask this instead of the property questions
   const id = (n) => `${idPrefix}-${n}`;
   const set = (e) => {
     const { name, value } = e.target;
@@ -53,7 +55,9 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
     setErrors(nextErrors);
     if (nextErrors.name || nextErrors.phone) return;
     setBusy(true);
-    const link = await sendLead(buildLead(fields, phone, intent, extra.note));
+    const detail = fields.detail.trim() && `${detailLabel}: ${fields.detail.trim()}`;
+    const note = [extra.note, detail].filter(Boolean).join(' · ');
+    const link = await sendLead(buildLead(fields, phone, intent, note));
     setBusy(false);
     setSent({ waLink: link });
   }
@@ -63,7 +67,7 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
       <div className="done" role="status">
         <div className="tick"><Icon name="check" /></div>
         <h3>Thank you. We have your request.</h3>
-        <p>Your advisor will call you soon. To start right away, send the message to us on WhatsApp.</p>
+        <p>The Xspace team will call you soon. To start right away, send the message to us on WhatsApp.</p>
         {sent.waLink && (
           <a className="btn btn-primary" href={sent.waLink} target="_blank" rel="noopener noreferrer">
             <Icon name="whatsapp" />Continue on WhatsApp
@@ -101,14 +105,23 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
         {errors.phone && <span className="err">Please enter a valid 10-digit mobile number</span>}
       </div>
 
-      <div className="grid2">
-        <Select label="Looking for" name="type" value={fields.type} options={PROPERTY_OPTIONS} onChange={set} />
-        <Select label="Preferred area" name="area" value={fields.area} options={AREA_OPTIONS} onChange={set} />
-      </div>
-      <div className="grid2">
-        <Select label="Budget" name="budget" value={fields.budget} options={BUDGET_OPTIONS} onChange={set} />
-        <Select label="When are you buying?" name="timeline" value={fields.timeline} options={TIMELINE_OPTIONS} onChange={set} />
-      </div>
+      {detailLabel ? (
+        <div className="f">
+          <label htmlFor={id('detail')}>{detailLabel}</label>
+          <input id={id('detail')} name="detail" value={fields.detail} onChange={set} />
+        </div>
+      ) : (
+        <>
+          <div className="grid2">
+            <Select label="Looking for" name="type" value={fields.type} options={PROPERTY_OPTIONS} onChange={set} />
+            <Select label="Preferred area" name="area" value={fields.area} options={AREA_OPTIONS} onChange={set} />
+          </div>
+          <div className="grid2">
+            <Select label="Budget" name="budget" value={fields.budget} options={BUDGET_OPTIONS} onChange={set} />
+            <Select label="When are you buying?" name="timeline" value={fields.timeline} options={TIMELINE_OPTIONS} onChange={set} />
+          </div>
+        </>
+      )}
 
       <button className="btn btn-primary btn-lg" type="submit" disabled={busy}>
         {busy ? 'Sending…' : copy[2]} <Icon name="arrow" />

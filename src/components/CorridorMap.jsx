@@ -13,8 +13,8 @@ export default function CorridorMap({ active, onPick }) {
           </linearGradient>
         </defs>
         <path stroke="rgba(255,255,255,.06)" d="M0 38H400M0 76H400M0 114H400M0 152H400M50 0V190M100 0V190M150 0V190M200 0V190M250 0V190M300 0V190M350 0V190" />
-        <path d="M10 150 C 90 160, 150 40, 240 60 S 360 150, 395 120" fill="none" stroke="url(#road)" strokeWidth="2" strokeDasharray="4 6" />
-        <text x="300" y="182" className="map-caption">ORR · WEST CORRIDOR</text>
+        <path d="M20 90 C 60 20, 150 14, 220 16 S 330 30, 372 80 S 384 160, 372 186" fill="none" stroke="url(#road)" strokeWidth="2" strokeDasharray="4 6" />
+        <text x="14" y="182" className="map-caption">WEST HYDERABAD · SCHEMATIC</text>
         {MAP_PINS.map((p, i) => (
           <g
             key={p.area} className={'node' + (active === p.area ? ' on' : '')} role="button" tabIndex={0}

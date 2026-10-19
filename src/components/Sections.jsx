@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { AREAS, COMPARE, OFFERS, PATHS, PLEDGES, STEPS } from '../content';
+import { DEFAULT_INTENT } from '../config';
+import { AREAS, JOURNEY, PATHS } from '../content';
 import { useEnquiry } from '../lib/enquiry';
 import CorridorMap from './CorridorMap';
 import Icon from './Icon';
@@ -21,10 +22,10 @@ export function Head({ kicker, title, lead, split, aside }) {
   );
 }
 
-/* Home hero aside: one card per side of the business. */
-export function Paths() {
+/* Residential and Commercial: one photo card per side of the business. */
+export function Paths({ row }) {
   return (
-    <div className="paths">
+    <div className={'paths' + (row ? ' paths-row' : '')}>
       {PATHS.map((p, i) => (
         <Reveal key={p.to} delay={i * 90}>
           <Link to={p.to} className="path">
@@ -41,57 +42,77 @@ export function Paths() {
   );
 }
 
-export function Offers() {
+/* A grid of icon cards. An item with `to` links to a page (or a #section
+   on this one); with `intent` it opens the enquiry form. */
+export function Cards({ items, cols = 3, numbered }) {
   const openEnquiry = useEnquiry();
   return (
-    <section className="block" id="offers">
+    <div className="cards" style={{ '--cols': cols }}>
+      {items.map((c, i) => (
+        <Reveal as="article" className="card" key={c.title} delay={(i % cols) * 70}>
+          <div className="card-top">
+            <div className="icon"><Icon name={c.icon} /></div>
+            {numbered && <span className="card-n">{String(i + 1).padStart(2, '0')}</span>}
+          </div>
+          <h3>{c.title}</h3>
+          <p>{c.text}</p>
+          {c.cta && c.to && <Link className="link" to={c.to}>{c.cta} <Icon name="arrow" size={14} /></Link>}
+          {c.cta && c.intent && (
+            <button className="link" onClick={() => openEnquiry(c.intent)}>{c.cta} <Icon name="arrow" size={14} /></button>
+          )}
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
+/* A row of stages joined by arrows: DISCOVER → SHORTLIST → … */
+export function Chain({ steps, label }) {
+  return (
+    <ol className="chain" aria-label={label}>
+      {steps.map((s, i) => (
+        <li key={s}>
+          <span>{s}</span>
+          {i < steps.length - 1 && <Icon name="arrow" />}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+/* 05: Your property journey, eight numbered stages. */
+export function Journey() {
+  const openEnquiry = useEnquiry();
+  return (
+    <section className="block" id="journey">
       <div className="wrap">
         <Head
-          kicker="What you get, free"
-          title={<>A big decision deserves a team <span className="grad">that checks first.</span></>}
-          lead="Whether it's a home or an office, these four things are free, with no booking amount and no commitment."
+          split kicker="05 — Your property journey" title={<>From discovery <span className="grad">to ownership.</span></>}
+          aside={(
+            <button className="btn btn-ghost" onClick={() => openEnquiry(DEFAULT_INTENT)}>
+              Start with step one <Icon name="arrow" />
+            </button>
+          )}
         />
-        <div className="offers">
-          {OFFERS.map((o, i) => (
-            <Reveal as="article" className="offer" key={o.title} delay={i * 70}>
-              <span className="free">FREE</span>
-              <div className="icon"><Icon name={o.icon} /></div>
-              <h3>{o.title}</h3>
-              <p>{o.text}</p>
-              <button className="link" onClick={() => openEnquiry(o.intent)}>{o.cta} <Icon name="arrow" size={14} /></button>
-            </Reveal>
+        <Reveal as="ol" className="journey">
+          {JOURNEY.map((s, i) => (
+            <li className="step" key={s.title}>
+              <div className="n">{String(i + 1).padStart(2, '0')} — {s.title}</div>
+              <p>{s.text}</p>
+            </li>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-export function Process() {
-  const openEnquiry = useEnquiry();
+/* Ticked list in a grid, e.g. what you can explore about a project. */
+export function Checklist({ items }) {
   return (
-    <section className="block tight" id="process">
-      <div className="wrap">
-        <Head
-          split kicker="How it works" title="From first call to keys, in four steps."
-          aside={(
-            <button className="btn btn-ghost" onClick={() => openEnquiry('Request a call back')}>
-              Start with a 10-minute call <Icon name="arrow" />
-            </button>
-          )}
-        />
-        <Reveal className="steps">
-          {STEPS.map((s, i) => (
-            <div className="step" key={s.title}>
-              <div className="n">{String(i + 1).padStart(2, '0')}</div>
-              <h3>{s.title}</h3>
-              <p>{s.text}</p>
-              <span className="when">{s.when}</span>
-            </div>
-          ))}
-        </Reveal>
-      </div>
-    </section>
+    <Reveal as="ul" className="checklist">
+      {items.map((t) => <li key={t}><Icon name="check" />{t}</li>)}
+    </Reveal>
   );
 }
 
@@ -128,12 +149,12 @@ export function AreaGrid() {
           {AREAS.map((a, i) => (
             <Reveal as="article" className="area" key={a.name} delay={(i % 3) * 70}>
               <div>
-                <span className="coord">{a.coord}</span>
+                <span className="coord">{String(i + 1).padStart(2, '0')} · West Hyderabad</span>
                 <h3>{a.name}</h3>
                 <p>{a.text}</p>
                 <div className="tags">{a.tags.map((t) => <span key={t}>{t}</span>)}</div>
               </div>
-              <button onClick={() => openEnquiry(a.name)}>{a.cta || `See verified property in ${a.name}`} →</button>
+              <button onClick={() => openEnquiry(a.name)}>Explore projects in {a.name} →</button>
             </Reveal>
           ))}
         </div>
@@ -145,52 +166,6 @@ export function AreaGrid() {
 export function AreasMap() {
   const openEnquiry = useEnquiry();
   return <div className="areas-map"><CorridorMap onPick={(area) => openEnquiry(area)} /></div>;
-}
-
-export function Compare() {
-  return (
-    <section className="block tight" id="compare">
-      <div className="wrap">
-        <Head kicker="The difference" title="Not another listing site." />
-        <Reveal className="compare" role="table" aria-label="Typical broker compared with Xspace & Co.">
-          <div className="row hd" role="row">
-            <div role="columnheader">&nbsp;</div>
-            <div role="columnheader">Typical listing / broker</div>
-            <div role="columnheader">Xspace &amp; Co.</div>
-          </div>
-          {COMPARE.map(([what, them, us]) => (
-            <div className="row" role="row" key={what}>
-              <div role="rowheader">{what}</div>
-              <div role="cell"><Icon name="close" className="x" />{them}</div>
-              <div role="cell"><Icon name="check" className="ok" />{us}</div>
-            </div>
-          ))}
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-export function Pledges() {
-  return (
-    <section className="block" id="promise">
-      <div className="wrap">
-        <Head
-          kicker="Our promise" title="Rules we hold ourselves to."
-          lead="Every Xspace advisor signs these before they can work with a client."
-        />
-        <div className="promise">
-          {PLEDGES.map((p, i) => (
-            <Reveal className="pledge" key={p.title} delay={i * 70}>
-              <div className="icon"><Icon name={p.icon} /></div>
-              <h3>{p.title}</h3>
-              <p>{p.text}</p>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
 }
 
 export function Faq({ items, title = 'Questions people ask us.' }) {

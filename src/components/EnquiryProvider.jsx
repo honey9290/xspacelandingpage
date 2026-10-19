@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { DEFAULT_INTENT } from '../config';
 import { EnquiryContext } from '../lib/enquiry';
 import EnquiryForm from './EnquiryForm';
 import Icon from './Icon';
@@ -45,9 +46,9 @@ export default function EnquiryProvider({ children }) {
       if (seen('xs_enquired')) return;
       try { sessionStorage.setItem('xs_exit', '1'); } catch { /* private mode */ }
       document.removeEventListener('mouseout', onOut);
-      openEnquiry('Free 24-hour shortlist', {}, {
-        title: 'Before you go: get your free shortlist',
-        sub: 'Verified homes that match your budget, on WhatsApp within 24 hours. No spam, no obligation.',
+      openEnquiry(DEFAULT_INTENT, {}, {
+        title: "Before you go: tell us what you're looking for",
+        sub: 'The Xspace team will come back with options that fit. No spam, no obligation.',
       });
     };
     document.addEventListener('mouseout', onOut);

@@ -13,7 +13,7 @@ export default function Contact() {
       <PageHeader
         kicker="Contact"
         title={<>Talk to a real person. <span className="grad">Today.</span></>}
-        lead="Call, WhatsApp or leave your details. An advisor gets back to you, and your number is never shared."
+        lead="Call, WhatsApp or leave your details. Someone from the Xspace team gets back to you, and your number is never shared."
       />
       <section className="block tight contact-top">
         <div className="wrap contact-cards">
@@ -26,18 +26,12 @@ export default function Contact() {
           <Reveal delay={70}>
             <WhatsAppLink className="contact-card">
               <span className="icon"><Icon name="whatsapp" /></span>
-              <b>WhatsApp</b><span>Chat with an advisor</span>
+              <b>WhatsApp</b><span>Chat with the Xspace team</span>
             </WhatsAppLink>
-          </Reveal>
-          <Reveal delay={140}>
-            <div className="contact-card">
-              <span className="icon"><Icon name="home" /></span>
-              <b>Visit our office</b><span>{CONFIG.office}</span>
-            </div>
           </Reveal>
         </div>
       </section>
-      <FinalCta variant="home" kicker="Send an enquiry" tight />
+      <FinalCta variant="home" kicker="Send an enquiry" tight talk />
     </>
   );
 }
