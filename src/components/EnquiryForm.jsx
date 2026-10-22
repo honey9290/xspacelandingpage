@@ -15,6 +15,7 @@ function initialFields(intent, extra) {
     budget: pick(BUDGET_OPTIONS, extra.budget),
     timeline: '',
     detail: '',
+    website: '',
   };
 }
 
@@ -82,6 +83,13 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
       <div className="badge-row"><span>{intent}</span></div>
       <h3 id={id('title')}>{title || copy[0]}</h3>
       <p className="sub">{sub || copy[1]}</p>
+
+      {/* Honeypot: off-screen and skipped by keyboard and screen readers.
+          People leave it empty; spam bots fill it, and the portal drops them. */}
+      <input
+        name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" value={fields.website} onChange={set}
+        style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, opacity: 0 }}
+      />
 
       <div className="f">
         <label htmlFor={id('name')}>Your name</label>

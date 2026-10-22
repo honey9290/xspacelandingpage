@@ -26,6 +26,7 @@ export function buildLead(fields, phone, intent, note) {
     intent,
     note: note || '',
     source: 'Website',
+    website: fields.website || '', // honeypot: hidden from people, filled by bots
     page: window.location.href,
     submittedAt: new Date().toISOString(),
   };
@@ -47,17 +48,61 @@ export function leadMessage(lead) {
 /* POST to the configured endpoint if there is one. With no endpoint,
    WhatsApp is the delivery channel, so open it straight away. Returns the
    WhatsApp link for the thank-you screen (null if WhatsApp isn't set up). */
+/* Enquiries that did not reach the portal (it was down, asleep too long, or
+   the visitor's network dropped). Kept in this browser and sent again: once
+   30 s later while the page is still open, and on every later visit, until
+   the portal accepts them. */
+const OUTBOX_KEY = 'xs_outbox';
+const readOutbox = () => {
+  try { return JSON.parse(localStorage.getItem(OUTBOX_KEY)) || []; } catch { return []; }
+};
+const writeOutbox = (list) => {
+  try {
+    if (list.length) localStorage.setItem(OUTBOX_KEY, JSON.stringify(list.slice(-10)));
+    else localStorage.removeItem(OUTBOX_KEY);
+  } catch { /* private mode: nothing to keep it in */ }
+};
+
+/* true once the portal has the lead. A 4xx means the portal looked at it and
+   refused it (bad phone, bot) — sending it again would not change that. */
+async function postLead(lead) {
+  try {
+    /* text/plain keeps this a "simple" cross-origin request (no preflight),
+       and keepalive lets it finish even if the visitor closes the tab. The
+       portal parses it as JSON. */
+    const res = await fetch(CONFIG.enquiryEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(lead),
+      keepalive: true,
+    });
+    return res.ok || (res.status >= 400 && res.status < 500 && res.status !== 404 && res.status !== 429);
+  } catch {
+    return false;
+  }
+}
+
+export async function flushOutbox() {
+  if (!CONFIG.enquiryEndpoint) return;
+  const pending = readOutbox();
+  if (!pending.length) return;
+  const still = [];
+  for (const lead of pending) if (!(await postLead(lead))) still.push(lead);
+  /* Something may have been queued while this ran. */
+  const added = readOutbox().filter((l) => !pending.some((p) => p.submittedAt === l.submittedAt));
+  writeOutbox([...still, ...added]);
+}
+
 export async function sendLead(lead) {
   if (CONFIG.enquiryEndpoint) {
-    try {
-      await fetch(CONFIG.enquiryEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(lead),
-      });
-    } catch {
-      /* the WhatsApp button on the thank-you screen still reaches us */
-    }
+    const sent = postLead(lead).then((ok) => {
+      if (ok) return;
+      writeOutbox([...readOutbox(), lead]);
+      setTimeout(flushOutbox, 30000);
+    });
+    /* A free Render instance can take ~50 s to wake, so the visitor waits at
+       most a few seconds; the request carries on in the background. */
+    await Promise.race([sent, new Promise((r) => setTimeout(r, 4000))]);
   }
   try { sessionStorage.setItem('xs_enquired', '1'); } catch { /* private mode */ }
   if (!waNumber) return null;
