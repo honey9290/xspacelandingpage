@@ -5,13 +5,17 @@ import {
 import { buildLead, normalisePhone, sendLead } from '../lib/enquiry';
 import Icon from './Icon';
 
+/* The area dropdown's last choice; picking it shows a text box instead. */
+const OTHER_AREA = 'Other location';
+
 function initialFields(intent, extra) {
   const pick = (list, ...values) => values.find((v) => v && list.includes(v)) || '';
   return {
     name: '',
     phone: '',
     type: pick(PROPERTY_OPTIONS, extra.type, intent),
-    area: pick(AREA_OPTIONS, extra.area, intent),
+    /* A location typed into the finder is not on the list; keep it as typed. */
+    area: pick(AREA_OPTIONS, extra.area, intent) || (extra.area || '').trim(),
     budget: pick(BUDGET_OPTIONS, extra.budget),
     timeline: '',
     detail: '',
@@ -36,6 +40,7 @@ function Select({ label, name, value, options, onChange }) {
    whatever it can. `title`/`sub` override the heading (exit-intent uses it). */
 export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title, sub, autoFocus, idPrefix = 'f' }) {
   const [fields, setFields] = useState(() => initialFields(intent, extra));
+  const [otherArea, setOtherArea] = useState(() => !!fields.area && !AREA_OPTIONS.includes(fields.area));
   const [errors, setErrors] = useState({});
   const [busy, setBusy] = useState(false);
   const [sent, setSent] = useState(null); // { waLink } once submitted
@@ -45,6 +50,14 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
   const id = (n) => `${idPrefix}-${n}`;
   const set = (e) => {
     const { name, value } = e.target;
+    if (name === 'area' && e.target.tagName === 'SELECT') {
+      const other = value === OTHER_AREA;
+      setOtherArea(other);
+      if (other) {
+        setFields((f) => ({ ...f, area: '' }));
+        return;
+      }
+    }
     setFields((f) => ({ ...f, [name]: value }));
     if (errors[name]) setErrors((er) => ({ ...er, [name]: false }));
   };
@@ -122,8 +135,20 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
         <>
           <div className="grid2">
             <Select label="Looking for" name="type" value={fields.type} options={PROPERTY_OPTIONS} onChange={set} />
-            <Select label="Preferred area" name="area" value={fields.area} options={AREA_OPTIONS} onChange={set} />
+            <Select
+              label="Preferred area" name="area" value={otherArea ? OTHER_AREA : fields.area}
+              options={[...AREA_OPTIONS, OTHER_AREA]} onChange={set}
+            />
           </div>
+          {otherArea && (
+            <div className="f">
+              <label htmlFor={id('area-other')}>Your location</label>
+              <input
+                id={id('area-other')} name="area" placeholder="e.g. Kokapet" maxLength={80}
+                value={fields.area} onChange={set}
+              />
+            </div>
+          )}
           <div className="grid2">
             <Select label="Budget" name="budget" value={fields.budget} options={BUDGET_OPTIONS} onChange={set} />
             <Select label="When are you buying?" name="timeline" value={fields.timeline} options={TIMELINE_OPTIONS} onChange={set} />

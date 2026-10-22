@@ -146,6 +146,12 @@ h1 .grad, h2 .grad {
 }
 .chip:hover { color: var(--fg); border-color: rgba(255,255,255,.3); }
 .chip[aria-pressed="true"] { background: rgba(94,240,208,.12); border-color: var(--accent); color: var(--fg); }
+.chip-input {
+  display: block; width: 100%; margin: -4px 0 14px; padding: 11px 14px; border-radius: 12px;
+  border: 1px solid var(--line-2); background: rgba(255,255,255,.04); font-size: 14px; outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.chip-input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(94,240,208,.12); }
 .field-label { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--dim); margin: 0 0 8px; font-weight: 600; }
 .finder .btn { width: 100%; margin-top: 6px; }
 .finder .fine { font-size: 12px; color: var(--dim); text-align: center; margin: 12px 0 0; }
@@ -600,7 +606,7 @@ button.wa-float { border: 0; cursor: pointer; }
   .cta-copy h2 { font-size: 30px; }
   .cta-copy ul { margin: 20px 0 0; gap: 10px; font-size: 15px; }
   .cta-copy .direct { display: none; }
-  .f input, .f select { font-size: 16px; } /* stops iOS zooming on focus */
+  .f input, .f select, .chip-input { font-size: 16px; } /* stops iOS zooming on focus */
 
   /* Footer: brand and contact only */
   footer { padding: 40px 0 112px; margin-top: 16px; }
