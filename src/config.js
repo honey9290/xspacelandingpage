@@ -4,7 +4,7 @@
    ============================================================ */
 export const CONFIG = {
   phone: '', // e.g. '+919876543210' (call buttons + WhatsApp)
-  whatsapp: '', // defaults to phone if left empty
+  whatsapp: '+919666263009', // defaults to phone if left empty
   email: '', // e.g. 'hello@xspace.co'
   reraAgentNo: '', // TG RERA agent registration number, shown in the footer
   /* Optional: a URL that accepts a JSON POST of the enquiry (your API, a
