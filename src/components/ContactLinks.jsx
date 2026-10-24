@@ -20,4 +20,4 @@ export function WhatsAppLink({ className, children, ...rest }) {
   return <button type="button" className={className} onClick={() => openEnquiry('Chat with an advisor')} {...rest}>{children}</button>;
 }
 
-export const phoneLabel = CONFIG.phone || 'Call us';
+export const phoneLabel = 'Get in touch';
