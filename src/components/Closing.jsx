@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
-import { CONFIG } from '../config';
+import { BOOKING_INTENT, CONFIG } from '../config';
 import { CTA, FOOTER_AUDIENCES, NAV_LINKS } from '../content';
 import { useEnquiry } from '../lib/enquiry';
+import Chat from './Chat';
 import { CallLink, phoneLabel, WhatsAppLink } from './ContactLinks';
 import EnquiryForm from './EnquiryForm';
 import Icon from './Icon';
@@ -94,18 +95,17 @@ export function Footer() {
   );
 }
 
-/* WhatsApp bubble on desktop; Call / WhatsApp / Book dock on phones. */
+/* The chat box, fixed to the screen on every size; plus a Call /
+   WhatsApp / Book dock on phones. */
 export function StickyContact() {
   const openEnquiry = useEnquiry();
   return (
     <>
-      <WhatsAppLink className="wa-float" aria-label="Chat on WhatsApp">
-        <span className="tip">Questions? Chat with us</span><Icon name="whatsapp" />
-      </WhatsAppLink>
+      <Chat />
       <div className="mbar">
         <CallLink className="btn btn-ghost"><Icon name="phone" />Call</CallLink>
         <WhatsAppLink className="btn wa"><Icon name="whatsapp" />WhatsApp</WhatsAppLink>
-        <button className="btn btn-primary" onClick={() => openEnquiry('Book a site visit')}>Book visit</button>
+        <button className="btn btn-primary" onClick={() => openEnquiry(BOOKING_INTENT)}>Book</button>
       </div>
     </>
   );

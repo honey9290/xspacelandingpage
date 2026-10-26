@@ -37,7 +37,7 @@ function Backdrop({ slides }) {
    pages: copy on the left, `aside` (finder or path cards) on the right. */
 export default function PageHero({ slides, eyebrow, title, tagline, lead, actions, aside }) {
   return (
-    <section className="hero">
+    <section className="hero dark-zone">
       <Backdrop slides={slides} />
       <div className="wrap hero-grid">
         <div>

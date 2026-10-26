@@ -1,5 +1,5 @@
-/* Inline icons. Stroke icons share one set of SVG attributes; the brand
-   mark and WhatsApp glyph are filled. */
+/* Inline icons. Stroke icons share one set of SVG attributes; the
+   WhatsApp glyph is filled. */
 
 const STROKE = {
   check: <path d="M20 6 9 17l-5-5" />,
@@ -38,6 +38,13 @@ const STROKE = {
   drone: <><circle cx="5" cy="5" r="2.5" /><circle cx="19" cy="5" r="2.5" /><circle cx="5" cy="19" r="2.5" /><circle cx="19" cy="19" r="2.5" /><rect x="9" y="9" width="6" height="6" rx="1.5" /><path d="m7 7 2 2M17 7l-2 2M7 17l2-2M17 17l-2-2" /></>,
   orbit: <><circle cx="12" cy="12" r="3" /><ellipse cx="12" cy="12" rx="10" ry="4.5" /></>,
   pin: <><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.5" /></>,
+  bars: <><path d="M4 20h16" /><path d="M7 16v-5M12 16V6M17 16v-8" /></>,
+  help: <><circle cx="12" cy="12" r="9" /><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5v.7M12 17h.01" /></>,
+  sun: <><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></>,
+  moon: <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z" />,
+  chat: <><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.6A8 8 0 1 1 21 12Z" /><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" /></>,
+  send: <path d="m22 2-7 20-4-9-9-4 20-7ZM22 2 11 13" />,
+  menu: <path d="M4 7h16M4 12h16M4 17h16" />,
   book: <><path d="M4 5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2V5Z" /><path d="M4 20a2 2 0 0 0 2 1h13v-3" /></>,
 };
 
@@ -45,7 +52,6 @@ const WHATSAPP = 'M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2
 
 export default function Icon({ name, size, className }) {
   const dims = size ? { width: size, height: size } : {};
-  if (name === 'xspace') return <Logo />;
   if (name === 'whatsapp') {
     return (
       <svg viewBox="0 0 24 24" aria-hidden="true" className={className} {...dims}>
@@ -59,17 +65,6 @@ export default function Icon({ name, size, className }) {
       strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className} {...dims}
     >
       {STROKE[name]}
-    </svg>
-  );
-}
-
-/* The Xspace "X", traced from assets/icon-1024.png. */
-export function Logo() {
-  return (
-    <svg viewBox="280 340 470 345" aria-hidden="true">
-      <polygon fill="currentColor" points="290,353 418,353 717,670 600,670" />
-      <polygon fill="currentColor" points="455,520 478,542 343,670 296,670" />
-      <polygon fill="currentColor" points="528,435 606,353 732,353 584,492" />
     </svg>
   );
 }

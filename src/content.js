@@ -49,40 +49,136 @@ export const PATHS = [
   },
 ];
 
-/* 01: Why Xspace */
-export const PILLARS = [
-  { icon: 'search', title: 'Discover', text: 'Find properties and projects that match your requirements.' },
-  { icon: 'compass', title: 'Understand', text: 'Explore the project, location, specifications, amenities and available information.' },
-  { icon: 'shield', title: 'Verify', text: 'Review relevant project information against applicable official sources.' },
-  { icon: 'eye', title: 'Experience', text: 'See the property through detailed content, project presentations and site visits.' },
-  { icon: 'scale', title: 'Decide', text: 'Compare your options and move forward with confidence.' },
+/* Header links to the sections of the home page, in page order. */
+export const SECTION_LINKS = [
+  ['why', 'Why Xspace'],
+  ['booking', '3 Booking Modes'],
+  ['journey', 'The 9-Step Journey'],
+  ['studio', 'Xspace Studio'],
+  ['listings', 'Sample Listings'],
+  ['about', 'About Us'],
+  ['clients', 'What Clients Say'],
 ];
 
-/* 02: What we do. `to` links to a page; `intent` opens the enquiry form. */
-export const SERVICES = [
-  { icon: 'search', title: 'Property discovery', text: 'Find properties based on your budget, location, requirements and purpose.', to: '/property', cta: 'Find your property' },
-  { icon: 'megaphone', title: 'Project marketing', text: 'We work with developers and property owners to present their projects to the right audience.', to: '/partners#developers', cta: 'For developers' },
-  { icon: 'users', title: 'Property consulting', text: 'Our team helps you understand, compare and evaluate suitable opportunities.', intent: 'Talk to Xspace', cta: 'Talk to our team' },
-  { icon: 'shield', title: 'Project verification', text: 'We organise relevant project information and review available details from applicable official sources.', to: '/verification', cta: 'How verification works' },
-  { icon: 'route', title: 'Site visits', text: "Once you've shortlisted a property, we coordinate the site visit experience.", intent: 'Book a site visit', cta: 'Plan a visit' },
-  { icon: 'play', title: 'Property content', text: 'Our Studio and Creator Partners make projects and locations easier to understand through visual content.', to: '/studio', cta: 'Xspace Studio' },
-  { icon: 'chip', title: 'Technology', text: "Our private internal platform connects Xspace's teams, inventory, CRM, verification, site visits and operations.", to: '/about#technology', cta: 'Behind the scenes' },
+/* 01: Why choose Xspace. `visual` picks the illustration in the card;
+   `to` links to a page or a #section, `intent` opens the enquiry form. */
+export const WHY_CARDS = [
+  { icon: 'search', title: 'Discover', text: 'Find properties that match your needs across West Hyderabad.', visual: 'photo', img: '/images/type-highrise.webp', to: '/property' },
+  { icon: 'shield', title: 'Verify', text: 'RERA, HMDA, approvals, developer details and project status, reviewed where applicable, all in one place.', visual: 'checks', to: '/verification' },
+  { icon: 'doc', title: 'Know before you visit', text: 'Understand the project, location, construction status, availability and more with detailed content.', visual: 'video', img: '/images/interior-living.webp', to: '/studio' },
+  { icon: 'bars', title: 'Compare & shortlist', text: 'Compare projects on price, location, configuration, amenities, developer and more.', visual: 'table', to: '#listings' },
+  { icon: 'calendar', title: 'Visit only what matters', text: 'Book site visits with our team only for shortlisted options. Save time, effort and days of unnecessary visits.', visual: 'photo', img: '/images/hero-villa.webp', intent: 'Book a site visit' },
+];
+export const WHY_CHECKS = ['RERA', 'HMDA', 'Approvals', 'Developer'];
+
+/* Facts about how Xspace works, not performance claims. Add real client
+   numbers here only once they can be backed up. */
+export const STATS = [
+  ['9', 'Steps from discovery to after-deal'],
+  ['7', 'Growth corridors in West Hyderabad'],
+  ['24 hrs', 'For a free, personal shortlist'],
+  ['360°', 'Project walkthroughs & location insights'],
+  ['One', 'Team from discovery to deal'],
 ];
 
-/* 03 and 11: the connected journeys, shown as a chain */
-export const DIFFERENCE_CHAIN = ['Discover', 'Shortlist', 'Verify', 'Experience', 'Decide'];
+/* 02: Three ways to book time with the team. `mode` is the value the
+   booking form records (BOOKING_MODES in config.js). The office address is
+   confirmed on the call, not printed here. */
+export const BOOKING_LEAD = "We don't force you into site offices. Connect with our real-estate advisors through whichever medium fits your schedule best.";
+export const BOOKING_CARDS = [
+  {
+    mode: 'Home visit', icon: 'home', title: 'Home visit', cta: 'Book home visit',
+    text: 'Our team brings the Xspace digital studio to your home. Review 360° tours, RERA and approval documents, and floor plans on our tablets with your family.',
+  },
+  {
+    mode: 'Office lounge', icon: 'building', title: 'Office lounge', cta: 'Book office lounge', featured: true,
+    text: 'Visit our discovery lounge. Compare projects on multiple screens, explore drone maps and go through developer records with an advisor.',
+  },
+  {
+    mode: 'Virtual / Zoom call', icon: 'play', title: 'Virtual / Zoom call', cta: 'Book Zoom call',
+    text: 'Perfect for NRIs and busy professionals. Join a 1-on-1 screen-share session to filter, compare and shortlist options across Neopolis, Tellapur, Narsingi and more.',
+  },
+];
 
-/* 05: Your property journey */
+/* 03: The 9-step client journey */
 export const JOURNEY = [
-  { icon: 'search', title: 'Discover', text: "Tell us what you're looking for." },
-  { icon: 'compass', title: 'Understand', text: 'We identify projects and properties that fit your requirements.' },
-  { icon: 'list', title: 'Shortlist', text: 'Explore the options that make sense for you.' },
-  { icon: 'shield', title: 'Verify', text: 'Review available project and verification information.' },
-  { icon: 'eye', title: 'Experience', text: 'Explore the project through content and visit it in person.' },
-  { icon: 'scale', title: 'Decide', text: 'Compare your options and make your decision.' },
-  { icon: 'key', title: 'Complete', text: 'Xspace supports the transaction and coordinates the journey through closure and handover.' },
-  { icon: 'share', title: 'Refer', text: "A good experience can become someone else's starting point." },
+  { title: 'Discover', text: "Find Xspace through social channels, Studio content or referrals. You don't start by driving to a site; you start by exploring digitally." },
+  { title: 'Explore', text: 'Access unvarnished project details, drone videos, price ranges, configurations, amenities and floor plans to rule out unsuitable options early.' },
+  { title: 'Verify', text: 'Know before you visit. Check RERA registration, HMDA approvals, developer delivery records, documents and the latest inventory status we hold.' },
+  { title: 'Shortlist', text: 'Narrow down your options. Instead of 20 random site visits, for example, you shortlist 5 options digitally and visit only 2.' },
+  { title: 'Compare', text: 'Compare shortlisted options side by side on price per sq. ft, layout efficiency, possession dates, connectivity and rental potential.' },
+  { title: 'Experience (Visit)', text: 'Now you visit. The physical site visit becomes the <b>final validation</b>, not the first step. Coordinated with an Xspace rep.' },
+  { title: 'Decide', text: 'Clear every final technical, commercial and legal question with our team before committing any booking token.' },
+  { title: 'Deal', text: 'Xspace manages negotiation coordination, agreement documentation, developer alignment and transparent payment schedules.' },
+  { title: 'After deal', text: 'We stay with you: handover tracking, construction updates, resale assistance and ongoing property support.' },
 ];
+
+/* 05: Sample listings. They show what an Xspace shortlist looks like, not
+   live inventory, and the page says so. `type` and `area` pre-fill the
+   enquiry form, so they must match PROPERTY_OPTIONS / AREA_OPTIONS. */
+export const LISTING_FILTERS = ['All', 'Apartments', 'Villas & houses', 'Commercial'];
+export const LISTING_FACTS = ['Location', 'Property type', 'Configuration', 'Possession', 'Studio content', 'Verification', 'Good for', 'Price'];
+export const SAMPLE_LISTINGS = [
+  {
+    id: 'l1', title: 'Gated community apartment', category: 'Apartments', img: '/images/type-apartments.webp',
+    type: '3 BHK', area: 'Narsingi',
+    facts: ['Narsingi', 'Gated community', '2 & 3 BHK', 'Under construction', 'Walkthrough + drone', 'RERA, approvals', 'Families', 'Shared on request'],
+  },
+  {
+    id: 'l2', title: 'Villa community', category: 'Villas & houses', img: '/images/type-villa.webp',
+    type: 'Villa', area: 'Tellapur',
+    facts: ['Tellapur', 'Villa', '4 BHK', 'Ready to move', 'Walkthrough + 360°', 'Approvals, title', 'Families, space', 'Shared on request'],
+  },
+  {
+    id: 'l3', title: 'High-rise residences', category: 'Apartments', img: '/images/type-highrise.webp',
+    type: 'Gated Community High-Rise', area: 'Neopolis',
+    facts: ['Neopolis', 'High-rise', '3 & 4 BHK', 'Under construction', 'Drone + location film', 'RERA, HMDA', 'Close to work', 'Shared on request'],
+  },
+  {
+    id: 'l4', title: 'Ready-to-move apartment', category: 'Apartments', img: '/images/hero-community.webp',
+    type: '2 BHK', area: 'Gachibowli',
+    facts: ['Gachibowli', 'Gated community', '2 BHK', 'Ready to move', 'Walkthrough video', 'RERA, OC status', 'First home, rental', 'Shared on request'],
+  },
+  {
+    id: 'l5', title: 'Independent house', category: 'Villas & houses', img: '/images/type-house.webp',
+    type: 'Independent House', area: 'Nallagandla',
+    facts: ['Nallagandla', 'Independent house', '3 & 4 BHK', 'Ready to move', 'Walkthrough video', 'Title, approvals', 'Families, parents', 'Shared on request'],
+  },
+  {
+    id: 'l6', title: 'Office space', category: 'Commercial', img: '/images/type-office.webp',
+    type: 'Office Space', area: 'Financial District',
+    facts: ['Financial District', 'Office space', 'Bare shell / fitted', 'Ready to move', 'Walkthrough video', 'Title, commercial use', 'Growing teams', 'Shared on request'],
+  },
+];
+
+/* 06: About us */
+export const TRADITIONAL_WAY = [
+  { icon: 'car', title: 'Visit multiple properties', text: 'Spend days in travel', img: '/images/hero-house.webp' },
+  { icon: 'list', title: 'Compare on memory', text: 'Hard to keep track', img: '/images/type-highrise.webp' },
+  { icon: 'doc', title: 'Uncertainty in documentation', text: 'RERA, approvals, title and more', img: '/images/type-office.webp' },
+  { icon: 'help', title: "Still not sure if it's the right one", text: 'Even after all the effort', img: '/images/type-land.webp' },
+];
+export const XSPACE_WAY = [
+  { icon: 'search', title: 'Discover right projects', text: 'Based on your needs and budget', img: '/images/type-apartments.webp' },
+  { icon: 'shield', title: 'Verify key information', text: 'RERA, HMDA, approvals, developer details', img: '/images/type-building.webp' },
+  { icon: 'play', title: 'Explore in depth', text: 'Walkthroughs, drone views, 360° tours and location insights', img: '/images/interior-living.webp' },
+  { icon: 'bars', title: 'Compare and shortlist', text: 'Everything in one place', img: '/images/biz-office.webp' },
+  { icon: 'calendar', title: 'Visit only what matters', text: 'Save time and effort', img: '/images/hero-villa.webp' },
+];
+export const STORY_FEATURES = [
+  { icon: 'shield', title: 'Verified information', text: 'RERA, HMDA, approvals and developer details, where applicable.' },
+  { icon: 'film', title: 'Immersive content', text: 'Walkthroughs, 360° tours, drone views and location insights.' },
+  { icon: 'layers', title: 'All in one place', text: 'Discovery, verification, comparison and consultation, seamlessly.' },
+  { icon: 'users', title: 'Expert guidance', text: 'A dedicated team to support you throughout your journey.' },
+];
+
+/* 07: What clients say. Add only real reviews, with the client's
+   permission, in this shape:
+     { quote: '…', name: 'Priya S.', role: 'End User', place: 'Hyderabad', group: 'End Users' }
+   `group` must be one of CLIENT_GROUPS. Until there are some, the section
+   invites clients to share their experience instead. */
+export const CLIENT_GROUPS = ['Home Buyers', 'Investors', 'NRIs', 'End Users', 'Developer Partners'];
+export const TESTIMONIALS = [];
 
 /* ---------- Property (06: find what fits you) ---------- */
 export const PROPERTY_FINDER = [
@@ -148,7 +244,7 @@ export const ECOSYSTEM = [
   { icon: 'users', title: 'Realtor Partners', text: 'On-ground property professionals supporting listings and site visits.', to: '#realtors' },
   { icon: 'film', title: 'Content creators', text: 'Creators bringing property and location stories to their audiences.', to: '#creators' },
   { icon: 'play', title: 'Xspace Studio', text: 'Our in-house media and content team.', to: '/studio' },
-  { icon: 'xspace', title: 'Xspace', text: 'The team connecting everything together.', to: '/about' },
+  { icon: 'compass', title: 'Xspace', text: 'The team connecting everything together.', to: '/about' },
 ];
 
 export const DEVELOPER_SERVICES = [
@@ -320,3 +416,13 @@ export const CTA = {
     ],
   },
 };
+
+/* ---------- Chat box ---------- */
+/* Questions the chat box answers on the spot. Anything else goes to the
+   team on WhatsApp. */
+export const CHAT_TOPICS = [
+  ['How does verification work?', VERIFICATION_FAQS[0][1]],
+  ['Is it free to explore and visit?', GENERAL_FAQS[0][1]],
+  ['Which areas do you cover?', 'We focus on West Hyderabad: Neopolis, Narsingi, Financial District, Gachibowli, Tellapur, Nallagandla and Kollur. Looking somewhere else? Ask us anyway.'],
+  ["I live abroad. Can you help?", RES_FAQS[2][1]],
+];

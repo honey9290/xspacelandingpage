@@ -1,12 +1,20 @@
 import { useState } from 'react';
 import {
-  AREA_OPTIONS, BUDGET_OPTIONS, DEFAULT_INTENT, INTENT_COPY, PROPERTY_OPTIONS, TIMELINE_OPTIONS,
+  AREA_OPTIONS, BOOKING_INTENT, BOOKING_MODES, BUDGET_OPTIONS, DEFAULT_INTENT, INTENT_COPY, PROPERTY_OPTIONS,
+  TIME_SLOTS, TIMELINE_OPTIONS,
 } from '../config';
 import { buildLead, normalisePhone, sendLead } from '../lib/enquiry';
 import Icon from './Icon';
 
 /* The area dropdown's last choice; picking it shows a text box instead. */
 const OTHER_AREA = 'Other location';
+
+/* Today as yyyy-mm-dd in the visitor's own time zone, the earliest date
+   the booking form offers. */
+function today() {
+  const d = new Date();
+  return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+}
 
 function initialFields(intent, extra) {
   const pick = (list, ...values) => values.find((v) => v && list.includes(v)) || '';
@@ -19,6 +27,9 @@ function initialFields(intent, extra) {
     budget: pick(BUDGET_OPTIONS, extra.budget),
     timeline: '',
     detail: '',
+    mode: pick(BOOKING_MODES, extra.mode) || BOOKING_MODES[0],
+    date: '',
+    slot: '',
     website: '',
   };
 }
@@ -47,6 +58,7 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
 
   const copy = INTENT_COPY[intent] || INTENT_COPY[DEFAULT_INTENT];
   const detailLabel = copy[3]; // partner forms ask this instead of the property questions
+  const booking = intent === BOOKING_INTENT;
   const id = (n) => `${idPrefix}-${n}`;
   const set = (e) => {
     const { name, value } = e.target;
@@ -70,7 +82,8 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
     if (nextErrors.name || nextErrors.phone) return;
     setBusy(true);
     const detail = fields.detail.trim() && `${detailLabel}: ${fields.detail.trim()}`;
-    const note = [extra.note, detail].filter(Boolean).join(' · ');
+    const slot = booking && `Appointment: ${[fields.mode, fields.date, fields.slot].filter(Boolean).join(', ')}`;
+    const note = [extra.note, slot, detail].filter(Boolean).join(' · ');
     const link = await sendLead(buildLead(fields, phone, intent, note));
     setBusy(false);
     setSent({ waLink: link });
@@ -81,7 +94,7 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
       <div className="done" role="status">
         <div className="tick"><Icon name="check" /></div>
         <h3>Thank you. We have your request.</h3>
-        <p>The Xspace team will call you soon. To start right away, send the message to us on WhatsApp.</p>
+        <p>{booking ? 'The Xspace team will call you to confirm your appointment.' : 'The Xspace team will call you soon.'} To start right away, send the message to us on WhatsApp.</p>
         {sent.waLink && (
           <a className="btn btn-primary" href={sent.waLink} target="_blank" rel="noopener noreferrer">
             <Icon name="whatsapp" />Continue on WhatsApp
@@ -126,6 +139,31 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
         {errors.phone && <span className="err">Please enter a valid 10-digit mobile number</span>}
       </div>
 
+      {booking && (
+        <>
+          <div className="f">
+            <span className="f-label" id={id('mode')}>How would you like to meet?</span>
+            <div className="chips" role="radiogroup" aria-labelledby={id('mode')}>
+              {BOOKING_MODES.map((m) => (
+                <button
+                  key={m} type="button" className="chip" role="radio" aria-checked={fields.mode === m}
+                  onClick={() => setFields((f) => ({ ...f, mode: m }))}
+                >
+                  {m}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="grid2">
+            <div className="f">
+              <label htmlFor={id('date')}>Preferred date</label>
+              <input id={id('date')} name="date" type="date" min={today()} value={fields.date} onChange={set} />
+            </div>
+            <Select label="Preferred time" name="slot" value={fields.slot} options={TIME_SLOTS} onChange={set} />
+          </div>
+        </>
+      )}
+
       {detailLabel ? (
         <div className="f">
           <label htmlFor={id('detail')}>{detailLabel}</label>
@@ -151,7 +189,9 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
           )}
           <div className="grid2">
             <Select label="Budget" name="budget" value={fields.budget} options={BUDGET_OPTIONS} onChange={set} />
-            <Select label="When are you buying?" name="timeline" value={fields.timeline} options={TIMELINE_OPTIONS} onChange={set} />
+            {!booking && (
+              <Select label="When are you buying?" name="timeline" value={fields.timeline} options={TIMELINE_OPTIONS} onChange={set} />
+            )}
           </div>
         </>
       )}

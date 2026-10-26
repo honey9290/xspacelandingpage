@@ -35,6 +35,12 @@ export const AREA_OPTIONS = [
 export const BUDGET_OPTIONS = ['Under ₹75 L', '₹75 L – 1.2 Cr', '₹1.2 – 2 Cr', '₹2 – 3.5 Cr', '₹3.5 Cr +'];
 export const TIMELINE_OPTIONS = ['Immediately', 'Within 3 months', '3–6 months', 'Just exploring'];
 
+/* Booking form: how to meet (BOOKING_CARDS in content.js describes each)
+   and when. */
+export const BOOKING_INTENT = 'Book appointment';
+export const BOOKING_MODES = ['Home visit', 'Office lounge', 'Virtual / Zoom call'];
+export const TIME_SLOTS = ['Morning (10 AM – 1 PM)', 'Afternoon (1 – 5 PM)', 'Evening (5 – 8 PM)'];
+
 /* What the enquiry form says for each way in: [title, subtitle, button].
    Partner intents add a fourth item, the label of a free-text field that
    replaces the property questions (a developer has no budget to pick). */
@@ -44,6 +50,7 @@ export const INTENT_COPY = {
   'Free 24-hour shortlist': ["Tell us what you're looking for", 'We will call you back with a shortlist that fits, within 24 hours. No spam.', 'Get my free shortlist'],
   'Talk to Xspace': ['Talk to Xspace', 'Leave your number and someone from the Xspace team will call you back.', 'Call me back'],
   'View verification': ["View a project's verification", "Tell us the project you're considering. We'll share the verification information we hold, with its status and the date it was checked.", 'Request verification details'],
+  [BOOKING_INTENT]: ['Book an appointment', 'Choose how you would like to meet and when suits you. The Xspace team will confirm the slot with you.', 'Request appointment'],
   'Book a site visit': ['Plan a site visit', "Tell us what you've shortlisted. We coordinate the visit and walk you through it.", 'Plan my visit'],
   'Video walkthrough': ['Get project content', 'Walkthroughs, videos and location content for the projects you are considering, sent to your WhatsApp.', 'Send me content'],
   'Request a call back': ['Request a call back', 'Leave your number and the Xspace team will call you back.', 'Call me back'],

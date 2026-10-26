@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import { DEFAULT_INTENT } from '../config';
-import { AREAS, JOURNEY, PATHS } from '../content';
+import { AREAS, PATHS } from '../content';
 import { useEnquiry } from '../lib/enquiry';
 import CorridorMap from './CorridorMap';
 import Icon from './Icon';
@@ -77,33 +76,6 @@ export function Chain({ steps, label }) {
         </li>
       ))}
     </ol>
-  );
-}
-
-/* 05: Your property journey, eight numbered stages. */
-export function Journey() {
-  const openEnquiry = useEnquiry();
-  return (
-    <section className="block" id="journey">
-      <div className="wrap">
-        <Head
-          split kicker="05 — Your property journey" title={<>From discovery <span className="grad">to ownership.</span></>}
-          aside={(
-            <button className="btn btn-ghost" onClick={() => openEnquiry(DEFAULT_INTENT)}>
-              Start with step one <Icon name="arrow" />
-            </button>
-          )}
-        />
-        <Reveal as="ol" className="journey">
-          {JOURNEY.map((s, i) => (
-            <li className="step" key={s.title}>
-              <div className="n">{String(i + 1).padStart(2, '0')} — {s.title}</div>
-              <p>{s.text}</p>
-            </li>
-          ))}
-        </Reveal>
-      </div>
-    </section>
   );
 }
 

@@ -7,9 +7,9 @@ export default function CorridorMap({ active, onPick }) {
       <svg viewBox="0 0 400 190" role="group" aria-label="Areas we cover">
         <defs>
           <linearGradient id="road" x1="0" x2="1">
-            <stop offset="0" stopColor="#5ef0d0" stopOpacity=".1" />
-            <stop offset=".5" stopColor="#5ef0d0" stopOpacity=".6" />
-            <stop offset="1" stopColor="#8ab4ff" stopOpacity=".1" />
+            <stop offset="0" stopColor="currentColor" stopOpacity=".1" />
+            <stop offset=".5" stopColor="currentColor" stopOpacity=".6" />
+            <stop offset="1" stopColor="currentColor" stopOpacity=".1" />
           </linearGradient>
         </defs>
         <path stroke="rgba(255,255,255,.06)" d="M0 38H400M0 76H400M0 114H400M0 152H400M50 0V190M100 0V190M150 0V190M200 0V190M250 0V190M300 0V190M350 0V190" />

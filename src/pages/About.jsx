@@ -1,5 +1,5 @@
 import { FinalCta } from '../components/Closing';
-import { PageHeader } from '../components/PageHero';
+import { AboutStory } from '../components/HomeSections';
 import Reveal from '../components/Reveal';
 import { Cards, Faq, Head } from '../components/Sections';
 import { GENERAL_FAQS, PORTAL_MODULES, TRUST } from '../content';
@@ -9,22 +9,7 @@ export default function About() {
   usePageTitle('About');
   return (
     <>
-      <PageHeader
-        kicker="13 — About Xspace"
-        title={<>Building a better <span className="grad">property experience.</span></>}
-        lead="Xspace & Co. was built around a simple idea: property decisions should be more informed, more transparent and easier to navigate."
-      />
-      <section className="block tight" id="story">
-        <div className="wrap">
-          <Reveal className="statement">
-            <p>We are building a connected ecosystem where property, people, content and technology work together.</p>
-            <p>
-              We don't want to simply help people find properties.{' '}
-              <span className="grad">We want to help them understand what they're choosing before they commit.</span>
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      <AboutStory />
 
       <section className="block" id="trust">
         <div className="wrap">
