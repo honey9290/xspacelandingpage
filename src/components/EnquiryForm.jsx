@@ -106,7 +106,8 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
 
   return (
     <form noValidate onSubmit={submit}>
-      <div className="badge-row"><span>{intent}</span></div>
+      {/* The booking form's heading already says what it is. */}
+      {!booking && <div className="badge-row"><span>{intent}</span></div>}
       <h3 id={id('title')}>{title || copy[0]}</h3>
       <p className="sub">{sub || copy[1]}</p>
 
@@ -117,26 +118,28 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
         style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, opacity: 0 }}
       />
 
-      <div className="f">
-        <label htmlFor={id('name')}>Your name</label>
-        <input
-          id={id('name')} name="name" autoComplete="name" placeholder="Full name" autoFocus={autoFocus}
-          value={fields.name} onChange={set} aria-invalid={errors.name || undefined}
-        />
-        {errors.name && <span className="err">Please enter your name</span>}
-      </div>
-
-      <div className={'f phone-f' + (errors.phone ? ' bad' : '')}>
-        <label htmlFor={id('phone')}>Mobile number</label>
-        <div className="phone-wrap">
-          <span>+91</span>
+      <div className="grid2">
+        <div className="f">
+          <label htmlFor={id('name')}>Your name</label>
           <input
-            id={id('phone')} name="phone" type="tel" inputMode="numeric" autoComplete="tel-national"
-            placeholder="10-digit mobile" maxLength={14} value={fields.phone} onChange={set}
-            aria-invalid={errors.phone || undefined}
+            id={id('name')} name="name" autoComplete="name" placeholder="Full name" autoFocus={autoFocus}
+            value={fields.name} onChange={set} aria-invalid={errors.name || undefined}
           />
+          {errors.name && <span className="err">Please enter your name</span>}
         </div>
-        {errors.phone && <span className="err">Please enter a valid 10-digit mobile number</span>}
+
+        <div className={'f phone-f' + (errors.phone ? ' bad' : '')}>
+          <label htmlFor={id('phone')}>Mobile number</label>
+          <div className="phone-wrap">
+            <span>+91</span>
+            <input
+              id={id('phone')} name="phone" type="tel" inputMode="numeric" autoComplete="tel-national"
+              placeholder="10-digit mobile" maxLength={14} value={fields.phone} onChange={set}
+              aria-invalid={errors.phone || undefined}
+            />
+          </div>
+          {errors.phone && <span className="err">Please enter a valid 10-digit mobile number</span>}
+        </div>
       </div>
 
       {booking && (
@@ -171,12 +174,14 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
         </div>
       ) : (
         <>
-          <div className="grid2">
+          {/* Booking asks fewer questions, so they share one row. */}
+          <div className={booking ? 'grid3' : 'grid2'}>
             <Select label="Looking for" name="type" value={fields.type} options={PROPERTY_OPTIONS} onChange={set} />
             <Select
               label="Preferred area" name="area" value={otherArea ? OTHER_AREA : fields.area}
               options={[...AREA_OPTIONS, OTHER_AREA]} onChange={set}
             />
+            {booking && <Select label="Budget" name="budget" value={fields.budget} options={BUDGET_OPTIONS} onChange={set} />}
           </div>
           {otherArea && (
             <div className="f">
@@ -187,12 +192,12 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
               />
             </div>
           )}
-          <div className="grid2">
-            <Select label="Budget" name="budget" value={fields.budget} options={BUDGET_OPTIONS} onChange={set} />
-            {!booking && (
+          {!booking && (
+            <div className="grid2">
+              <Select label="Budget" name="budget" value={fields.budget} options={BUDGET_OPTIONS} onChange={set} />
               <Select label="When are you buying?" name="timeline" value={fields.timeline} options={TIMELINE_OPTIONS} onChange={set} />
-            )}
-          </div>
+            </div>
+          )}
         </>
       )}
 

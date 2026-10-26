@@ -1393,3 +1393,33 @@ footer .motto { text-transform: uppercase; }
 @media (max-width: 1040px) {
   :root[data-theme="light"] .feature-head > img { opacity: .18; }
 }
+
+/* ---------- Enquiry / booking modal: fits on one screen ---------- */
+.grid2, .grid3 { align-items: start; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.phone-wrap input { min-width: 0; }
+.modal-box { max-width: 680px; }
+.modal-box .form-card { padding: 30px 32px 24px; }
+.modal-box .form-card h3 { font-size: 21px; margin-bottom: 4px; padding-right: 44px; }
+.modal-box .form-card .sub { margin-bottom: 18px; font-size: 14px; }
+.modal-box .badge-row { margin-bottom: 10px; }
+.modal-box .f { gap: 5px; margin-bottom: 12px; }
+.modal-box .f input, .modal-box .f select, .modal-box .phone-wrap span { padding-top: 11px; padding-bottom: 11px; }
+.modal-box .chips { margin-bottom: 0; }
+.modal-box .chip { padding: 8px 14px; }
+.modal-box .form-card .btn { margin-top: 6px; }
+.modal-box .consent { margin-top: 10px; }
+/* Short laptop screens */
+@media (min-width: 641px) and (max-height: 760px) {
+  .modal-box .form-card { padding: 22px 28px 18px; }
+  .modal-box .form-card .sub { margin-bottom: 12px; }
+  .modal-box .f { margin-bottom: 9px; }
+  .modal-box .f input, .modal-box .f select, .modal-box .phone-wrap span { padding-top: 9px; padding-bottom: 9px; }
+  .modal-box .form-card .btn-lg { padding: 15px 24px; }
+}
+@media (max-width: 640px) {
+  .grid3 { grid-template-columns: 1fr; gap: 0; }
+  .modal-box .grid2, .modal-box .grid3 { grid-template-columns: 1fr 1fr; gap: 0 10px; }
+  .modal-box .grid3 > :last-child { grid-column: 1 / -1; }
+  .modal-box .grid2 .phone-f, .modal-box .grid2 .f:has(> input[name="name"]) { grid-column: 1 / -1; }
+}
