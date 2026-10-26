@@ -1004,16 +1004,17 @@ footer .motto { text-transform: uppercase; }
 /* ---------- Header ---------- */
 .nav, .nav.scrolled { background: var(--nav-bg); }
 .nav.scrolled { border-bottom-color: var(--line); }
-.nav .wrap { height: 76px; gap: 18px; justify-content: flex-start; }
+.nav .wrap { max-width: 1440px; height: 76px; gap: 18px; justify-content: flex-start; }
 .brand {
   font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: .01em; text-transform: uppercase;
   white-space: nowrap; flex: none;
 }
-.nav-links { gap: 26px; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; font-stretch: 100%; margin-left: 8px; }
+/* Links give way first: the Book button and theme switch never shrink. */
+.nav-links { gap: 24px; font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; font-stretch: 100%; margin-left: 8px; min-width: 0; overflow: hidden; padding: 12px 0; }
 .nav-links a { white-space: nowrap; transition: color .2s; }
 .nav-links a.active { color: var(--fg); }
 .nav-links a.active::after { background: var(--fg); box-shadow: none; bottom: -10px; }
-.nav-cta { margin-left: auto; }
+.nav-cta { margin-left: auto; flex: none; }
 .nav-cta .btn { padding: 12px 18px; }
 .book-btn svg { width: 15px; height: 15px; }
 .menu-btn {
@@ -1291,16 +1292,12 @@ footer .motto { text-transform: uppercase; }
 .form-card h3 { font-size: 19px; line-height: 1.25; }
 
 /* ---------- Responsive ---------- */
-/* The header shows as many section links as fit; the drawer has them all. */
-@media (max-width: 1520px) {
-  .nav-links a:nth-child(n+6) { display: none; }
-}
-@media (max-width: 1360px) {
+@media (max-width: 1400px) {
   .nav-links { gap: 18px; font-size: 10.5px; letter-spacing: .1em; }
   .nav-cta .btn { padding: 11px 14px; }
   .brand { font-size: 20px; }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1240px) {
   .nav-links { display: none; }
 }
 @media (max-width: 1240px) {

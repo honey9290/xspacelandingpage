@@ -5,6 +5,9 @@ import { NAV_LINKS, SECTION_LINKS } from '../content';
 import { useEnquiry } from '../lib/enquiry';
 import Icon from './Icon';
 
+/* How many of SECTION_LINKS fit in the header; the drawer lists them all. */
+const HEADER_LINKS = 5;
+
 /* The company name on its own, no mark. */
 export function Brand() {
   return (
@@ -90,7 +93,7 @@ export default function Nav() {
           </button>
           <Brand />
           <nav className="nav-links" aria-label="Sections">
-            {SECTION_LINKS.map(([id, label]) => (
+            {SECTION_LINKS.slice(0, HEADER_LINKS).map(([id, label]) => (
               <Link key={id} to={'/#' + id} className={active === id ? 'active' : ''}>{label}</Link>
             ))}
           </nav>
