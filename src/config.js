@@ -9,7 +9,7 @@ export const CONFIG = {
   reraAgentNo: '', // TG RERA agent registration number, shown in the footer
   /* Optional: a URL that accepts a JSON POST of the enquiry (your API, a
      Google Apps Script, Formspree…). Left empty, enquiries go to WhatsApp. */
-  enquiryEndpoint: 'https://xspace-portal-p45g.onrender.com/api/public/enquiry',
+  enquiryEndpoint: 'https://portal.xspaceandco.com/api/public/enquiry',
   /* Footer social links. Each one shows only once its URL is filled in. */
   social: {
     instagram: '',
