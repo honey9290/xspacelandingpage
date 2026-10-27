@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import { Footer, StickyContact } from './components/Closing';
+import Cursor from './components/Cursor';
 import EnquiryProvider from './components/EnquiryProvider';
 import Nav from './components/Nav';
 import About from './pages/About';
@@ -37,6 +38,7 @@ function Layout() {
       <main id="top"><Outlet /></main>
       <Footer />
       <StickyContact />
+      <Cursor />
     </EnquiryProvider>
   );
 }
