@@ -1260,12 +1260,34 @@ footer .motto { text-transform: uppercase; }
 
 /* ---------- Chat box: fixed to the screen, never scrolls with the page ---------- */
 .chat { position: fixed; right: 24px; bottom: 24px; z-index: 60; }
+.chat { display: flex; align-items: center; gap: 12px; }
 .chat-btn {
-  width: 60px; height: 60px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center;
-  background: var(--fg); color: var(--bg); box-shadow: 0 16px 36px -10px rgba(0,0,0,.6); transition: transform .2s;
+  position: relative; width: 62px; height: 62px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center;
+  background: var(--fg); color: var(--bg);
+  box-shadow: 0 0 0 1px rgb(var(--fg-rgb) / .12), 0 18px 40px -12px rgba(0,0,0,.65);
+  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s;
 }
-.chat-btn:hover { transform: scale(1.06); }
-.chat-btn svg { width: 26px; height: 26px; }
+/* A soft ring that pulses a few times after the page loads, then rests. */
+.chat-btn::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid var(--fg); opacity: 0;
+  animation: chat-ring 2.4s ease-out 1.2s 3;
+}
+@keyframes chat-ring { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(1.6); opacity: 0; } }
+.chat-btn:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 0 0 6px rgb(var(--fg-rgb) / .1), 0 22px 44px -12px rgba(0,0,0,.7); }
+.chat-btn:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
+.chat-ico { display: grid; place-items: center; animation: chat-pop .25s ease; }
+@keyframes chat-pop { from { transform: scale(.6) rotate(-20deg); opacity: 0; } }
+.chat-btn svg { width: 30px; height: 30px; }
+.chat:not(.open) .chat-btn svg { margin-top: 2px; } /* the tail makes the bubble sit high */
+.chat-btn .dot { fill: var(--fg); }
+.chat.open .chat-btn svg { width: 22px; height: 22px; }
+@media (hover: none) { .chat-label { display: none; } }
+.chat-label {
+  padding: 10px 16px; border-radius: 999px; background: var(--surface); color: var(--fg); border: 1px solid var(--line-2);
+  font-size: 13px; font-weight: 600; white-space: nowrap; box-shadow: 0 12px 30px -12px rgba(0,0,0,.5);
+  opacity: 0; transform: translateX(8px); transition: opacity .2s, transform .2s; pointer-events: none;
+}
+.chat:hover .chat-label { opacity: 1; transform: none; }
 .chat-panel {
   position: fixed; right: 24px; bottom: 96px; width: min(380px, calc(100vw - 32px)); height: min(560px, calc(100vh - 140px));
   display: flex; flex-direction: column; border-radius: 22px; border: 1px solid var(--line-2); background: var(--surface);
