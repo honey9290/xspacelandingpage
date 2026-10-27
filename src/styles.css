@@ -978,6 +978,8 @@ h3 { font-weight: 700; letter-spacing: .01em; line-height: 1.2; }
 .f input, .f select, .f textarea, .chip-input { background: var(--panel); }
 .phone-wrap span { background: var(--panel-2); }
 .f select option { background: var(--surface); color: var(--fg); }
+/* Group headings in a grouped list (Residential, Commercial…) */
+.f select optgroup { background: var(--surface); color: var(--muted); font-style: normal; font-weight: 700; }
 .f input:focus, .f select:focus, .f textarea:focus, .chip-input:focus { border-color: var(--fg); box-shadow: 0 0 0 4px rgb(var(--fg-rgb) / .1); }
 .f-label { font-size: 13px; color: var(--muted); font-weight: 500; }
 .chip:hover { border-color: rgb(var(--fg-rgb) / .4); }
