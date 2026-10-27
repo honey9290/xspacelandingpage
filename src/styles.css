@@ -947,6 +947,7 @@ footer ul.social { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 16px; 
    ============================================================ */
 html { font-stretch: 125%; } /* only Archivo has a width axis; Inter ignores it */
 body { background: var(--bg); color: var(--fg); transition: background .3s ease, color .3s ease; }
+img { filter: grayscale(1) contrast(1.05); }
 .bg-glow { display: none; }
 .bg-grid { opacity: .3; }
 
@@ -1053,12 +1054,7 @@ footer .motto { text-transform: uppercase; }
 /* ---------- Home hero ---------- */
 .home-hero { min-height: min(100vh, 980px); justify-content: flex-end; padding: 150px 0 80px; }
 .home-hero .hero-media img { opacity: 1; transform: none; }
-/* Shade the text side, and let the colour photo show on the right. */
-.home-hero .hero-shade {
-  background:
-    linear-gradient(90deg, rgba(5,5,5,.8) 0%, rgba(5,5,5,.55) 50%, rgba(5,5,5,.2) 100%),
-    linear-gradient(180deg, rgba(5,5,5,.35) 0%, transparent 25%, transparent 70%, var(--bg) 100%);
-}
+.home-hero .hero-shade { background: linear-gradient(180deg, rgba(5,5,5,.72), rgba(5,5,5,.84) 60%, var(--bg)); }
 .home-hero .hero-shade::after { display: none; }
 .mega { font-size: clamp(44px, 8.6vw, 124px); max-width: 12ch; margin: 0 0 26px; }
 .mega u { text-decoration-thickness: 3px; text-underline-offset: .12em; text-decoration-skip-ink: none; }
@@ -1403,7 +1399,7 @@ footer .motto { text-transform: uppercase; }
 :root[data-theme="light"] .hero-shade,
 :root[data-theme="light"] .home-hero .hero-shade {
   background:
-    linear-gradient(90deg, rgba(243,243,241,.92) 0%, rgba(243,243,241,.7) 45%, rgba(243,243,241,.25) 100%),
+    linear-gradient(90deg, rgba(243,243,241,.94) 0%, rgba(243,243,241,.82) 45%, rgba(243,243,241,.55) 100%),
     linear-gradient(180deg, rgba(243,243,241,.4) 0%, transparent 30%, transparent 70%, var(--bg) 100%);
 }
 :root[data-theme="light"] .hero-shade::after { display: none; }
