@@ -1,13 +1,21 @@
 import { useState } from 'react';
 import {
-  AREA_OPTIONS, BOOKING_INTENT, BOOKING_MODES, BUDGET_OPTIONS, DEFAULT_INTENT, INTENT_COPY, PROPERTY_GROUPS, PROPERTY_OPTIONS,
-  TIME_SLOTS, TIMELINE_OPTIONS,
+  AREA_OPTIONS, BHK_OPTIONS, BOOKING_INTENT, BOOKING_MODES, BUDGET_OPTIONS, configKindFor, DEFAULT_INTENT, INTENT_COPY,
+  PROPERTY_GROUPS, PROPERTY_OPTIONS, TIME_SLOTS, TIMELINE_OPTIONS,
 } from '../config';
 import { buildLead, normalisePhone, sendLead } from '../lib/enquiry';
 import Icon from './Icon';
 
 /* The area dropdown's last choice; picking it shows a text box instead. */
 const OTHER_AREA = 'Other location';
+
+/* The configuration field, labelled as in the CRM's new-client form. */
+const CONFIG_FIELD = {
+  bhk: { label: 'Configuration (BHK)' },
+  acres: { label: 'Extent (acres)', placeholder: 'e.g. 2.5 acres' },
+  sft: { label: 'Area (sft)', placeholder: 'e.g. 1200 sft' },
+};
+const looksLikeEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
 /* Today as yyyy-mm-dd in the visitor's own time zone, the earliest date
    the booking form offers. */
@@ -21,6 +29,8 @@ function initialFields(intent, extra) {
   return {
     name: '',
     phone: '',
+    email: '',
+    config: extra.config || '',
     type: pick(PROPERTY_OPTIONS, extra.type, intent),
     /* A location typed into the finder is not on the list; keep it as typed. */
     area: pick(AREA_OPTIONS, extra.area, intent) || (extra.area || '').trim(),
@@ -63,9 +73,15 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
   const copy = INTENT_COPY[intent] || INTENT_COPY[DEFAULT_INTENT];
   const detailLabel = copy[3]; // partner forms ask this instead of the property questions
   const booking = intent === BOOKING_INTENT;
+  const configKind = configKindFor(fields.type);
   const id = (n) => `${idPrefix}-${n}`;
   const set = (e) => {
     const { name, value } = e.target;
+    /* A new property type can mean a different kind of configuration. */
+    if (name === 'type' && configKindFor(value) !== configKindFor(fields.type)) {
+      setFields((f) => ({ ...f, type: value, config: '' }));
+      return;
+    }
     if (name === 'area' && e.target.tagName === 'SELECT') {
       const other = value === OTHER_AREA;
       setOtherArea(other);
@@ -81,13 +97,17 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
   async function submit(e) {
     e.preventDefault();
     const phone = normalisePhone(fields.phone);
-    const nextErrors = { name: !fields.name.trim(), phone: !phone };
+    const email = fields.email.trim();
+    const nextErrors = { name: !fields.name.trim(), phone: !phone, email: !!email && !looksLikeEmail(email) };
     setErrors(nextErrors);
-    if (nextErrors.name || nextErrors.phone) return;
+    if (nextErrors.name || nextErrors.phone || nextErrors.email) return;
     setBusy(true);
     const detail = fields.detail.trim() && `${detailLabel}: ${fields.detail.trim()}`;
     const slot = booking && `Appointment: ${[fields.mode, fields.date, fields.slot].filter(Boolean).join(', ')}`;
-    const note = [extra.note, slot, detail].filter(Boolean).join(' · ');
+    /* The portal has no website field for these, so they travel in the
+       note, which lands in the lead's notes in the CRM. */
+    const config = fields.config.trim() && `${CONFIG_FIELD[configKind].label}: ${fields.config.trim()}`;
+    const note = [extra.note, slot, config, email && `Email: ${email}`, detail].filter(Boolean).join(' · ');
     const link = await sendLead(buildLead(fields, phone, intent, note));
     setBusy(false);
     setSent({ waLink: link });
@@ -122,7 +142,7 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
         style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, opacity: 0 }}
       />
 
-      <div className="grid2">
+      <div className="grid3">
         <div className="f">
           <label htmlFor={id('name')}>Your name</label>
           <input
@@ -144,6 +164,15 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
           </div>
           {errors.phone && <span className="err">Please enter a valid 10-digit mobile number</span>}
         </div>
+
+        <div className="f">
+          <label htmlFor={id('email')}>Email (optional)</label>
+          <input
+            id={id('email')} name="email" type="email" autoComplete="email" placeholder="you@example.com"
+            value={fields.email} onChange={set} aria-invalid={errors.email || undefined}
+          />
+          {errors.email && <span className="err">Please check your email</span>}
+        </div>
       </div>
 
       {booking && (
@@ -161,12 +190,13 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
               ))}
             </div>
           </div>
-          <div className="grid2">
+          <div className="grid3">
             <div className="f">
               <label htmlFor={id('date')}>Preferred date</label>
               <input id={id('date')} name="date" type="date" min={today()} value={fields.date} onChange={set} />
             </div>
             <Select label="Preferred time" name="slot" value={fields.slot} options={TIME_SLOTS} onChange={set} />
+            <Select label="When are you buying?" name="timeline" value={fields.timeline} options={TIMELINE_OPTIONS} onChange={set} />
           </div>
         </>
       )}
@@ -178,9 +208,20 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
         </div>
       ) : (
         <>
-          {/* Booking asks fewer questions, so they share one row. */}
-          <div className={booking ? 'grid3' : 'grid2'}>
+          {/* Booking moves the timeline up beside the date, so budget joins this row. */}
+          <div className={booking ? 'grid4' : 'grid3'}>
             <Select label="Looking for" name="type" value={fields.type} options={PROPERTY_GROUPS} onChange={set} />
+            {configKind === 'bhk' ? (
+              <Select label={CONFIG_FIELD.bhk.label} name="config" value={fields.config} options={BHK_OPTIONS} onChange={set} />
+            ) : (
+              <div className="f">
+                <label htmlFor={id('config')}>{CONFIG_FIELD[configKind].label}</label>
+                <input
+                  id={id('config')} name="config" maxLength={40} placeholder={CONFIG_FIELD[configKind].placeholder}
+                  value={fields.config} onChange={set}
+                />
+              </div>
+            )}
             <Select
               label="Preferred area" name="area" value={otherArea ? OTHER_AREA : fields.area}
               options={[...AREA_OPTIONS, OTHER_AREA]} onChange={set}

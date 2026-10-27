@@ -34,6 +34,15 @@ export const PROPERTY_GROUPS = [
   ['Industrial', ['Open Plot', 'Godown', 'Industry']],
 ];
 export const PROPERTY_OPTIONS = PROPERTY_GROUPS.flatMap(([, options]) => options);
+
+/* What "configuration" means for each group, as in the CRM's new-client
+   form: bedrooms for a home, acres for land, square feet for the rest. */
+export const BHK_OPTIONS = ['1 BHK', '2 BHK', '2.5 BHK', '3 BHK', '3.5 BHK', '4 BHK', '4+ BHK'];
+const CONFIG_KINDS = { Residential: 'bhk', Land: 'acres', Commercial: 'sft', Industrial: 'sft' };
+export function configKindFor(type) {
+  const group = PROPERTY_GROUPS.find(([, options]) => options.includes(type));
+  return group ? CONFIG_KINDS[group[0]] : 'bhk';
+}
 export const AREA_OPTIONS = [
   'Neopolis', 'Narsingi', 'Financial District', 'Gachibowli', 'Tellapur', 'Nallagandla', 'Kollur',
   'Open to suggestions',

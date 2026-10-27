@@ -185,7 +185,7 @@ export const TESTIMONIALS = [];
 export const PROPERTY_FINDER = [
   { label: 'Location', options: ['Neopolis', 'Narsingi', 'Financial District', 'Gachibowli', 'Tellapur', 'Nallagandla', 'Kollur'], field: 'area' },
   { label: 'Property type', options: ['Gated Community Apartments', 'Villa', 'Independent House', 'Office Space', 'Shops', 'Land'], field: 'type' },
-  { label: 'Configuration', options: ['2 BHK', '3 BHK', '4+ BHK'], field: 'note', prefix: 'Configuration' },
+  { label: 'Configuration', options: ['2 BHK', '3 BHK', '4+ BHK'], field: 'config' },
   { label: 'Budget', options: ['Under ₹75 L', '₹75 L – 1.2 Cr', '₹1.2 – 2 Cr', '₹2 – 3.5 Cr', '₹3.5 Cr +'], field: 'budget' },
   { label: 'Purpose', options: ['To live in', 'To invest', 'For my business'], field: 'note', prefix: 'Purpose' },
 ];
@@ -317,7 +317,7 @@ export const FAMILY_NEEDS = [
 export const RES_FINDER = [
   { label: 'Where', options: ['Narsingi', 'Tellapur', 'Gachibowli', 'Nallagandla', 'Open to suggestions'], field: 'area' },
   { label: 'What kind of home', options: ['Gated Community Apartments', 'Villa', 'Independent House', 'Standalone'], field: 'type' },
-  { label: 'Configuration', options: ['2 BHK', '3 BHK', '4+ BHK'], field: 'note', prefix: 'Configuration' },
+  { label: 'Configuration', options: ['2 BHK', '3 BHK', '4+ BHK'], field: 'config' },
   { label: 'What matters to your family', options: ['Schools nearby', 'Play areas', 'Gated & secure', 'Near hospitals', 'Short commute', 'Space for parents'], field: 'note', multi: true, prefix: 'Family priorities' },
 ];
 

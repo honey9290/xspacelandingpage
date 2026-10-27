@@ -1393,10 +1393,17 @@ footer .motto { text-transform: uppercase; }
 }
 
 /* ---------- Enquiry / booking modal: fits on one screen ---------- */
-.grid2, .grid3 { align-items: start; }
+.grid2, .grid3, .grid4 { align-items: start; }
 .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+/* The closing section's form is half the page wide: three across is too
+   tight there, so rows go two across and a third field takes a full row. */
+@media (min-width: 641px) {
+  .cta-panel .grid3, .cta-panel .grid4 { grid-template-columns: 1fr 1fr; }
+  .cta-panel .grid3 > :nth-child(3) { grid-column: 1 / -1; }
+}
 .phone-wrap input { min-width: 0; }
-.modal-box { max-width: 680px; }
+.modal-box { max-width: 800px; }
 .modal-box .form-card { padding: 30px 32px 24px; }
 .modal-box .form-card h3 { font-size: 21px; margin-bottom: 4px; padding-right: 44px; }
 .modal-box .form-card .sub { margin-bottom: 18px; font-size: 14px; }
@@ -1416,8 +1423,8 @@ footer .motto { text-transform: uppercase; }
   .modal-box .form-card .btn-lg { padding: 15px 24px; }
 }
 @media (max-width: 640px) {
-  .grid3 { grid-template-columns: 1fr; gap: 0; }
-  .modal-box .grid2, .modal-box .grid3 { grid-template-columns: 1fr 1fr; gap: 0 10px; }
-  .modal-box .grid3 > :last-child { grid-column: 1 / -1; }
-  .modal-box .grid2 .phone-f, .modal-box .grid2 .f:has(> input[name="name"]) { grid-column: 1 / -1; }
+  .grid3, .grid4 { grid-template-columns: 1fr; gap: 0; }
+  .modal-box .grid2, .modal-box .grid3, .modal-box .grid4 { grid-template-columns: 1fr 1fr; gap: 0 10px; }
+  .modal-box .grid3 > :nth-child(3) { grid-column: 1 / -1; }
+  .modal-box .phone-f, .modal-box .f:has(> input[name="name"]) { grid-column: 1 / -1; }
 }
