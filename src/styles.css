@@ -1471,3 +1471,21 @@ footer .motto { text-transform: uppercase; }
 .cursor-ring.down span { width: 26px; height: 26px; }
 .cursor-ring.hover.down span { width: 52px; height: 52px; }
 .cursor-dot.text, .cursor-ring.text { opacity: 0; }
+
+/* ---------- WhatsApp topic picker ---------- */
+.wa-pick { max-width: 440px; padding: 32px 28px 24px; }
+.wa-pick-icon { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: #25d366; color: #fff; margin-bottom: 16px; }
+.wa-pick-icon svg { width: 26px; height: 26px; }
+.wa-pick h3 { font-size: 20px; margin-bottom: 6px; padding-right: 40px; }
+.wa-pick .sub { color: var(--muted); font-size: 14px; margin: 0 0 18px; }
+.wa-pick ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.wa-pick a {
+  display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 14px;
+  border: 1px solid var(--line-2); background: var(--panel); font-weight: 600; font-size: 15px; transition: border-color .2s, background .2s;
+}
+.wa-pick a svg { width: 16px; height: 16px; color: var(--muted); transition: transform .2s; }
+.wa-pick a:hover { border-color: var(--fg); background: var(--panel-2); }
+.wa-pick a:hover svg { transform: translateX(3px); color: var(--fg); }
+@media (max-width: 640px) {
+  .wa-pick { max-width: none; padding: 24px 20px calc(24px + env(safe-area-inset-bottom)); }
+}
