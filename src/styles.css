@@ -1006,7 +1006,7 @@ footer .motto { text-transform: uppercase; }
 .nav.scrolled { border-bottom-color: var(--line); }
 .nav .wrap { max-width: 1440px; height: 76px; gap: 18px; justify-content: flex-start; }
 .brand {
-  font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: .01em; text-transform: uppercase;
+  font-family: var(--body); font-stretch: 100%; font-weight: 700; font-size: 22px; letter-spacing: -0.01em;
   white-space: nowrap; flex: none;
 }
 /* Links give way first: the Book button and theme switch never shrink. */

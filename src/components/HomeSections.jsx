@@ -90,7 +90,6 @@ function WhyVisual({ card }) {
   return (
     <div className="why-photo">
       <img src={card.img} alt="" loading="lazy" />
-      {card.visual === 'video' && <span className="play"><Icon name="play" /></span>}
     </div>
   );
 }
@@ -101,7 +100,7 @@ export function WhyXspace() {
     <section className="block" id="why">
       <div className="wrap">
         <FeatureHead
-          img="/images/interior-living.webp" kicker="01. Why choose Xspace"
+          img="/images/mock/why-head.webp" kicker="01. Why choose Xspace"
           title={<>Know before<br />you visit.</>}
           lead="A real-estate discovery and decision platform that brings verified information, immersive content and expert guidance together, so you can make confident decisions and visit only what truly matters."
           note={<>Verified properties.<br />Smarter decisions.</>}
@@ -346,7 +345,7 @@ export function AboutStory() {
     <section className="block" id="about">
       <div className="wrap">
         <FeatureHead
-          img="/images/hero-commercial.webp" kicker="06. About Xspace & Co."
+          img="/images/mock/about-head.webp" kicker="06. About Xspace & Co."
           title={<>Let&apos;s reimagine<br /><span className="grad">buying property.</span></>}
           lead="Buying a property is one of the most important decisions in life. But today, it often means visiting dozens of properties, spending weeks, and still being unsure about documentation, approvals and the real value."
           note={<>Better information.<br />Better decisions.</>}
@@ -365,7 +364,7 @@ export function AboutStory() {
         </div>
         <Reveal className="story">
           <div className="story-img dark-zone">
-            <img src="/images/hero-community.webp" alt="" loading="lazy" />
+            <img src="/images/mock/story.webp" alt="" loading="lazy" />
             <p>Property<br />Technology<br />Content<br />Trust</p>
           </div>
           <div className="story-copy">
@@ -404,7 +403,7 @@ export function ClientStories() {
     <section className="block" id="clients">
       <div className="wrap">
         <FeatureHead
-          img="/images/interior-living.webp" kicker="07. What our clients say"
+          img="/images/mock/clients-head.webp" kicker="07. What our clients say"
           title={<>Real people.<br /><span className="grad">Better decisions.</span></>}
           lead="From first-time home buyers to experienced investors, we want every client to leave with clarity, verified information and a smarter way to explore real estate in Hyderabad."
           note={<>Informed clients<br />make better decisions.</>}
@@ -444,7 +443,7 @@ export function ClientStories() {
         <Stats />
 
         <Reveal className="ready dark-zone">
-          <img src="/images/interior-living.webp" alt="" loading="lazy" />
+          <img src="/images/mock/ready.webp" alt="" loading="lazy" />
           <div>
             <div className="kicker">Ready to experience it yourself?</div>
             <h2>Let&apos;s help you make a better decision.</h2>

@@ -8,8 +8,9 @@
    returns" and unconfirmed promises, and verification is always worded as
    "relevant information, where applicable", never as a legal guarantee.
 
-   Photos are representative stock images (Unsplash, public/images), not
-   specific listings. The pages say so next to them. */
+   Photos are representative images, not specific listings: Unsplash stock
+   in public/images, and scenes cropped from the design mockups in
+   public/images/mock. The pages say so next to them. */
 
 /* ---------- Header / footer ---------- */
 export const NAV_LINKS = [
@@ -63,11 +64,11 @@ export const SECTION_LINKS = [
 /* 01: Why choose Xspace. `visual` picks the illustration in the card;
    `to` links to a page or a #section, `intent` opens the enquiry form. */
 export const WHY_CARDS = [
-  { icon: 'search', title: 'Discover', text: 'Find properties that match your needs across West Hyderabad.', visual: 'photo', img: '/images/type-highrise.webp', to: '/property' },
+  { icon: 'search', title: 'Discover', text: 'Find properties that match your needs across West Hyderabad.', visual: 'photo', img: '/images/mock/why-discover.webp', to: '/property' },
   { icon: 'shield', title: 'Verify', text: 'RERA, HMDA, approvals, developer details and project status, reviewed where applicable, all in one place.', visual: 'checks', to: '/verification' },
-  { icon: 'doc', title: 'Know before you visit', text: 'Understand the project, location, construction status, availability and more with detailed content.', visual: 'video', img: '/images/interior-living.webp', to: '/studio' },
+  { icon: 'doc', title: 'Know before you visit', text: 'Understand the project, location, construction status, availability and more with detailed content.', visual: 'photo', img: '/images/mock/why-know.webp', to: '/studio' },
   { icon: 'bars', title: 'Compare & shortlist', text: 'Compare projects on price, location, configuration, amenities, developer and more.', visual: 'table', to: '#listings' },
-  { icon: 'calendar', title: 'Visit only what matters', text: 'Book site visits with our team only for shortlisted options. Save time, effort and days of unnecessary visits.', visual: 'photo', img: '/images/hero-villa.webp', intent: 'Book a site visit' },
+  { icon: 'calendar', title: 'Visit only what matters', text: 'Book site visits with our team only for shortlisted options. Save time, effort and days of unnecessary visits.', visual: 'photo', img: '/images/mock/why-visit.webp', intent: 'Book a site visit' },
 ];
 export const WHY_CHECKS = ['RERA', 'HMDA', 'Approvals', 'Developer'];
 
@@ -153,17 +154,17 @@ export const SAMPLE_LISTINGS = [
 
 /* 06: About us */
 export const TRADITIONAL_WAY = [
-  { icon: 'car', title: 'Visit multiple properties', text: 'Spend days in travel', img: '/images/hero-house.webp' },
-  { icon: 'list', title: 'Compare on memory', text: 'Hard to keep track', img: '/images/type-highrise.webp' },
-  { icon: 'doc', title: 'Uncertainty in documentation', text: 'RERA, approvals, title and more', img: '/images/type-office.webp' },
-  { icon: 'help', title: "Still not sure if it's the right one", text: 'Even after all the effort', img: '/images/type-land.webp' },
+  { icon: 'car', title: 'Visit multiple properties', text: 'Spend days in travel', img: '/images/mock/trad-1.webp' },
+  { icon: 'list', title: 'Compare on memory', text: 'Hard to keep track', img: '/images/mock/trad-2.webp' },
+  { icon: 'doc', title: 'Uncertainty in documentation', text: 'RERA, approvals, title and more', img: '/images/mock/trad-3.webp' },
+  { icon: 'help', title: "Still not sure if it's the right one", text: 'Even after all the effort', img: '/images/mock/trad-4.webp' },
 ];
 export const XSPACE_WAY = [
-  { icon: 'search', title: 'Discover right projects', text: 'Based on your needs and budget', img: '/images/type-apartments.webp' },
-  { icon: 'shield', title: 'Verify key information', text: 'RERA, HMDA, approvals, developer details', img: '/images/type-building.webp' },
-  { icon: 'play', title: 'Explore in depth', text: 'Walkthroughs, drone views, 360° tours and location insights', img: '/images/interior-living.webp' },
-  { icon: 'bars', title: 'Compare and shortlist', text: 'Everything in one place', img: '/images/biz-office.webp' },
-  { icon: 'calendar', title: 'Visit only what matters', text: 'Save time and effort', img: '/images/hero-villa.webp' },
+  { icon: 'search', title: 'Discover right projects', text: 'Based on your needs and budget', img: '/images/mock/way-1.webp' },
+  { icon: 'shield', title: 'Verify key information', text: 'RERA, HMDA, approvals, developer details', img: '/images/mock/way-2.webp' },
+  { icon: 'play', title: 'Explore in depth', text: 'Walkthroughs, drone views, 360° tours and location insights', img: '/images/mock/way-3.webp' },
+  { icon: 'bars', title: 'Compare and shortlist', text: 'Everything in one place', img: '/images/mock/way-4.webp' },
+  { icon: 'calendar', title: 'Visit only what matters', text: 'Save time and effort', img: '/images/mock/way-5.webp' },
 ];
 export const STORY_FEATURES = [
   { icon: 'shield', title: 'Verified information', text: 'RERA, HMDA, approvals and developer details, where applicable.' },

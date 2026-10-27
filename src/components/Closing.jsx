@@ -88,7 +88,7 @@ export function Footer() {
         <div className="legal">
           <span>© {new Date().getFullYear()} Xspace &amp; Co. All Rights Reserved.</span>
           {CONFIG.reraAgentNo && <span>TG RERA Agent Reg. No. {CONFIG.reraAgentNo}</span>}
-          <span>Photos are representative stock images (Unsplash), not specific listings.</span>
+          <span>Photos are representative images, not specific listings.</span>
         </div>
       </div>
     </footer>
