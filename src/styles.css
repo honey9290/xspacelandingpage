@@ -1488,8 +1488,3 @@ footer .motto { text-transform: uppercase; }
 @media (max-width: 640px) {
   .wa-pick { max-width: none; padding: 24px 20px calc(24px + env(safe-area-inset-bottom)); }
 }
-
-/* Photo credits page */
-.credits { margin: 32px 0 0; padding-left: 22px; display: grid; gap: 12px; color: var(--muted); font-size: 15px; line-height: 1.5; max-width: 900px; }
-.credits a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
-footer .legal a { text-decoration: underline; text-underline-offset: 3px; }

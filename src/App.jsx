@@ -7,7 +7,6 @@ import Nav from './components/Nav';
 import About from './pages/About';
 import Commercial from './pages/Commercial';
 import Contact from './pages/Contact';
-import Credits from './pages/Credits';
 import Home from './pages/Home';
 import Partners from './pages/Partners';
 import Projects from './pages/Projects';
@@ -58,7 +57,6 @@ export default function App() {
         <Route path="partners" element={<Partners />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="credits" element={<Credits />} />
         {/* Older addresses, kept so shared links still land somewhere sensible */}
         <Route path="locations" element={<Navigate to="/projects" replace />} />
         <Route path="why-xspace" element={<Navigate to="/about" replace />} />
