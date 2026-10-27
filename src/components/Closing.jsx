@@ -88,7 +88,7 @@ export function Footer() {
         <div className="legal">
           <span>© {new Date().getFullYear()} XSPACE &amp; CO. All Rights Reserved.</span>
           {CONFIG.reraAgentNo && <span>TG RERA Agent Reg. No. {CONFIG.reraAgentNo}</span>}
-          <span>Photos are representative images, not specific listings.</span>
+          <span>Photos show real West Hyderabad projects for illustration, not specific listings. <Link to="/credits">Photo credits</Link></span>
         </div>
       </div>
     </footer>

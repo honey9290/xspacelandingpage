@@ -8,9 +8,10 @@
    returns" and unconfirmed promises, and verification is always worded as
    "relevant information, where applicable", never as a legal guarantee.
 
-   Photos are representative images, not specific listings: Unsplash stock
-   in public/images, and scenes cropped from the design mockups in
-   public/images/mock. The pages say so next to them. */
+   Photos are representative images, not specific listings. The building
+   and skyline shots are real West Hyderabad projects from Wikimedia Commons,
+   credited on /credits (src/photoCredits.js); the rest is Unsplash stock.
+   The pages say so next to them. */
 
 /* ---------- Header / footer ---------- */
 export const NAV_LINKS = [
