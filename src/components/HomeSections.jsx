@@ -91,13 +91,13 @@ function WhyVisual({ card }) {
   );
 }
 
-export function WhyXspace() {
+export function WhyXSPACE() {
   const openEnquiry = useEnquiry();
   return (
     <section className="block" id="why">
       <div className="wrap">
         <FeatureHead
-          img="/images/mock/why-head.webp" kicker="01. Why choose Xspace"
+          img="/images/mock/why-head.webp" kicker="01. Why choose XSPACE"
           title={<>Know before<br />you visit.</>}
           lead="A real-estate discovery and decision platform that brings verified information, immersive content and expert guidance together, so you can make confident decisions and visit only what truly matters."
           note={<>Verified properties.<br />Smarter decisions.</>}
@@ -169,7 +169,7 @@ export function NineSteps() {
         <Reveal className="center-head">
           <div className="kicker">03. The transformation</div>
           <h2>The 9-step<br />client journey</h2>
-          <p className="section-lead">How Xspace turns weeks of chaotic site visits into a precise, digital-first decision process.</p>
+          <p className="section-lead">How XSPACE turns weeks of chaotic site visits into a precise, digital-first decision process.</p>
         </Reveal>
         <ol className="steps9">
           {JOURNEY.map((s, i) => (
@@ -194,11 +194,11 @@ export function StudioTeaser() {
         <Reveal className="studio-media dark-zone">
           <img src="/images/hero-community.webp" alt="" loading="lazy" />
           <span className="play big"><Icon name="play" /></span>
-          <span className="studio-tag">Xspace Studio · representative image</span>
+          <span className="studio-tag">XSPACE Studio · representative image</span>
         </Reveal>
         <div>
           <Reveal>
-            <div className="kicker">04. Xspace Studio</div>
+            <div className="kicker">04. XSPACE Studio</div>
             <h2>Property, told differently.</h2>
             <p className="section-lead">
               Our in-house Studio films projects and neighbourhoods so you can understand a property long before you
@@ -287,7 +287,7 @@ export function SampleListings() {
           })}
         </div>
         <p className="photo-note">
-          Sample listings show the format of an Xspace shortlist. They are not live inventory, and photos are
+          Sample listings show the format of an XSPACE shortlist. They are not live inventory, and photos are
           representative. Ask us for current options and prices.
         </p>
 
@@ -342,7 +342,7 @@ export function AboutStory() {
     <section className="block" id="about">
       <div className="wrap">
         <FeatureHead
-          img="/images/mock/about-head.webp" kicker="06. About Xspace & Co."
+          img="/images/mock/about-head.webp" kicker="06. About XSPACE & CO."
           title={<>Let&apos;s reimagine<br /><span className="grad">buying property.</span></>}
           lead="Buying a property is one of the most important decisions in life. But today, it often means visiting dozens of properties, spending weeks, and still being unsure about documentation, approvals and the real value."
           note={<>Better information.<br />Better decisions.</>}
@@ -354,7 +354,7 @@ export function AboutStory() {
             <WayRow items={TRADITIONAL_WAY} />
           </Reveal>
           <Reveal className="way new" delay={80}>
-            <div className="kicker">The Xspace way</div>
+            <div className="kicker">The XSPACE way</div>
             <h3>Know first. Visit later.</h3>
             <WayRow items={XSPACE_WAY} />
           </Reveal>
@@ -368,7 +368,7 @@ export function AboutStory() {
             <div className="kicker">Our story</div>
             <h3>A more informed way forward.</h3>
             <p>
-              Xspace &amp; Co. was founded with a simple idea: bring transparency, technology and expert guidance
+              XSPACE &amp; CO. was founded with a simple idea: bring transparency, technology and expert guidance
               together, so you can know the property before you visit it.
             </p>
             <p>
@@ -392,8 +392,8 @@ export function ClientStories() {
   const [group, setGroup] = useState('All');
   const shown = group === 'All' ? TESTIMONIALS : TESTIMONIALS.filter((t) => t.group === group);
   const share = waNumber
-    ? { as: 'a', props: { href: waLink("Hi Xspace & Co., I'd like to share my experience."), target: '_blank', rel: 'noopener noreferrer' } }
-    : { as: 'button', props: { onClick: () => openEnquiry('Talk to Xspace', { note: 'Wants to share feedback' }) } };
+    ? { as: 'a', props: { href: waLink("Hi XSPACE & CO., I'd like to share my experience."), target: '_blank', rel: 'noopener noreferrer' } }
+    : { as: 'button', props: { onClick: () => openEnquiry('Talk to XSPACE', { note: 'Wants to share feedback' }) } };
   const Share = share.as;
 
   return (
@@ -429,7 +429,7 @@ export function ClientStories() {
             <div>
               <h3>Client stories are on their way.</h3>
               <p>
-                We publish only real reviews, shared with the client&apos;s permission. Bought or explored with Xspace?
+                We publish only real reviews, shared with the client&apos;s permission. Bought or explored with XSPACE?
                 We&apos;d love to hear how it went.
               </p>
             </div>

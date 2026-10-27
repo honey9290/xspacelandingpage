@@ -48,7 +48,7 @@ export default function EnquiryProvider({ children }) {
       document.removeEventListener('mouseout', onOut);
       openEnquiry(DEFAULT_INTENT, {}, {
         title: "Before you go: tell us what you're looking for",
-        sub: 'The Xspace team will come back with options that fit. No spam, no obligation.',
+        sub: 'The XSPACE team will come back with options that fit. No spam, no obligation.',
       });
     };
     document.addEventListener('mouseout', onOut);

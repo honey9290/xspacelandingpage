@@ -30,7 +30,7 @@ export default function Verification() {
             <div>
               <h2>Verify before <span className="grad">you visit.</span></h2>
               <p className="section-lead">
-                Where applicable, Xspace reviews relevant information against official sources and records the
+                Where applicable, XSPACE reviews relevant information against official sources and records the
                 verification status and date.
               </p>
               <button className="btn btn-primary btn-lg" onClick={() => openEnquiry('View verification')}>

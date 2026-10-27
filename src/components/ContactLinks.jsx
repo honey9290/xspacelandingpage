@@ -2,7 +2,7 @@ import { CONFIG } from '../config';
 import { useEnquiry } from '../lib/enquiry';
 import { telLink, waLink, waNumber } from '../lib/format';
 
-const GREETING = "Hi Xspace & Co., I'm looking for a property and would like some help.";
+const GREETING = "Hi XSPACE & CO., I'm looking for a property and would like some help.";
 
 /* Call and WhatsApp links. Until CONFIG has a number, they open the
    enquiry form instead of going nowhere. */

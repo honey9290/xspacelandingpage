@@ -23,7 +23,7 @@ export default function About() {
           <Head
             kicker="08 — Technology"
             title={<>Technology powering <span className="grad">the experience.</span></>}
-            lead="Behind every Xspace client journey is a private technology system built to help our team operate more efficiently. Our internal platform, the private Xspace Portal, connects:"
+            lead="Behind every XSPACE client journey is a private technology system built to help our team operate more efficiently. Our internal platform, the private XSPACE Portal, connects:"
           />
           <Cards items={PORTAL_MODULES} cols={3} />
           <Reveal as="p" className="closing-line">

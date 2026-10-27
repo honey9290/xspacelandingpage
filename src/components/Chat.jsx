@@ -5,7 +5,7 @@ import { useEnquiry } from '../lib/enquiry';
 import { waLink, waNumber } from '../lib/format';
 import Icon from './Icon';
 
-const HELLO = "Hi! I'm the Xspace assistant. Ask me something below, or book time with the team.";
+const HELLO = "Hi! I'm the XSPACE assistant. Ask me something below, or book time with the team.";
 
 /* Solid speech bubble with three dots, for the launcher. */
 function ChatGlyph() {
@@ -62,10 +62,10 @@ export default function Chat() {
   return (
     <div className={'chat' + (open ? ' open' : '')}>
       {open && (
-        <section className="chat-panel" role="dialog" aria-label="Chat with Xspace">
+        <section className="chat-panel" role="dialog" aria-label="Chat with XSPACE">
           <header>
             <div>
-              <b>Xspace &amp; Co.</b>
+              <b>XSPACE &amp; CO.</b>
               <span className="live">Usually replies within the day</span>
             </div>
             <button type="button" className="chat-x" aria-label="Close chat" onClick={() => setOpen(false)}>

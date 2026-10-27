@@ -34,7 +34,7 @@ export function buildLead(fields, phone, intent, note) {
 
 export function leadMessage(lead) {
   return [
-    `Hi Xspace & Co., I'm ${lead.name}.`,
+    `Hi XSPACE & CO., I'm ${lead.name}.`,
     `Request: ${lead.intent}`,
     lead.propertyType && `Looking for: ${lead.propertyType}`,
     lead.preferredArea && `Area: ${lead.preferredArea}`,

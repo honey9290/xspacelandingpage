@@ -11,7 +11,7 @@ const HEADER_LINKS = 5;
 /* The company name on its own, no mark. */
 export function Brand() {
   return (
-    <Link to="/" className="brand" aria-label="Xspace & Co. home">Xspace &amp; Co.</Link>
+    <Link to="/" className="brand" aria-label="XSPACE & CO. home">XSPACE &amp; CO.</Link>
   );
 }
 

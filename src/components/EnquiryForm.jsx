@@ -118,7 +118,7 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
       <div className="done" role="status">
         <div className="tick"><Icon name="check" /></div>
         <h3>Thank you. We have your request.</h3>
-        <p>{booking ? 'The Xspace team will call you to confirm your appointment.' : 'The Xspace team will call you soon.'} To start right away, send the message to us on WhatsApp.</p>
+        <p>{booking ? 'The XSPACE team will call you to confirm your appointment.' : 'The XSPACE team will call you soon.'} To start right away, send the message to us on WhatsApp.</p>
         {sent.waLink && (
           <a className="btn btn-primary" href={sent.waLink} target="_blank" rel="noopener noreferrer">
             <Icon name="whatsapp" />Continue on WhatsApp
@@ -250,7 +250,7 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
         {busy ? 'Sending…' : copy[2]} <Icon name="arrow" />
       </button>
       <p className="consent">
-        By submitting, you agree that Xspace &amp; Co. can contact you about your enquiry by call, SMS or WhatsApp. We never share your details.
+        By submitting, you agree that XSPACE &amp; CO. can contact you about your enquiry by call, SMS or WhatsApp. We never share your details.
       </p>
     </form>
   );

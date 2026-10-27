@@ -52,10 +52,10 @@ export const PATHS = [
 
 /* Header links to the sections of the home page, in page order. */
 export const SECTION_LINKS = [
-  ['why', 'Why Xspace'],
+  ['why', 'Why XSPACE'],
   ['booking', '3 Booking Modes'],
   ['journey', 'The 9-Step Journey'],
-  ['studio', 'Xspace Studio'],
+  ['studio', 'XSPACE Studio'],
   ['listings', 'Sample Listings'],
   ['about', 'About Us'],
   ['clients', 'What Clients Say'],
@@ -89,7 +89,7 @@ export const BOOKING_LEAD = "We don't force you into site offices. Connect with 
 export const BOOKING_CARDS = [
   {
     mode: 'Home visit', icon: 'home', title: 'Home visit', cta: 'Book home visit',
-    text: 'Our team brings the Xspace digital studio to your home. Review 360° tours, RERA and approval documents, and floor plans on our tablets with your family.',
+    text: 'Our team brings the XSPACE digital studio to your home. Review 360° tours, RERA and approval documents, and floor plans on our tablets with your family.',
   },
   {
     mode: 'Office lounge', icon: 'building', title: 'Office lounge', cta: 'Book office lounge', featured: true,
@@ -103,14 +103,14 @@ export const BOOKING_CARDS = [
 
 /* 03: The 9-step client journey */
 export const JOURNEY = [
-  { title: 'Discover', text: "Find Xspace through social channels, Studio content or referrals. You don't start by driving to a site; you start by exploring digitally." },
+  { title: 'Discover', text: "Find XSPACE through social channels, Studio content or referrals. You don't start by driving to a site; you start by exploring digitally." },
   { title: 'Explore', text: 'Access unvarnished project details, drone videos, price ranges, configurations, amenities and floor plans to rule out unsuitable options early.' },
   { title: 'Verify', text: 'Know before you visit. Check RERA registration, HMDA approvals, developer delivery records, documents and the latest inventory status we hold.' },
   { title: 'Shortlist', text: 'Narrow down your options. Instead of 20 random site visits, for example, you shortlist 5 options digitally and visit only 2.' },
   { title: 'Compare', text: 'Compare shortlisted options side by side on price per sq. ft, layout efficiency, possession dates, connectivity and rental potential.' },
-  { title: 'Experience (Visit)', text: 'Now you visit. The physical site visit becomes the <b>final validation</b>, not the first step. Coordinated with an Xspace rep.' },
+  { title: 'Experience (Visit)', text: 'Now you visit. The physical site visit becomes the <b>final validation</b>, not the first step. Coordinated with an XSPACE rep.' },
   { title: 'Decide', text: 'Clear every final technical, commercial and legal question with our team before committing any booking token.' },
-  { title: 'Deal', text: 'Xspace manages negotiation coordination, agreement documentation, developer alignment and transparent payment schedules.' },
+  { title: 'Deal', text: 'XSPACE manages negotiation coordination, agreement documentation, developer alignment and transparent payment schedules.' },
   { title: 'After deal', text: 'We stay with you: handover tracking, construction updates, resale assistance and ongoing property support.' },
 ];
 
@@ -219,10 +219,10 @@ export const EXPLORE_LIST = [
   'Available inventory', 'Pricing information', 'Relevant verification information', 'Visual content', 'Project walkthroughs',
 ];
 
-export const VERIFICATION_NOTE = 'Xspace verification is intended to support informed decision-making and does not replace independent legal or professional due diligence.';
+export const VERIFICATION_NOTE = 'XSPACE verification is intended to support informed decision-making and does not replace independent legal or professional due diligence.';
 
 export const VERIFICATION_FAQS = [
-  ['What does Xspace verification cover?', 'Where it applies, we review relevant project information, such as RERA registration and approvals, against the official sources that cover it. We record what we checked, the status we found and the date we checked it.'],
+  ['What does XSPACE verification cover?', 'Where it applies, we review relevant project information, such as RERA registration and approvals, against the official sources that cover it. We record what we checked, the status we found and the date we checked it.'],
   ['Is verification a legal opinion?', 'No. It is there to help you make an informed decision. For a purchase, we recommend your own legal and professional due diligence as well.'],
   ['Can I see the verification for a project I am considering?', 'Yes. Tell us the project and we will share the verification information we hold, with its status and date.'],
   ['What if something changes after a project was checked?', 'Information changes over time, which is why every record carries the date it was checked. If we learn of a change that affects you, we tell you.'],
@@ -241,11 +241,11 @@ export const STUDIO_FORMATS = [
 /* ---------- Partners (09–12) ---------- */
 export const ECOSYSTEM = [
   { icon: 'home', title: 'Buyers', text: 'People looking to discover, evaluate and own property.', to: '/property' },
-  { icon: 'building', title: 'Developers & property owners', text: 'Projects and properties entering the Xspace ecosystem.', to: '#developers' },
+  { icon: 'building', title: 'Developers & property owners', text: 'Projects and properties entering the XSPACE ecosystem.', to: '#developers' },
   { icon: 'users', title: 'Realtor Partners', text: 'On-ground property professionals supporting listings and site visits.', to: '#realtors' },
   { icon: 'film', title: 'Content creators', text: 'Creators bringing property and location stories to their audiences.', to: '#creators' },
-  { icon: 'play', title: 'Xspace Studio', text: 'Our in-house media and content team.', to: '/studio' },
-  { icon: 'compass', title: 'Xspace', text: 'The team connecting everything together.', to: '/about' },
+  { icon: 'play', title: 'XSPACE Studio', text: 'Our in-house media and content team.', to: '/studio' },
+  { icon: 'compass', title: 'XSPACE', text: 'The team connecting everything together.', to: '/about' },
 ];
 
 export const DEVELOPER_SERVICES = [
@@ -254,7 +254,7 @@ export const DEVELOPER_SERVICES = [
 ];
 
 export const REALTOR_FOCUS = [
-  { icon: 'layers', title: 'Listings', text: 'Bring the properties and projects you know into the Xspace ecosystem.' },
+  { icon: 'layers', title: 'Listings', text: 'Bring the properties and projects you know into the XSPACE ecosystem.' },
   { icon: 'route', title: 'Site visits', text: 'Walk customers through the properties on the ground.' },
 ];
 export const REALTOR_CHAIN = ['CRM', 'Requirement', 'Shortlist', 'Follow-up', 'Closure', 'Handover'];
@@ -278,15 +278,15 @@ export const TRUST = [
   { icon: 'eye', title: 'Transparency', text: 'Clear information and communication throughout the journey.' },
   { icon: 'shield', title: 'Verification', text: 'Relevant information reviewed against applicable sources.' },
   { icon: 'play', title: 'Experience', text: 'Visual content and site visits designed to help you understand the property.' },
-  { icon: 'users', title: 'People', text: 'A connected network of Xspace teams, Realtors and Creators.' },
+  { icon: 'users', title: 'People', text: 'A connected network of XSPACE teams, Realtors and Creators.' },
   { icon: 'chip', title: 'Technology', text: 'Systems built to keep the journey organised behind the scenes.' },
 ];
 
 export const GENERAL_FAQS = [
   ['Do I pay anything to explore properties or visit a site?', 'No. Discovering properties, seeing our content and visiting a site with us is free. If any fee applies when you close a deal, we explain it before you commit to anything.'],
-  ['Will I get calls from lots of different agents?', 'No. Your journey is coordinated by the Xspace team. Your details stay inside Xspace and are never sold or shared.'],
+  ['Will I get calls from lots of different agents?', 'No. Your journey is coordinated by the XSPACE team. Your details stay inside XSPACE and are never sold or shared.'],
   ['Do you promise returns on investment property?', 'No. We share the information we have and help you compare options, but we never promise returns or use pressure to close.'],
-  ['Can I list my property or project with you?', 'Yes. Developers and property owners can bring projects into the Xspace ecosystem. See the Partners page or talk to us.'],
+  ['Can I list my property or project with you?', 'Yes. Developers and property owners can bring projects into the XSPACE ecosystem. See the Partners page or talk to us.'],
 ];
 
 /* ---------- Residential ---------- */
@@ -373,7 +373,7 @@ export const CTA = {
       ['Discover', ' properties and projects that fit your requirements'],
       ['Verify', ' relevant project information against applicable sources'],
       ['Experience', ' the project through content and a site visit'],
-      ['Decide', ' with the Xspace team coordinating the journey around you'],
+      ['Decide', ' with the XSPACE team coordinating the journey around you'],
     ],
   },
   property: {

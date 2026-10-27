@@ -14,15 +14,15 @@ const STUDIO_SLIDES = [
 ];
 
 export default function Studio() {
-  usePageTitle('Xspace Studio');
+  usePageTitle('XSPACE Studio');
   const openEnquiry = useEnquiry();
   return (
     <>
       <PageHero
         slides={STUDIO_SLIDES}
-        eyebrow="07 — Xspace Studio"
+        eyebrow="07 — XSPACE Studio"
         title={<>Property, <span className="grad">told differently.</span></>}
-        lead="Understanding a property shouldn't begin and end with a brochure. Xspace Studio creates visual experiences that bring projects and locations closer to you."
+        lead="Understanding a property shouldn't begin and end with a brochure. XSPACE Studio creates visual experiences that bring projects and locations closer to you."
         actions={(
           <>
             <button className="btn btn-primary btn-lg" onClick={() => openEnquiry('Video walkthrough')}>

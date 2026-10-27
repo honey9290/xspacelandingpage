@@ -27,7 +27,7 @@ export function FinalCta({ variant = 'home', kicker, tight, talk }) {
               ))}
             </ul>
             <div className="direct">
-              <CallLink className="btn btn-ghost"><Icon name="phone" />{talk ? 'Talk to Xspace' : 'Call now'}</CallLink>
+              <CallLink className="btn btn-ghost"><Icon name="phone" />{talk ? 'Talk to XSPACE' : 'Call now'}</CallLink>
               <WhatsAppLink className="btn btn-ghost"><Icon name="whatsapp" />WhatsApp</WhatsAppLink>
             </div>
           </div>
@@ -54,7 +54,7 @@ export function Footer() {
           <Brand />
           <p className="motto">Know Before You Own.</p>
           <p className="about">
-            Xspace doesn&apos;t just show you property. Xspace helps you understand it, verify it, experience it and
+            XSPACE doesn&apos;t just show you property. XSPACE helps you understand it, verify it, experience it and
             make a better decision.
           </p>
         </div>
@@ -86,7 +86,7 @@ export function Footer() {
           )}
         </div>
         <div className="legal">
-          <span>© {new Date().getFullYear()} Xspace &amp; Co. All Rights Reserved.</span>
+          <span>© {new Date().getFullYear()} XSPACE &amp; CO. All Rights Reserved.</span>
           {CONFIG.reraAgentNo && <span>TG RERA Agent Reg. No. {CONFIG.reraAgentNo}</span>}
           <span>Photos are representative images, not specific listings.</span>
         </div>
