@@ -429,13 +429,3 @@ export const CHAT_TOPICS = [
   ["I live abroad. Can you help?", RES_FAQS[2][1]],
 ];
 
-/* ---------- WhatsApp ---------- */
-/* What a visitor can pick before WhatsApp opens: [choice, message]. */
-export const WHATSAPP_TOPICS = [
-  ['Find a property', "Hi XSPACE & CO., I'm looking for a property. Please share options that fit my needs."],
-  ['Book a site visit', "Hi XSPACE & CO., I'd like to book a site visit."],
-  ['Book a consultation', "Hi XSPACE & CO., I'd like to book a discovery consultation."],
-  ['Verification details', "Hi XSPACE & CO., I'd like the verification details for a project I'm considering."],
-  ['Partner with XSPACE', "Hi XSPACE & CO., I'd like to talk about partnering with you."],
-  ['Something else', 'Hi XSPACE & CO., I have a question.'],
-];

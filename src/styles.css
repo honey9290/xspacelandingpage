@@ -1478,14 +1478,9 @@ footer .motto { text-transform: uppercase; }
 .wa-pick-icon svg { width: 26px; height: 26px; }
 .wa-pick h3 { font-size: 20px; margin-bottom: 6px; padding-right: 40px; }
 .wa-pick .sub { color: var(--muted); font-size: 14px; margin: 0 0 18px; }
-.wa-pick ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.wa-pick a {
-  display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 14px;
-  border: 1px solid var(--line-2); background: var(--panel); font-weight: 600; font-size: 15px; transition: border-color .2s, background .2s;
-}
-.wa-pick a svg { width: 16px; height: 16px; color: var(--muted); transition: transform .2s; }
-.wa-pick a:hover { border-color: var(--fg); background: var(--panel-2); }
-.wa-pick a:hover svg { transform: translateX(3px); color: var(--fg); }
+.wa-pick .f { margin-bottom: 12px; }
+.wa-pick .wa-go { width: 100%; margin-top: 6px; background: #25d366; color: #fff; }
+.wa-pick .wa-go:hover { box-shadow: 0 0 0 5px rgba(37,211,102,.18); }
 @media (max-width: 640px) {
   .wa-pick { max-width: none; padding: 24px 20px calc(24px + env(safe-area-inset-bottom)); }
 }

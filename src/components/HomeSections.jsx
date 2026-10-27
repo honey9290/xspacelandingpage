@@ -6,7 +6,7 @@ import {
   STUDIO_FORMATS, TESTIMONIALS, TRADITIONAL_WAY, WHY_CARDS, WHY_CHECKS, XSPACE_WAY,
 } from '../content';
 import { useEnquiry } from '../lib/enquiry';
-import { waLink, waNumber } from '../lib/format';
+import { WhatsAppLink } from './ContactLinks';
 import Icon from './Icon';
 import Reveal from './Reveal';
 
@@ -391,10 +391,6 @@ export function ClientStories() {
   const openEnquiry = useEnquiry();
   const [group, setGroup] = useState('All');
   const shown = group === 'All' ? TESTIMONIALS : TESTIMONIALS.filter((t) => t.group === group);
-  const share = waNumber
-    ? { as: 'a', props: { href: waLink("Hi XSPACE & CO., I'd like to share my experience."), target: '_blank', rel: 'noopener noreferrer' } }
-    : { as: 'button', props: { onClick: () => openEnquiry('Talk to XSPACE', { note: 'Wants to share feedback' }) } };
-  const Share = share.as;
 
   return (
     <section className="block" id="clients">
@@ -433,7 +429,7 @@ export function ClientStories() {
                 We&apos;d love to hear how it went.
               </p>
             </div>
-            <Share className="btn btn-ghost" {...share.props}>Share your experience <Icon name="arrow" /></Share>
+            <WhatsAppLink className="btn btn-ghost">Share your experience <Icon name="arrow" /></WhatsAppLink>
           </Reveal>
         )}
 

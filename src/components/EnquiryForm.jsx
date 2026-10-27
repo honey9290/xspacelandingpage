@@ -3,7 +3,7 @@ import {
   AREA_OPTIONS, BHK_OPTIONS, BOOKING_INTENT, BOOKING_MODES, BUDGET_OPTIONS, configKindFor, DEFAULT_INTENT, INTENT_COPY,
   PROPERTY_GROUPS, PROPERTY_OPTIONS, TIME_SLOTS, TIMELINE_OPTIONS,
 } from '../config';
-import { buildLead, normalisePhone, sendLead } from '../lib/enquiry';
+import { buildLead, isEmail, normalisePhone, sendLead } from '../lib/enquiry';
 import Icon from './Icon';
 
 /* The area dropdown's last choice; picking it shows a text box instead. */
@@ -15,7 +15,6 @@ const CONFIG_FIELD = {
   acres: { label: 'Extent (acres)', placeholder: 'e.g. 2.5 acres' },
   sft: { label: 'Area (sft)', placeholder: 'e.g. 1200 sft' },
 };
-const looksLikeEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
 /* Today as yyyy-mm-dd in the visitor's own time zone, the earliest date
    the booking form offers. */
@@ -98,7 +97,7 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
     e.preventDefault();
     const phone = normalisePhone(fields.phone);
     const email = fields.email.trim();
-    const nextErrors = { name: !fields.name.trim(), phone: !phone, email: !!email && !looksLikeEmail(email) };
+    const nextErrors = { name: !fields.name.trim(), phone: !phone, email: !isEmail(email) };
     setErrors(nextErrors);
     if (nextErrors.name || nextErrors.phone || nextErrors.email) return;
     setBusy(true);
@@ -166,12 +165,12 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
         </div>
 
         <div className="f">
-          <label htmlFor={id('email')}>Email (optional)</label>
+          <label htmlFor={id('email')}>Email</label>
           <input
             id={id('email')} name="email" type="email" autoComplete="email" placeholder="you@example.com"
             value={fields.email} onChange={set} aria-invalid={errors.email || undefined}
           />
-          {errors.email && <span className="err">Please check your email</span>}
+          {errors.email && <span className="err">Please enter a valid email</span>}
         </div>
       </div>
 

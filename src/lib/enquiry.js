@@ -15,10 +15,13 @@ export function normalisePhone(raw) {
   return /^[6-9]\d{9}$/.test(p) ? p : null;
 }
 
+export const isEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
 export function buildLead(fields, phone, intent, note) {
   return {
     name: fields.name.trim(),
     phone: '+91' + phone,
+    email: fields.email.trim(),
     propertyType: fields.type,
     preferredArea: fields.area,
     budget: fields.budget,
@@ -32,17 +35,10 @@ export function buildLead(fields, phone, intent, note) {
   };
 }
 
-export function leadMessage(lead) {
-  return [
-    `Hi XSPACE & CO., I'm ${lead.name}.`,
-    `Request: ${lead.intent}`,
-    lead.propertyType && `Looking for: ${lead.propertyType}`,
-    lead.preferredArea && `Area: ${lead.preferredArea}`,
-    lead.budget && `Budget: ${lead.budget}`,
-    lead.timeline && `Timeline: ${lead.timeline}`,
-    lead.note,
-    `Phone: ${lead.phone}`,
-  ].filter(Boolean).join('\n');
+/* Every WhatsApp message the site writes: a greeting and who is writing,
+   nothing else. The rest of an enquiry reaches the CRM. */
+export function waIntro({ name, phone, email }) {
+  return ['Hi XSPACE & CO.,', `Name: ${name}`, `Phone: ${phone}`, `Email: ${email}`].join('\n');
 }
 
 /* POST to the configured endpoint if there is one. With no endpoint,
@@ -106,7 +102,7 @@ export async function sendLead(lead) {
   }
   try { sessionStorage.setItem('xs_enquired', '1'); } catch { /* private mode */ }
   if (!waNumber) return null;
-  const link = waLink(leadMessage(lead));
+  const link = waLink(waIntro(lead));
   if (!CONFIG.enquiryEndpoint) window.open(link, '_blank', 'noopener');
   return link;
 }
