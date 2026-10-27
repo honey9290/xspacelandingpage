@@ -38,9 +38,6 @@ export function HomeHero() {
         <div className="hero-shade" />
       </div>
       <div className="wrap">
-        <Reveal as="p" className="eyebrow-line">
-          <span>Real estate discovery</span><span>Decision platform</span><span>Hyderabad</span>
-        </Reveal>
         <Reveal as="h1" className="mega">
           Why visit first, when you can <u>know first?</u>
         </Reveal>

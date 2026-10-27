@@ -122,7 +122,7 @@ export const LISTING_FACTS = ['Location', 'Property type', 'Configuration', 'Pos
 export const SAMPLE_LISTINGS = [
   {
     id: 'l1', title: 'Gated community apartment', category: 'Apartments', img: '/images/type-apartments.webp',
-    type: '3 BHK', area: 'Narsingi',
+    type: 'Gated Community Apartments', area: 'Narsingi',
     facts: ['Narsingi', 'Gated community', '2 & 3 BHK', 'Under construction', 'Walkthrough + drone', 'RERA, approvals', 'Families', 'Shared on request'],
   },
   {
@@ -137,7 +137,7 @@ export const SAMPLE_LISTINGS = [
   },
   {
     id: 'l4', title: 'Ready-to-move apartment', category: 'Apartments', img: '/images/hero-community.webp',
-    type: '2 BHK', area: 'Gachibowli',
+    type: 'Gated Community Apartments', area: 'Gachibowli',
     facts: ['Gachibowli', 'Gated community', '2 BHK', 'Ready to move', 'Walkthrough video', 'RERA, OC status', 'First home, rental', 'Shared on request'],
   },
   {
@@ -184,7 +184,7 @@ export const TESTIMONIALS = [];
 /* ---------- Property (06: find what fits you) ---------- */
 export const PROPERTY_FINDER = [
   { label: 'Location', options: ['Neopolis', 'Narsingi', 'Financial District', 'Gachibowli', 'Tellapur', 'Nallagandla', 'Kollur'], field: 'area' },
-  { label: 'Property type', options: ['Gated Community Apartments', 'Villa', 'Independent House', 'Office Space', 'Retail Shop / Showroom', 'Land'], field: 'type' },
+  { label: 'Property type', options: ['Gated Community Apartments', 'Villa', 'Independent House', 'Office Space', 'Shops', 'Land'], field: 'type' },
   { label: 'Configuration', options: ['2 BHK', '3 BHK', '4+ BHK'], field: 'note', prefix: 'Configuration' },
   { label: 'Budget', options: ['Under ₹75 L', '₹75 L – 1.2 Cr', '₹1.2 – 2 Cr', '₹2 – 3.5 Cr', '₹3.5 Cr +'], field: 'budget' },
   { label: 'Purpose', options: ['To live in', 'To invest', 'For my business'], field: 'note', prefix: 'Purpose' },
@@ -316,7 +316,8 @@ export const FAMILY_NEEDS = [
 
 export const RES_FINDER = [
   { label: 'Where', options: ['Narsingi', 'Tellapur', 'Gachibowli', 'Nallagandla', 'Open to suggestions'], field: 'area' },
-  { label: 'What kind of home', options: ['2 BHK', '3 BHK', '4+ BHK', 'Villa', 'Independent House'], field: 'type' },
+  { label: 'What kind of home', options: ['Gated Community Apartments', 'Villa', 'Independent House', 'Standalone'], field: 'type' },
+  { label: 'Configuration', options: ['2 BHK', '3 BHK', '4+ BHK'], field: 'note', prefix: 'Configuration' },
   { label: 'What matters to your family', options: ['Schools nearby', 'Play areas', 'Gated & secure', 'Near hospitals', 'Short commute', 'Space for parents'], field: 'note', multi: true, prefix: 'Family priorities' },
 ];
 
@@ -335,8 +336,8 @@ export const COM_SLIDES = [
 
 export const COM_TYPES = [
   { title: 'Office space', text: 'From a ten-seat studio to a full floor, bare shell or ready to move in.', intent: 'Office Space', img: '/images/type-office.webp' },
-  { title: 'Commercial buildings', text: 'Whole buildings and floors, plus street-facing shops and showrooms.', intent: 'Commercial Building', img: '/images/type-building.webp' },
-  { title: 'Warehouses & industrial', text: 'Godowns, industrial units and open plots with good road access.', intent: 'Warehouse / Industrial', img: '/images/type-industrial.webp' },
+  { title: 'Commercial buildings', text: 'Whole buildings and floors, plus street-facing shops and showrooms.', intent: 'Office Space', img: '/images/type-building.webp' },
+  { title: 'Warehouses & industrial', text: 'Godowns, industrial units and open plots with good road access.', intent: 'Godown', img: '/images/type-industrial.webp' },
   { title: 'Land & plots', text: 'Acreage and plots to build on or hold, with clear title.', intent: 'Land', img: '/images/type-land.webp' },
 ];
 
@@ -349,7 +350,7 @@ export const BUSINESS_HELP = [
 export const BUSINESS_CHECKS = ['Clear title', 'Building approvals', 'Commercial-use permissions', 'RERA, where it applies'];
 
 export const COM_FINDER = [
-  { label: 'What do you need', options: ['Office Space', 'Commercial Building', 'Retail Shop / Showroom', 'Warehouse / Industrial', 'Land'], field: 'type' },
+  { label: 'What do you need', options: ['Office Space', 'Shops', 'Open Plot', 'Godown', 'Industry', 'Land'], field: 'type' },
   { label: 'Where', options: ['Financial District', 'Neopolis', 'Gachibowli', 'Narsingi', 'Open to suggestions'], field: 'area' },
   { label: 'Team size', options: ['Under 10', '10–50', '50–200', '200+'], field: 'note', prefix: 'Team size' },
 ];

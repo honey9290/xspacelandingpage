@@ -1006,7 +1006,7 @@ footer .motto { text-transform: uppercase; }
 .nav.scrolled { border-bottom-color: var(--line); }
 .nav .wrap { max-width: 1440px; height: 76px; gap: 18px; justify-content: flex-start; }
 .brand {
-  font-family: var(--body); font-stretch: 100%; font-weight: 700; font-size: 22px; letter-spacing: -0.01em;
+  font-family: var(--body); font-stretch: 100%; font-weight: 700; font-size: 21px; letter-spacing: .02em; text-transform: uppercase;
   white-space: nowrap; flex: none;
 }
 /* Links give way first: the Book button and theme switch never shrink. */
@@ -1054,8 +1054,6 @@ footer .motto { text-transform: uppercase; }
 .home-hero .hero-media img { opacity: 1; transform: none; }
 .home-hero .hero-shade { background: linear-gradient(180deg, rgba(5,5,5,.72), rgba(5,5,5,.84) 60%, var(--bg)); }
 .home-hero .hero-shade::after { display: none; }
-.eyebrow-line { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0 0 30px; font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-.eyebrow-line span + span::before { content: "•"; margin-right: 18px; }
 .mega { font-size: clamp(44px, 8.6vw, 124px); max-width: 12ch; margin: 0 0 26px; }
 .mega u { text-decoration-thickness: 3px; text-underline-offset: .12em; text-decoration-skip-ink: none; }
 .home-hero .tagline { font-family: var(--body); font-stretch: 100%; font-weight: 400; font-size: clamp(20px, 2.4vw, 28px); color: var(--dim); letter-spacing: .02em; margin: 0 0 40px; }
@@ -1326,8 +1324,6 @@ footer .motto { text-transform: uppercase; }
   .nav-cta .book-btn { display: none; }
   .theme-toggle button { width: 30px; height: 30px; }
   .home-hero { min-height: min(92vh, 760px); padding: 120px 0 56px; }
-  .eyebrow-line { font-size: 10.5px; letter-spacing: .2em; gap: 4px 12px; margin-bottom: 22px; }
-  .eyebrow-line span + span::before { margin-right: 12px; }
   .mega { font-size: 40px; }
   .home-hero .tagline { font-size: 18px; margin-bottom: 28px; }
   .home-hero .hero-actions .btn { display: inline-flex; flex: 1 1 100%; }

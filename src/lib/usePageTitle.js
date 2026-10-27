@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 
 const SITE = 'Xspace & Co.';
 
-/* Sets the browser tab title for the current page. */
-export default function usePageTitle(title) {
+/* The browser tab shows only the company name, on every page. `title`
+   names the page for anyone reading the code; it is not shown. */
+export default function usePageTitle(_title) {
   useEffect(() => {
-    document.title = title ? `${title} | ${SITE}` : `${SITE} — Know Before You Own | Property in West Hyderabad`;
-  }, [title]);
+    document.title = SITE;
+  }, []);
 }

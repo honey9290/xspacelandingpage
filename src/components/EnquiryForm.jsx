@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import {
-  AREA_OPTIONS, BOOKING_INTENT, BOOKING_MODES, BUDGET_OPTIONS, DEFAULT_INTENT, INTENT_COPY, PROPERTY_OPTIONS,
+  AREA_OPTIONS, BOOKING_INTENT, BOOKING_MODES, BUDGET_OPTIONS, DEFAULT_INTENT, INTENT_COPY, PROPERTY_GROUPS, PROPERTY_OPTIONS,
   TIME_SLOTS, TIMELINE_OPTIONS,
 } from '../config';
 import { buildLead, normalisePhone, sendLead } from '../lib/enquiry';
@@ -34,13 +34,17 @@ function initialFields(intent, extra) {
   };
 }
 
+/* `options` is a list of strings, or of [group, strings] pairs for a
+   grouped list. */
 function Select({ label, name, value, options, onChange }) {
   return (
     <div className="f">
       <label htmlFor={name}>{label}</label>
       <select id={name} name={name} value={value} onChange={onChange}>
         <option value="">Select</option>
-        {options.map((o) => <option key={o}>{o}</option>)}
+        {options.map((o) => (Array.isArray(o)
+          ? <optgroup key={o[0]} label={o[0]}>{o[1].map((v) => <option key={v}>{v}</option>)}</optgroup>
+          : <option key={o}>{o}</option>))}
       </select>
     </div>
   );
@@ -176,7 +180,7 @@ export default function EnquiryForm({ intent = DEFAULT_INTENT, extra = {}, title
         <>
           {/* Booking asks fewer questions, so they share one row. */}
           <div className={booking ? 'grid3' : 'grid2'}>
-            <Select label="Looking for" name="type" value={fields.type} options={PROPERTY_OPTIONS} onChange={set} />
+            <Select label="Looking for" name="type" value={fields.type} options={PROPERTY_GROUPS} onChange={set} />
             <Select
               label="Preferred area" name="area" value={otherArea ? OTHER_AREA : fields.area}
               options={[...AREA_OPTIONS, OTHER_AREA]} onChange={set}

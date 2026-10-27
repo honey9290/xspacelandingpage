@@ -18,16 +18,22 @@ export const CONFIG = {
   },
 };
 
-/* Form options. Each property option maps onto a type or sub-type in
-   PROPERTY_TYPES in the portal's server/src/leadStatus.js (office space and
-   shops are Commercial sub-types; warehouses are Industrial), so a website
-   lead files cleanly in the CRM. */
-export const PROPERTY_OPTIONS = [
-  '2 BHK', '3 BHK', '4+ BHK', 'Villa', 'Independent House',
-  'Gated Community Apartments', 'Gated Community High-Rise', 'Semi-Gated / Standalone',
-  'Office Space', 'Commercial Building', 'Retail Shop / Showroom', 'Warehouse / Industrial',
-  'Land',
+/* Form options. The "Looking for" list is the portal CRM's own list of
+   property types and sub-types (PROPERTY_TYPES in the portal's
+   server/src/leadStatus.js), grouped the same way. The portal's enquiry
+   route files the ones it already knows (Villa, Independent House, the gated
+   types, Office Space, Land) under their type; the rest reach the lead's
+   notes as "Looking for: …". */
+export const PROPERTY_GROUPS = [
+  ['Residential', [
+    'Standalone', 'Villa', 'Independent House', 'Semi-Gated Apartments',
+    'Gated Community Apartments', 'Gated Community High-Rise',
+  ]],
+  ['Land', ['Land']],
+  ['Commercial', ['Office Space', 'Shops']],
+  ['Industrial', ['Open Plot', 'Godown', 'Industry']],
 ];
+export const PROPERTY_OPTIONS = PROPERTY_GROUPS.flatMap(([, options]) => options);
 export const AREA_OPTIONS = [
   'Neopolis', 'Narsingi', 'Financial District', 'Gachibowli', 'Tellapur', 'Nallagandla', 'Kollur',
   'Open to suggestions',
