@@ -12,12 +12,13 @@ import Reveal from './Reveal';
 
 /* The sections of the home page, top to bottom. Copy lives in content.js. */
 
-/* Full-width photo header used by Why, About and Clients: copy on the left,
-   a handwritten note on the right. Always dark, whatever the theme. */
+/* Full-width header used by Why, About and Clients: copy on the left, a
+   handwritten note on the right, over an optional photo. Always dark,
+   whatever the theme. */
 function FeatureHead({ img, kicker, title, lead, note, children }) {
   return (
     <Reveal className="feature-head dark-zone">
-      <img src={img} alt="" loading="lazy" />
+      {img && <img src={img} alt="" loading="lazy" />}
       <div className="feature-copy">
         <div className="kicker">{kicker}</div>
         <h2>{title}</h2>
@@ -376,7 +377,6 @@ export function AboutStory() {
 }
 
 export function ClientStories() {
-  const openEnquiry = useEnquiry();
   const [group, setGroup] = useState('All');
   const shown = group === 'All' ? TESTIMONIALS : TESTIMONIALS.filter((t) => t.group === group);
 
@@ -417,20 +417,6 @@ export function ClientStories() {
             <WhatsAppLink className="btn btn-ghost">Share your experience <Icon name="arrow" /></WhatsAppLink>
           </Reveal>
         )}
-
-        <Reveal className="ready dark-zone">
-          <img src="/images/mock/ready.webp" alt="" loading="lazy" />
-          <div>
-            <div className="kicker">Ready to experience it yourself?</div>
-            <h2>Let&apos;s help you make a better decision.</h2>
-          </div>
-          <div className="ready-cta">
-            <button className="btn btn-primary btn-lg" onClick={() => openEnquiry(BOOKING_INTENT)}>
-              Book a consultation <Icon name="arrow" />
-            </button>
-            <p>Talk to our team about what you need.</p>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
