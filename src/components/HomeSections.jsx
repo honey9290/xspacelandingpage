@@ -99,7 +99,7 @@ export function WhyXSPACE() {
         <FeatureHead
           img="/images/mock/why-head.webp" kicker="01. Why choose XSPACE"
           title={<>Know before<br />you visit.</>}
-          lead="A real-estate discovery and decision platform that brings verified information, immersive content and expert guidance together, so you can make confident decisions and visit only what truly matters."
+          lead="Checked information, videos and expert advice in one place, so you visit only what fits."
           note={<>Verified properties.<br />Smarter decisions.</>}
         />
         <div className="why-grid">
@@ -169,7 +169,7 @@ export function NineSteps() {
         <Reveal className="center-head">
           <div className="kicker">03. The transformation</div>
           <h2>The 9-step<br />client journey</h2>
-          <p className="section-lead">How XSPACE turns weeks of chaotic site visits into a precise, digital-first decision process.</p>
+          <p className="section-lead">From your first search to after you move in.</p>
         </Reveal>
         <ol className="steps9">
           {JOURNEY.map((s, i) => (
@@ -200,10 +200,7 @@ export function StudioTeaser() {
           <Reveal>
             <div className="kicker">04. XSPACE Studio</div>
             <h2>Property, told differently.</h2>
-            <p className="section-lead">
-              Our in-house Studio films projects and neighbourhoods so you can understand a property long before you
-              drive to it.
-            </p>
+            <p className="section-lead">We film projects and areas so you can see them before you go.</p>
           </Reveal>
           <Reveal as="ul" className="studio-list">
             {STUDIO_FORMATS.map((f) => <li key={f.title}><Icon name={f.icon} /><span><b>{f.title}</b>{f.text}</span></li>)}
@@ -241,9 +238,7 @@ export function SampleListings() {
           <div>
             <div className="kicker">05. Sample listings</div>
             <h2>See what a shortlist looks like.</h2>
-            <p className="section-lead">
-              Each option comes with its content and the checks we run. Tick up to three to compare them side by side.
-            </p>
+            <p className="section-lead">Tick up to three to compare them.</p>
           </div>
           <div className="chips" role="group" aria-label="Filter listings">
             {LISTING_FILTERS.map((f) => (
@@ -286,10 +281,7 @@ export function SampleListings() {
             );
           })}
         </div>
-        <p className="photo-note">
-          Sample listings show the format of an XSPACE shortlist. They are not live inventory, and photos are
-          representative. Ask us for current options and prices.
-        </p>
+        <p className="photo-note">Samples only, not live listings. Ask us for current options and prices.</p>
 
         {picked.length > 0 && (
           <div className="compare-bar" role="status">
@@ -344,7 +336,7 @@ export function AboutStory() {
         <FeatureHead
           img="/images/mock/about-head.webp" kicker="06. About XSPACE & CO."
           title={<>Let&apos;s reimagine<br /><span className="grad">buying property.</span></>}
-          lead="Buying a property is one of the most important decisions in life. But today, it often means visiting dozens of properties, spending weeks, and still being unsure about documentation, approvals and the real value."
+          lead="Buying property often means many visits, weeks of effort and still some doubt. We make it simpler."
           note={<>Better information.<br />Better decisions.</>}
         />
         <div className="ways">
@@ -368,12 +360,8 @@ export function AboutStory() {
             <div className="kicker">Our story</div>
             <h3>A more informed way forward.</h3>
             <p>
-              XSPACE &amp; CO. was founded with a simple idea: bring transparency, technology and expert guidance
-              together, so you can know the property before you visit it.
-            </p>
-            <p>
-              We combine verified information, immersive content and real-estate expertise to help you make confident
-              decisions and focus only on properties that truly fit your needs.
+              XSPACE &amp; CO. started with one idea: you should know a property before you visit it. So we bring
+              checked information, videos and expert advice together in one place.
             </p>
           </div>
           <ul className="story-feats">
@@ -398,7 +386,7 @@ export function ClientStories() {
         <FeatureHead
           img="/images/mock/clients-head.webp" kicker="07. What our clients say"
           title={<>Real people.<br /><span className="grad">Better decisions.</span></>}
-          lead="From first-time home buyers to experienced investors, we want every client to leave with clarity, verified information and a smarter way to explore real estate in Hyderabad."
+          lead="We share only real reviews from real clients."
           note={<>Informed clients<br />make better decisions.</>}
         >
           {TESTIMONIALS.length > 0 && (
@@ -424,16 +412,11 @@ export function ClientStories() {
             <Icon name="chat" size={28} />
             <div>
               <h3>Client stories are on their way.</h3>
-              <p>
-                We publish only real reviews, shared with the client&apos;s permission. Bought or explored with XSPACE?
-                We&apos;d love to hear how it went.
-              </p>
+              <p>Bought or explored with XSPACE? Tell us how it went.</p>
             </div>
             <WhatsAppLink className="btn btn-ghost">Share your experience <Icon name="arrow" /></WhatsAppLink>
           </Reveal>
         )}
-
-        <Stats />
 
         <Reveal className="ready dark-zone">
           <img src="/images/mock/ready.webp" alt="" loading="lazy" />
@@ -445,7 +428,7 @@ export function ClientStories() {
             <button className="btn btn-primary btn-lg" onClick={() => openEnquiry(BOOKING_INTENT)}>
               Book a consultation <Icon name="arrow" />
             </button>
-            <p>Talk to our team and explore the right properties with verified information and expert guidance.</p>
+            <p>Talk to our team about what you need.</p>
           </div>
         </Reveal>
       </div>

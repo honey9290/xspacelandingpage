@@ -64,11 +64,11 @@ export const SECTION_LINKS = [
 /* 01: Why choose Xspace. `visual` picks the illustration in the card;
    `to` links to a page or a #section, `intent` opens the enquiry form. */
 export const WHY_CARDS = [
-  { icon: 'search', title: 'Discover', text: 'Find properties that match your needs across West Hyderabad.', visual: 'photo', img: '/images/mock/why-discover.webp', to: '/property' },
-  { icon: 'shield', title: 'Verify', text: 'RERA, HMDA, approvals, developer details and project status, reviewed where applicable, all in one place.', visual: 'checks', to: '/verification' },
-  { icon: 'doc', title: 'Know before you visit', text: 'Understand the project, location, construction status, availability and more with detailed content.', visual: 'photo', img: '/images/mock/why-know.webp', to: '/studio' },
-  { icon: 'bars', title: 'Compare & shortlist', text: 'Compare projects on price, location, configuration, amenities, developer and more.', visual: 'table', to: '#listings' },
-  { icon: 'calendar', title: 'Visit only what matters', text: 'Book site visits with our team only for shortlisted options. Save time, effort and days of unnecessary visits.', visual: 'photo', img: '/images/mock/why-visit.webp', intent: 'Book a site visit' },
+  { icon: 'search', title: 'Discover', text: 'Find homes that fit you in West Hyderabad.', visual: 'photo', img: '/images/mock/why-discover.webp', to: '/property' },
+  { icon: 'shield', title: 'Verify', text: 'RERA, approvals and the developer, checked where applicable.', visual: 'checks', to: '/verification' },
+  { icon: 'doc', title: 'Know before you visit', text: 'See the location, progress and layouts on video first.', visual: 'photo', img: '/images/mock/why-know.webp', to: '/studio' },
+  { icon: 'bars', title: 'Compare & shortlist', text: 'See prices and features side by side.', visual: 'table', to: '#listings' },
+  { icon: 'calendar', title: 'Visit only what matters', text: 'Visit only your shortlist, with our team.', visual: 'photo', img: '/images/mock/why-visit.webp', intent: 'Book a site visit' },
 ];
 export const WHY_CHECKS = ['RERA', 'HMDA', 'Approvals', 'Developer'];
 
@@ -85,33 +85,33 @@ export const STATS = [
 /* 02: Three ways to book time with the team. `mode` is the value the
    booking form records (BOOKING_MODES in config.js). The office address is
    confirmed on the call, not printed here. */
-export const BOOKING_LEAD = "We don't force you into site offices. Connect with our real-estate advisors through whichever medium fits your schedule best.";
+export const BOOKING_LEAD = 'Meet us the way that suits you.';
 export const BOOKING_CARDS = [
   {
     mode: 'Home visit', icon: 'home', title: 'Home visit', cta: 'Book home visit',
-    text: 'Our team brings the XSPACE digital studio to your home. Review 360° tours, RERA and approval documents, and floor plans on our tablets with your family.',
+    text: 'We come to you and go through options with your family.',
   },
   {
     mode: 'Office lounge', icon: 'building', title: 'Office lounge', cta: 'Book office lounge', featured: true,
-    text: 'Visit our discovery lounge. Compare projects on multiple screens, explore drone maps and go through developer records with an advisor.',
+    text: 'Visit our lounge and compare projects with an advisor.',
   },
   {
     mode: 'Virtual / Zoom call', icon: 'play', title: 'Virtual / Zoom call', cta: 'Book Zoom call',
-    text: 'Perfect for NRIs and busy professionals. Join a 1-on-1 screen-share session to filter, compare and shortlist options across Neopolis, Tellapur, Narsingi and more.',
+    text: 'Great for NRIs and busy people. Shortlist together on a video call.',
   },
 ];
 
 /* 03: The 9-step client journey */
 export const JOURNEY = [
-  { title: 'Discover', text: "Find XSPACE through social channels, Studio content or referrals. You don't start by driving to a site; you start by exploring digitally." },
-  { title: 'Explore', text: 'Access unvarnished project details, drone videos, price ranges, configurations, amenities and floor plans to rule out unsuitable options early.' },
-  { title: 'Verify', text: 'Know before you visit. Check RERA registration, HMDA approvals, developer delivery records, documents and the latest inventory status we hold.' },
-  { title: 'Shortlist', text: 'Narrow down your options. Instead of 20 random site visits, for example, you shortlist 5 options digitally and visit only 2.' },
-  { title: 'Compare', text: 'Compare shortlisted options side by side on price per sq. ft, layout efficiency, possession dates, connectivity and rental potential.' },
-  { title: 'Experience (Visit)', text: 'Now you visit. The physical site visit becomes the <b>final validation</b>, not the first step. Coordinated with an XSPACE rep.' },
-  { title: 'Decide', text: 'Clear every final technical, commercial and legal question with our team before committing any booking token.' },
-  { title: 'Deal', text: 'XSPACE manages negotiation coordination, agreement documentation, developer alignment and transparent payment schedules.' },
-  { title: 'After deal', text: 'We stay with you: handover tracking, construction updates, resale assistance and ongoing property support.' },
+  { title: 'Discover', text: 'Start online, not by driving around.' },
+  { title: 'Explore', text: 'Watch videos, see prices and floor plans.' },
+  { title: 'Verify', text: 'Check RERA, approvals and the developer.' },
+  { title: 'Shortlist', text: 'Narrow it down to a few good options.' },
+  { title: 'Compare', text: 'Compare them side by side.' },
+  { title: 'Experience (Visit)', text: 'Visit only your <b>final choices</b>, with us.' },
+  { title: 'Decide', text: 'Clear every doubt before you pay a token.' },
+  { title: 'Deal', text: 'We help with the negotiation and paperwork.' },
+  { title: 'After deal', text: 'We stay with you through handover and beyond.' },
 ];
 
 /* 05: Sample listings. They show what an Xspace shortlist looks like, not
@@ -156,21 +156,21 @@ export const SAMPLE_LISTINGS = [
 export const TRADITIONAL_WAY = [
   { icon: 'car', title: 'Visit multiple properties', text: 'Spend days in travel', img: '/images/mock/trad-1.webp' },
   { icon: 'list', title: 'Compare on memory', text: 'Hard to keep track', img: '/images/mock/trad-2.webp' },
-  { icon: 'doc', title: 'Uncertainty in documentation', text: 'RERA, approvals, title and more', img: '/images/mock/trad-3.webp' },
-  { icon: 'help', title: "Still not sure if it's the right one", text: 'Even after all the effort', img: '/images/mock/trad-4.webp' },
+  { icon: 'doc', title: 'Unsure about documents', text: 'RERA, approvals, title', img: '/images/mock/trad-3.webp' },
+  { icon: 'help', title: 'Still not sure', text: 'Even after all that', img: '/images/mock/trad-4.webp' },
 ];
 export const XSPACE_WAY = [
-  { icon: 'search', title: 'Discover right projects', text: 'Based on your needs and budget', img: '/images/mock/way-1.webp' },
-  { icon: 'shield', title: 'Verify key information', text: 'RERA, HMDA, approvals, developer details', img: '/images/mock/way-2.webp' },
-  { icon: 'play', title: 'Explore in depth', text: 'Walkthroughs, drone views, 360° tours and location insights', img: '/images/mock/way-3.webp' },
+  { icon: 'search', title: 'Find the right projects', text: 'For your needs and budget', img: '/images/mock/way-1.webp' },
+  { icon: 'shield', title: 'Check the key facts', text: 'RERA, approvals, developer', img: '/images/mock/way-2.webp' },
+  { icon: 'play', title: 'See it on video', text: 'Walkthroughs, drone, 360°', img: '/images/mock/way-3.webp' },
   { icon: 'bars', title: 'Compare and shortlist', text: 'Everything in one place', img: '/images/mock/way-4.webp' },
   { icon: 'calendar', title: 'Visit only what matters', text: 'Save time and effort', img: '/images/mock/way-5.webp' },
 ];
 export const STORY_FEATURES = [
-  { icon: 'shield', title: 'Verified information', text: 'RERA, HMDA, approvals and developer details, where applicable.' },
-  { icon: 'film', title: 'Immersive content', text: 'Walkthroughs, 360° tours, drone views and location insights.' },
-  { icon: 'layers', title: 'All in one place', text: 'Discovery, verification, comparison and consultation, seamlessly.' },
-  { icon: 'users', title: 'Expert guidance', text: 'A dedicated team to support you throughout your journey.' },
+  { icon: 'shield', title: 'Checked information', text: 'RERA, approvals and developer, where applicable.' },
+  { icon: 'film', title: 'Videos and tours', text: 'Walkthroughs, 360° and drone views.' },
+  { icon: 'layers', title: 'All in one place', text: 'Search, check, compare and talk to us.' },
+  { icon: 'users', title: 'One team', text: 'With you from start to finish.' },
 ];
 
 /* 07: What clients say. Add only real reviews, with the client's
@@ -230,12 +230,12 @@ export const VERIFICATION_FAQS = [
 
 /* ---------- Studio (07) ---------- */
 export const STUDIO_FORMATS = [
-  { icon: 'play', title: 'Project walkthroughs', text: 'Walk through the project, the units and the common areas before you go.' },
-  { icon: 'film', title: 'Property videos', text: 'Clear, honest video of the property itself, not just the brochure renders.' },
-  { icon: 'drone', title: 'Drone content', text: 'See the site, its surroundings and its access from above.' },
-  { icon: 'orbit', title: '360° experiences', text: 'Look around a space at your own pace, from wherever you are.' },
-  { icon: 'pin', title: 'Location content', text: 'The neighbourhood around a project: roads, schools, hospitals and daily needs.' },
-  { icon: 'book', title: 'Educational content', text: 'Plain-language explainers on buying property, from approvals to handover.' },
+  { icon: 'play', title: 'Project walkthroughs', text: 'The project and its homes, before you go.' },
+  { icon: 'film', title: 'Property videos', text: 'The real property, not just brochures.' },
+  { icon: 'drone', title: 'Drone content', text: 'The site and its surroundings from above.' },
+  { icon: 'orbit', title: '360° experiences', text: 'Look around at your own pace.' },
+  { icon: 'pin', title: 'Location content', text: 'Roads, schools and hospitals nearby.' },
+  { icon: 'book', title: 'Educational content', text: 'Simple guides to buying property.' },
 ];
 
 /* ---------- Partners (09–12) ---------- */
