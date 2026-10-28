@@ -28,6 +28,7 @@ export const FOOTER_AUDIENCES = [
   ['/partners#developers', 'Developers'],
   ['/partners#realtors', 'Realtor Partners'],
   ['/partners#creators', 'Creator Partners'],
+  ['/partners#editors', 'Studio Editors'],
 ];
 
 /* ---------- Home ---------- */
@@ -244,7 +245,7 @@ export const ECOSYSTEM = [
   { icon: 'building', title: 'Developers & property owners', text: 'Projects and properties entering the XSPACE ecosystem.', to: '#developers' },
   { icon: 'users', title: 'Realtor Partners', text: 'On-ground property professionals supporting listings and site visits.', to: '#realtors' },
   { icon: 'film', title: 'Content creators', text: 'Creators bringing property and location stories to their audiences.', to: '#creators' },
-  { icon: 'play', title: 'XSPACE Studio', text: 'Our in-house media and content team.', to: '/studio' },
+  { icon: 'play', title: 'XSPACE Studio', text: 'Our in-house media and content team, open to editors.', to: '#editors' },
   { icon: 'compass', title: 'XSPACE', text: 'The team connecting everything together.', to: '/about' },
 ];
 
@@ -262,6 +263,11 @@ export const REALTOR_CHAIN = ['CRM', 'Requirement', 'Shortlist', 'Follow-up', 'C
 export const CREATOR_FORMATS = [
   'Property content', 'Project walkthroughs', 'Location stories',
   'Educational content', 'Real-estate insights', 'Campaign content',
+];
+
+export const EDITOR_WORK = [
+  'Walkthrough edits', 'Drone footage', 'Reels & shorts',
+  '360° tours', 'Colour & sound', 'Location films',
 ];
 
 /* ---------- About (08, 13, 14) ---------- */

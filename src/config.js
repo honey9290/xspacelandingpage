@@ -75,4 +75,5 @@ export const INTENT_COPY = {
   'Partner with XSPACE': ['Partner with XSPACE', 'Tell us about your project. Our team will get in touch to talk about onboarding, marketing and site visits.', 'Send', 'Company and project'],
   'Become a Realtor Partner': ['Become a Realtor Partner', 'You bring the property experience. Tell us where you work and we will take it from there.', 'Send', 'Areas you work in (and RERA agent no., if any)'],
   'Become a Creator Partner': ['Become a Creator Partner', 'Bring property and location stories to your audience. Tell us where we can see your work.', 'Send', 'Instagram / YouTube handle'],
+  'Join as a Studio Editor': ['Join as a Studio Editor', 'Edit the walkthroughs and films buyers watch. Tell us what you do and where we can see your work.', 'Send', 'Your skills and a link to your work'],
 };

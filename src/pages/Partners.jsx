@@ -3,7 +3,7 @@ import { PageHeader } from '../components/PageHero';
 import Reveal from '../components/Reveal';
 import { Cards, Chain, Checklist } from '../components/Sections';
 import {
-  CREATOR_FORMATS, DEVELOPER_SERVICES, ECOSYSTEM, REALTOR_CHAIN, REALTOR_FOCUS,
+  CREATOR_FORMATS, DEVELOPER_SERVICES, ECOSYSTEM, EDITOR_WORK, REALTOR_CHAIN, REALTOR_FOCUS,
 } from '../content';
 import { useEnquiry } from '../lib/enquiry';
 import usePageTitle from '../lib/usePageTitle';
@@ -77,6 +77,16 @@ export default function Partners() {
       >
         <p className="field-label">Create</p>
         <Checklist items={CREATOR_FORMATS} />
+      </PartnerSection>
+
+      <PartnerSection
+        id="editors" kicker="13 — For video editors"
+        title={<>Edit. Shape. <span className="grad">Tell the story.</span></>}
+        lead="Join the XSPACE Studio team and turn site footage into the walkthroughs and films buyers watch before they visit."
+        intent="Join as a Studio Editor" cta="Join as a Studio Editor"
+      >
+        <p className="field-label">Work on</p>
+        <Checklist items={EDITOR_WORK} />
       </PartnerSection>
     </>
   );
