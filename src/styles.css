@@ -351,6 +351,23 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 8px rg
 .done p { color: var(--muted); margin: 0 0 24px; }
 
 /* Footer */
+/* Oversized company name under the footer, spanning the screen width. */
+.wordmark {
+  overflow: hidden; white-space: nowrap; text-align: center; user-select: none;
+  font-family: var(--display); font-weight: 800; font-size: 11vw; line-height: .8; letter-spacing: -0.03em;
+  color: rgb(var(--fg-rgb) / .14);
+  /* Stretched taller; the top margin makes room for the stretch. */
+  transform: scaleY(1.2); transform-origin: bottom; margin: calc(11vw * .8 * .2) 0 0;
+}
+/* The same "&" as the header's company name. */
+.wordmark .wm-amp { font-family: var(--body); font-stretch: 100%; font-weight: 700; }
+/* Under the footer: the footer's bottom padding (room for the phone dock)
+   moves below the name instead. */
+footer:has(+ .wordmark) { padding-bottom: 32px; }
+.wordmark { margin-bottom: 48px; }
+@media (max-width: 640px) {
+  .wordmark { margin-bottom: 104px; }
+}
 footer { border-top: 1px solid var(--line); padding: 56px 0 120px; margin-top: 40px; color: var(--muted); font-size: 14px; }
 footer .wrap { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
 footer h4 { font-family: var(--display); color: var(--fg); font-size: 14px; margin: 0 0 14px; font-weight: 600; }
@@ -1629,4 +1646,104 @@ footer .motto { text-transform: uppercase; }
 .wa-pick .wa-go:hover { box-shadow: 0 0 0 5px rgba(37,211,102,.18); }
 @media (max-width: 640px) {
   .wa-pick { max-width: none; padding: 24px 20px calc(24px + env(safe-area-inset-bottom)); }
+}
+
+/* ---------- Phones: smaller type, cards two across ----------
+   Everything here is phone-only (640px and narrower), and comes last so it
+   wins over the single-column phone rules earlier in the file. */
+@media (max-width: 640px) {
+  body { font-size: 14px; }
+  section.block { padding: 52px 0; }
+  h2 { font-size: 24px; }
+  .center-head { margin-bottom: 28px; }
+  .section-lead { font-size: 14px; margin-top: 10px; }
+  .tagline, .home-hero .tagline { font-size: 15px; margin-bottom: 20px; }
+  .hero-copy .mega { font-size: clamp(30px, 10cqw, 44px); }
+
+  /* Two across wherever there are cards */
+  .steps9, .listings, .modes, .quotes, .cards, .offers, .types, .areas, .promise,
+  .journey, .checklist, .contact-cards, .studio-list, .story-feats, .needs, .biz-grid, .focus {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+  }
+
+  /* Facts strip: one slim row that scrolls sideways */
+  .hero-facts { padding-top: 14px; }
+  .stat-strip {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; border-radius: 14px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .stat-strip::-webkit-scrollbar { display: none; }
+  .stat-strip > div, .stat-strip > div:nth-child(n), .stat-strip > div:last-child {
+    flex: 0 0 auto; width: 120px; padding: 10px 12px; scroll-snap-align: start;
+    border-right: 1px solid var(--line); border-bottom: 0; grid-column: auto;
+  }
+  .stat-strip > div:last-child { border-right: 0; width: 170px; }
+  .stat-strip b { font-size: 17px; margin-bottom: 2px; }
+  .stat-strip span { font-size: 10.5px; line-height: 1.3; }
+  .stat-map { gap: 8px; }
+  .stat-map svg { width: 18px; height: 18px; }
+
+  /* Journey cards */
+  .step9 { min-height: 180px; }
+  .step9-face { padding: 12px; border-radius: 14px; }
+  .step9 .step9-fig h3 { font-size: 13px; margin-top: 2px; }
+  .step9-fig .stepfig { height: 92px; }
+  .step9 .why-top { margin-bottom: 8px; gap: 8px; }
+  .step9 .why-n { font-size: 12px; }
+  .step9 .icon-sq { width: 28px; height: 28px; border-radius: 8px; }
+  .step9 .icon-sq svg { width: 14px; height: 14px; }
+  .step9 h3 { font-size: 12px; margin-bottom: 6px; }
+  .step9 .why-card p { font-size: 11.5px; line-height: 1.45; margin-bottom: 0; }
+  .step9 .why-vis { display: none; }
+
+  /* Listings */
+  .listing-img { aspect-ratio: 4 / 3; height: auto; }
+  .listing-body { padding: 10px 10px 12px; }
+  .listing-area { font-size: 10.5px; }
+  .listing-area svg { width: 11px; height: 11px; }
+  .listing h3 { font-size: 12px; margin: 4px 0 8px; }
+  .listing-facts { gap: 4px; margin-bottom: 10px; }
+  .listing-facts li { font-size: 10px; padding: 2px 7px; }
+  .listing-actions { flex-direction: column; align-items: flex-start; gap: 6px; font-size: 11.5px; }
+
+  /* Ways to connect */
+  .mode { padding: 14px 12px; border-radius: 14px; }
+  .mode .icon-sq { margin-bottom: 14px; width: 32px; height: 32px; }
+  .mode h3 { font-size: 14px; margin: 4px 0 8px; }
+  .mode p { font-size: 11.5px; margin-bottom: 12px; }
+  .mode .btn { padding: 10px 6px; font-size: 10px; letter-spacing: .04em; white-space: normal; line-height: 1.25; }
+  /* An odd card out takes the full row. */
+  .modes > :last-child:nth-child(odd), .cards > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .link-btn { font-size: 11.5px; }
+
+  /* Closing form */
+  .cta-copy h2 { font-size: 24px; }
+  .cta-copy .section-lead { font-size: 14px; }
+  .cta-copy li { font-size: 13px; }
+  .form-card h3 { font-size: 16px; }
+  .form-card .sub { font-size: 13px; }
+  .f label { font-size: 12px; }
+  .f input, .f select, .phone-wrap span { padding-top: 10px; padding-bottom: 10px; font-size: 14px; }
+
+  /* Reviews (two per page, see ClientStories) */
+  .quote { padding: 14px 12px; border-radius: 14px; }
+  .quote blockquote { font-size: 12px; margin-bottom: 12px; }
+  .quote blockquote::before { font-size: 26px; margin-bottom: 4px; }
+  .quote figcaption b { font-size: 12.5px; }
+  .quote figcaption span { font-size: 11px; }
+  .quotes-arrow { width: 38px; height: 38px; }
+
+  /* About us */
+  .founder-copy h2 { font-size: 24px; margin-bottom: 14px; }
+  .founder-copy p { font-size: 14px; line-height: 1.6; }
+  .founder-copy .founder-highlight { font-size: 15px; }
+  .founder-photo { max-width: none; }
+
+  .partner h2 { font-size: 21px; }
+  .page-head h1 { font-size: 30px; }
+
+  /* Other pages' cards */
+  .cards > *, .offer, .area, .promise > * { padding: 14px 12px; }
+  .cards h3, .offer h3, .area h3 { font-size: 13px; }
+  .cards p, .offer p, .area p { font-size: 11.5px; }
 }

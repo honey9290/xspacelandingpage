@@ -48,6 +48,7 @@ const SOCIAL = [
 
 export function Footer() {
   return (
+    <>
     <footer>
       <div className="wrap">
         <div>
@@ -92,6 +93,9 @@ export function Footer() {
         </div>
       </div>
     </footer>
+    {/* A faint, full-width company name closing off the page, under the footer. */}
+    <div className="wordmark" aria-hidden="true">XSPACE <span className="wm-amp">&amp;</span> CO.</div>
+    </>
   );
 }
 

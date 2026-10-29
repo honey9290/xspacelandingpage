@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BOOKING_INTENT, DEFAULT_INTENT } from '../config';
 import {
@@ -357,12 +357,25 @@ export function AboutStory() {
   );
 }
 
-const PER_PAGE = 3;
+/* Three reviews at a time; two on phones, where they sit side by side. */
+const PHONE = '(max-width: 640px)';
+function usePerPage() {
+  const [phone, setPhone] = useState(() => typeof window !== 'undefined' && window.matchMedia(PHONE).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(PHONE);
+    const on = () => setPhone(mq.matches);
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, []);
+  return phone ? 2 : 3;
+}
 
 export function ClientStories() {
+  const perPage = usePerPage();
   const [page, setPage] = useState(0);
-  const pages = Math.max(1, Math.ceil(TESTIMONIALS.length / PER_PAGE));
-  const visible = TESTIMONIALS.slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
+  const pages = Math.max(1, Math.ceil(TESTIMONIALS.length / perPage));
+  const at = Math.min(page, pages - 1);
+  const visible = TESTIMONIALS.slice(at * perPage, at * perPage + perPage);
 
   return (
     <section className="block" id="clients">
@@ -384,11 +397,11 @@ export function ClientStories() {
          
               {pages > 1 && (
                 <>
-                  <button type="button" className="quotes-arrow prev" aria-label="Previous reviews" disabled={page === 0} onClick={() => setPage(page - 1)}>
+                  <button type="button" className="quotes-arrow prev" aria-label="Previous reviews" disabled={at === 0} onClick={() => setPage(at - 1)}>
                     <Icon name="arrow" />
                   </button>
-                  <span className="quotes-count">{page + 1} / {pages}</span>
-                  <button type="button" className="quotes-arrow" aria-label="Next reviews" disabled={page === pages - 1} onClick={() => setPage(page + 1)}>
+                  <span className="quotes-count">{at + 1} / {pages}</span>
+                  <button type="button" className="quotes-arrow" aria-label="Next reviews" disabled={at === pages - 1} onClick={() => setPage(at + 1)}>
                     <Icon name="arrow" />
                   </button>
                 </>
