@@ -41,7 +41,7 @@ export default function PageHero({ slides, eyebrow, title, tagline, lead, action
       <Backdrop slides={slides} />
       <div className="wrap hero-grid">
         <div>
-          <Reveal as="span" className="eyebrow"><span className="dot" />{eyebrow}</Reveal>
+          {eyebrow && <Reveal as="span" className="eyebrow"><span className="dot" />{eyebrow}</Reveal>}
           <Reveal as="h1">{title}</Reveal>
           {tagline && <Reveal as="p" className="tagline">{tagline}</Reveal>}
           <Reveal as="p" className="lead">{lead}</Reveal>
@@ -59,7 +59,7 @@ export function PageHeader({ kicker, title, lead, aside }) {
     <section className="page-head">
       <div className={'wrap' + (aside ? ' page-head-grid' : '')}>
         <div>
-          <Reveal className="kicker">{kicker}</Reveal>
+          {kicker && <Reveal className="kicker">{kicker}</Reveal>}
           <Reveal as="h1">{title}</Reveal>
           {lead && <Reveal as="p" className="lead">{lead}</Reveal>}
         </div>

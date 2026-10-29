@@ -99,7 +99,7 @@ export default function Nav() {
           </nav>
           <div className="nav-cta">
             <button className="btn btn-primary book-btn" onClick={() => openEnquiry(BOOKING_INTENT)}>
-              Book appointment <Icon name="calendar" />
+              Book consultation <Icon name="calendar" />
             </button>
             <ThemeToggle />
           </div>
@@ -108,7 +108,7 @@ export default function Nav() {
 
       <div className={'drawer-scrim' + (open ? ' open' : '')} onClick={close} aria-hidden="true" />
       <aside className={'drawer' + (open ? ' open' : '')} aria-label="Menu" aria-hidden={!open} inert={!open}>
-        <p className="field-label">On this page</p>
+        <p className="field-label">{pathname === '/' ? 'On this page' : 'Home page'}</p>
         <nav aria-label="Home sections">
           {SECTION_LINKS.map(([id, label]) => (
             <Link key={id} to={'/#' + id} onClick={close}>{label}<Icon name="arrow" /></Link>
@@ -121,7 +121,7 @@ export default function Nav() {
           ))}
         </nav>
         <button className="btn btn-primary btn-lg" onClick={() => { close(); openEnquiry(BOOKING_INTENT); }}>
-          Book appointment <Icon name="calendar" />
+          Book consultation <Icon name="calendar" />
         </button>
       </aside>
     </>

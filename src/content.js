@@ -53,24 +53,13 @@ export const PATHS = [
 
 /* Header links to the sections of the home page, in page order. */
 export const SECTION_LINKS = [
-  ['why', 'Why XSPACE'],
-  ['booking', '3 Booking Modes'],
   ['journey', 'The 6-Step Journey'],
-  ['studio', 'XSPACE Studio'],
-  ['listings', 'Sample Listings'],
+  ['listings', 'Listings'],
+  ['booking', '3 Ways to Connect'],
   ['about', 'About Us'],
   ['clients', 'What Clients Say'],
 ];
 
-/* 01: Why choose Xspace. `visual` picks the illustration in the card;
-   `to` links to a page or a #section, `intent` opens the enquiry form. */
-export const WHY_CARDS = [
-  { icon: 'search', title: 'Discover', text: 'Find homes that fit you in West Hyderabad.', visual: 'photo', img: '/images/mock/why-discover.webp', to: '/property' },
-  { icon: 'shield', title: 'Verify', text: 'RERA, approvals and the developer, checked where applicable.', visual: 'checks', to: '/verification' },
-  { icon: 'doc', title: 'Know before you visit', text: 'See the location, progress and layouts on video first.', visual: 'photo', img: '/images/mock/why-know.webp', to: '/studio' },
-  { icon: 'bars', title: 'Compare & shortlist', text: 'See prices and features side by side.', visual: 'table', to: '#listings' },
-  { icon: 'calendar', title: 'Visit only what matters', text: 'Visit only your shortlist, with our team.', visual: 'photo', img: '/images/mock/why-visit.webp', intent: 'Book a site visit' },
-];
 export const WHY_CHECKS = ['RERA', 'HMDA', 'Approvals', 'Developer'];
 
 /* Facts about how Xspace works, not performance claims. Add real client
@@ -89,33 +78,33 @@ export const STATS = [
 export const BOOKING_LEAD = 'Meet us the way that suits you.';
 export const BOOKING_CARDS = [
   {
-    mode: 'Home visit', icon: 'home', title: 'Home visit', cta: 'Book home visit',
+    mode: 'Home visit', icon: 'home', title: 'Home visit', cta: 'Connect at home',
     text: 'We come to you and go through options with your family.',
   },
   {
-    mode: 'Office lounge', icon: 'building', title: 'Office lounge', cta: 'Book office lounge', featured: true,
+    mode: 'Office lounge', icon: 'building', title: 'Office lounge', cta: 'Connect at our lounge', featured: true,
     text: 'Visit our lounge and compare projects with an advisor.',
   },
   {
-    mode: 'Virtual / Zoom call', icon: 'play', title: 'Virtual / Zoom call', cta: 'Book Zoom call',
+    mode: 'Virtual / Zoom call', icon: 'play', title: 'Virtual / Zoom call', cta: 'Connect on Zoom',
     text: 'Great for NRIs and busy people. Shortlist together on a video call.',
   },
 ];
 
-/* 03: The 6-step client journey */
+/* 03: The 6-step client journey. The front of each card shows the icon,
+   text and `visual` (see WhyVisual); the back shows the animated character. */
 export const JOURNEY = [
-  { title: 'Discover', text: 'Start online, not by driving around.' },
-  { title: 'Explore', text: 'Watch videos, see prices and floor plans.' },
-  { title: 'Verify', text: 'Check RERA, approvals and the developer.' },
-  { title: 'Compare', text: 'Compare your options side by side.' },
-  { title: 'Experience (Visit)', text: 'Visit only your <b>final choices</b>, with us.' },
-  { title: 'Deal', text: 'We help with the negotiation and paperwork.' },
+  { title: 'Discover', icon: 'search', text: 'Find homes that fit you in West Hyderabad.', visual: 'photo', img: '/images/mock/why-discover.webp' },
+  { title: 'Explore', icon: 'doc', text: 'See the location, progress and layouts on video first.', visual: 'photo', img: '/images/mock/why-know.webp' },
+  { title: 'Verify', icon: 'shield', text: 'RERA, approvals and the developer, checked where applicable.', visual: 'checks' },
+  { title: 'Compare', icon: 'bars', text: 'See prices and features side by side.', visual: 'table' },
+  { title: 'Experience', icon: 'calendar', text: 'Visit only your <b>shortlist</b>, with our team.', visual: 'photo', img: '/images/mock/why-visit.webp' },
+  { title: 'Deal', icon: 'key', text: 'We help with the negotiation and paperwork.', visual: 'checks', checks: ['Negotiation', 'Agreement', 'Home loan', 'Registration'], checkLabel: 'We help' },
 ];
 
 /* 05: Sample listings. They show what an Xspace shortlist looks like, not
-   live inventory, and the page says so. `type` and `area` pre-fill the
+   live inventory. `type` and `area` pre-fill the
    enquiry form, so they must match PROPERTY_OPTIONS / AREA_OPTIONS. */
-export const LISTING_FILTERS = ['All', 'Apartments', 'Villas & houses', 'Commercial'];
 export const LISTING_FACTS = ['Location', 'Property type', 'Configuration', 'Possession', 'Studio content', 'Verification', 'Good for', 'Price'];
 export const SAMPLE_LISTINGS = [
   {
@@ -171,13 +160,42 @@ export const STORY_FEATURES = [
   { icon: 'users', title: 'One team', text: 'With you from start to finish.' },
 ];
 
+/* About us: the founder. Put his photo at public/images/founder.webp and set
+   `photo` to '/images/founder.webp'; until then the page shows a placeholder.
+   The story is XSPACE's own copy. */
+export const FOUNDER = {
+  name: 'TEJ',
+  role: 'Founder, XSPACE & CO.',
+  photo: '/images/founder.webp',
+  title: 'Why XSPACE was born.',
+  story: [
+    "A property is more than a purchase. It's someone's dream, savings and future.",
+    'Yet scattered documents, unclear information and concerns around approvals can turn an exciting property search into a stressful experience. Buyers spend hours on site visits, only to discover unanswered questions later.',
+  ],
+  highlight: "That's why XSPACE & CO. was born.",
+  vision: [
+    'Our vision is simple: bring property information together, enable live verification checks where available, and help people explore and compare properties before visiting, saving time and making every site visit more meaningful.',
+    'Because every dream deserves clarity before commitment.',
+  ],
+  quote: 'Explore from home. Visit what matters.',
+};
+
 /* 07: What clients say. Add only real reviews, with the client's
    permission, in this shape:
-     { quote: '…', name: 'Priya S.', role: 'End User', place: 'Hyderabad', group: 'End Users' }
-   `group` must be one of CLIENT_GROUPS. Until there are some, the section
-   invites clients to share their experience instead. */
-export const CLIENT_GROUPS = ['Home Buyers', 'Investors', 'NRIs', 'End Users', 'Developer Partners'];
-export const TESTIMONIALS = [];
+     { quote: '…', name: 'Priya S.', role: 'End User', place: 'Hyderabad' }
+   They show three at a time, with arrows for the rest. Until there are
+   some, the section invites clients to share their experience instead. */
+/* SAMPLE reviews: placeholders to show the layout, not real clients. Each
+   marked `sample` makes the page note that these are illustrative. Replace them with real reviews
+   (and drop `sample`) before relying on them. */
+export const TESTIMONIALS = [
+  { sample: true, quote: 'We saw the walkthrough videos before visiting, so we only went to two projects. The team explained the RERA details clearly.', name: 'Srinivas Reddy', role: 'Home Buyer', place: 'Tellapur' },
+  { sample: true, quote: 'Living in the US, I could not fly down for every visit. The Zoom sessions and documents made it easy to decide from abroad.', name: 'Lakshmi Prasanna', role: 'NRI', place: 'Narsingi' },
+  { sample: true, quote: 'They compared three projects side by side for me, with honest pros and cons. No pressure to book that day.', name: 'Venkatesh Naidu', role: 'Investor', place: 'Financial District' },
+  { sample: true, quote: 'My parents were moving in with us, so schools and a hospital nearby mattered. The shortlist was built around that.', name: 'Sravani Rao', role: 'End User', place: 'Gachibowli' },
+  { sample: true, quote: 'The office lounge visit was useful. We went through floor plans and pricing together before seeing the site.', name: 'Karthik Varma', role: 'Home Buyer', place: 'Nallagandla' },
+  { sample: true, quote: 'They helped with the paperwork and stayed in touch till registration. One team the whole way through.', name: 'Madhavi Chowdary', role: 'NRI', place: 'Kollur' },
+];
 
 /* ---------- Property (06: find what fits you) ---------- */
 export const PROPERTY_FINDER = [
@@ -368,7 +386,6 @@ export const COM_FAQS = [
 /* ---------- Closing form, per page ---------- */
 export const CTA = {
   home: {
-    kicker: '15 — Know before you own',
     title: ['Know before ', 'you own.'],
     lead: "Discover. Verify. Experience. Decide. Your next property decision starts with understanding what you're choosing.",
     intent: 'Find your property',

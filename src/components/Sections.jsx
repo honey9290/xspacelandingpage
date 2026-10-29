@@ -12,7 +12,7 @@ export function Head({ kicker, title, lead, split, aside }) {
   return (
     <Reveal className={'head' + (split ? ' split' : '')}>
       <div>
-        <div className="kicker">{kicker}</div>
+        {kicker && <div className="kicker">{kicker}</div>}
         <h2>{title}</h2>
         {lead && <p className="section-lead">{lead}</p>}
       </div>

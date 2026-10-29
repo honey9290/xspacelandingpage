@@ -20,7 +20,6 @@ export default function Studio() {
     <>
       <PageHero
         slides={STUDIO_SLIDES}
-        eyebrow="07 — XSPACE Studio"
         title={<>Property, <span className="grad">told differently.</span></>}
         lead="Understanding a property shouldn't begin and end with a brochure. XSPACE Studio creates visual experiences that bring projects and locations closer to you."
         actions={(

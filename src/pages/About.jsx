@@ -1,5 +1,5 @@
 import { FinalCta } from '../components/Closing';
-import { AboutStory } from '../components/HomeSections';
+import { AboutStory, Founder } from '../components/HomeSections';
 import Reveal from '../components/Reveal';
 import { Cards, Faq, Head } from '../components/Sections';
 import { GENERAL_FAQS, PORTAL_MODULES, TRUST } from '../content';
@@ -9,11 +9,14 @@ export default function About() {
   usePageTitle('About');
   return (
     <>
+      <section className="block">
+        <div className="wrap"><Founder /></div>
+      </section>
       <AboutStory />
 
       <section className="block" id="trust">
         <div className="wrap">
-          <Head kicker="14 — Trust" title={<>Built around <span className="grad">trust.</span></>} />
+          <Head title={<>Built around <span className="grad">trust.</span></>} />
           <Cards items={TRUST} cols={5} />
         </div>
       </section>
@@ -21,7 +24,6 @@ export default function About() {
       <section className="block tight" id="technology">
         <div className="wrap">
           <Head
-            kicker="08 — Technology"
             title={<>Technology powering <span className="grad">the experience.</span></>}
             lead="Behind every XSPACE client journey is a private technology system built to help our team operate more efficiently. Our internal platform, the private XSPACE Portal, connects:"
           />

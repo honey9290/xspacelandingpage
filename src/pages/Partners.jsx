@@ -16,7 +16,7 @@ function PartnerSection({ id, kicker, title, lead, intent, cta, children }) {
       <div className="wrap">
         <Reveal className="partner">
           <div>
-            <div className="kicker">{kicker}</div>
+            {kicker && <div className="kicker">{kicker}</div>}
             <h2>{title}</h2>
             {lead && <p className="section-lead">{lead}</p>}
             <button className="btn btn-primary btn-lg" onClick={() => openEnquiry(intent)}>{cta} <Icon name="arrow" /></button>
@@ -33,7 +33,6 @@ export default function Partners() {
   return (
     <>
       <PageHeader
-        kicker="09 — Our ecosystem"
         title={<>Property is connected <span className="grad">by people.</span></>}
         lead="XSPACE brings together different parts of the property ecosystem."
       />
@@ -42,7 +41,7 @@ export default function Partners() {
       </section>
 
       <PartnerSection
-        id="developers" kicker="10 — For developers"
+        id="developers"
         title={<>Bring your project into <span className="grad">the XSPACE ecosystem.</span></>}
         lead="We help developers and property owners connect their projects with customers through:"
         intent="Partner with XSPACE" cta="Partner with XSPACE"
@@ -51,7 +50,7 @@ export default function Partners() {
       </PartnerSection>
 
       <PartnerSection
-        id="realtors" kicker="11 — For Realtor Partners"
+        id="realtors"
         title={<>You bring the property experience. <span className="grad">XSPACE builds the system around it.</span></>}
         intent="Become a Realtor Partner" cta="Become a Realtor Partner"
       >
@@ -70,7 +69,7 @@ export default function Partners() {
       </PartnerSection>
 
       <PartnerSection
-        id="creators" kicker="12 — For content creators"
+        id="creators"
         title={<>Create. Connect. <span className="grad">Grow.</span></>}
         lead="Bring property and location stories to your audience through the XSPACE ecosystem, and generate meaningful property enquiries through your content."
         intent="Become a Creator Partner" cta="Become a Creator Partner"
@@ -80,7 +79,7 @@ export default function Partners() {
       </PartnerSection>
 
       <PartnerSection
-        id="editors" kicker="13 — For video editors"
+        id="editors"
         title={<>Edit. Shape. <span className="grad">Tell the story.</span></>}
         lead="Join the XSPACE Studio team and turn site footage into the walkthroughs and films buyers watch before they visit."
         intent="Join as a Studio Editor" cta="Join as a Studio Editor"

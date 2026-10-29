@@ -2,12 +2,14 @@ import { useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BOOKING_INTENT, DEFAULT_INTENT } from '../config';
 import {
-  BOOKING_CARDS, BOOKING_LEAD, CLIENT_GROUPS, JOURNEY, LISTING_FACTS, LISTING_FILTERS, SAMPLE_LISTINGS, STATS, STORY_FEATURES,
-  STUDIO_FORMATS, TESTIMONIALS, TRADITIONAL_WAY, WHY_CARDS, WHY_CHECKS, XSPACE_WAY,
+  BOOKING_CARDS, BOOKING_LEAD, FOUNDER, JOURNEY, LISTING_FACTS, SAMPLE_LISTINGS, STATS, STORY_FEATURES,
+  STUDIO_FORMATS, TESTIMONIALS, TRADITIONAL_WAY, WHY_CHECKS, XSPACE_WAY,
 } from '../content';
 import { useEnquiry } from '../lib/enquiry';
 import { WhatsAppLink } from './ContactLinks';
 import Icon from './Icon';
+import StepFigure from './StepFigures';
+import TypeIn from './TypeIn';
 import Reveal from './Reveal';
 
 /* The sections of the home page, top to bottom. Copy lives in content.js. */
@@ -20,7 +22,7 @@ function FeatureHead({ img, kicker, title, lead, note, children }) {
     <Reveal className="feature-head dark-zone">
       {img && <img src={img} alt="" loading="lazy" />}
       <div className="feature-copy">
-        <div className="kicker">{kicker}</div>
+        {kicker && <div className="kicker">{kicker}</div>}
         <h2>{title}</h2>
         {lead && <p className="section-lead">{lead}</p>}
         {children}
@@ -33,27 +35,30 @@ function FeatureHead({ img, kicker, title, lead, note, children }) {
 export function HomeHero() {
   const openEnquiry = useEnquiry();
   return (
-    <section className="hero home-hero dark-zone">
-      <div className="hero-media" aria-hidden="true">
-        <img className="on" src="/images/hero-house.webp" alt="" fetchPriority="high" />
-        <div className="hero-shade" />
-      </div>
-      <div className="wrap">
-        <Reveal as="h1" className="mega">
-          Why visit first, when you can <u>know first?</u>
-        </Reveal>
-        <Reveal as="p" className="tagline">Visit less. Know more.</Reveal>
-        <Reveal className="hero-actions">
-          <button
-            className="btn btn-primary btn-lg"
-            onClick={() => openEnquiry(BOOKING_INTENT, { mode: 'Virtual / Zoom call' })}
-          >
-            Book discovery consultation <Icon name="arrow" />
-          </button>
-          <a className="btn btn-ghost btn-lg" href="#journey"><Icon name="route" />Explore the 6-step journey</a>
-        </Reveal>
-      </div>
-    </section>
+    <>
+      <section className="hero home-hero dark-zone">
+        <div className="hero-media" aria-hidden="true">
+          <img className="on" src="/images/hero-house.webp" alt="" fetchPriority="high" />
+          <div className="hero-shade" />
+        </div>
+        <div className="wrap hero-copy">
+          <TypeIn className="mega" parts={['Why visit first, when you can ', 'know first?']} underline={[1]} />
+          <Reveal as="p" className="tagline">Visit less. Know more.</Reveal>
+          <Reveal className="hero-actions">
+            <button
+              className="btn btn-primary btn-lg"
+              onClick={() => openEnquiry(BOOKING_INTENT, { mode: 'Virtual / Zoom call' })}
+            >
+              Book consultation <Icon name="arrow" />
+            </button>
+          </Reveal>
+        </div>
+      </section>
+      {/* Facts about the service, just below the hero. */}
+      <section className="hero-facts">
+        <div className="wrap"><Stats /></div>
+      </section>
+    </>
   );
 }
 
@@ -70,8 +75,8 @@ function WhyVisual({ card }) {
   if (card.visual === 'checks') {
     return (
       <ul className="why-checks">
-        {WHY_CHECKS.map((c) => (
-          <li key={c}><Icon name="shield" />{c}<span><Icon name="check" />Checked</span></li>
+        {(card.checks || WHY_CHECKS).map((c) => (
+          <li key={c}><Icon name="shield" />{c}<span><Icon name="check" />{card.checkLabel || 'Checked'}</span></li>
         ))}
       </ul>
     );
@@ -92,38 +97,44 @@ function WhyVisual({ card }) {
   );
 }
 
-export function WhyXSPACE() {
-  const openEnquiry = useEnquiry();
+/* Shows the company name in the text colour, so it stands out in muted copy. */
+const BRAND = 'XSPACE & CO.';
+const withBrand = (text) => text.split(BRAND).flatMap((part, i) => (i ? [<b key={i} className="brand-word">{BRAND}</b>, part] : [part]));
+
+/* About us: the founder's story beside his photo (or a placeholder until there is one). */
+export function Founder() {
   return (
-    <section className="block" id="why">
+    <div className="founder">
+      <Reveal className="founder-copy">
+        <div className="kicker">About us</div>
+        <h2>{FOUNDER.title}</h2>
+        {FOUNDER.story.map((p) => <p key={p}>{withBrand(p)}</p>)}
+        <p className="founder-highlight">{withBrand(FOUNDER.highlight)}</p>
+        {FOUNDER.vision.map((p) => <p key={p}>{withBrand(p)}</p>)}
+      </Reveal>
+      <Reveal className="founder-photo" delay={120}>
+        {FOUNDER.photo ? (
+          <img src={FOUNDER.photo} alt={`${FOUNDER.name}, ${FOUNDER.role}`} loading="lazy" />
+        ) : (
+          <div className="founder-ph" role="img" aria-label={`Photo of ${FOUNDER.name} coming soon`}>
+            <Icon name="users" size={40} />
+            <span>Photo of {FOUNDER.name}</span>
+          </div>
+        )}
+        <blockquote className="founder-quote">
+          <cite><b>{FOUNDER.name}</b>{withBrand(FOUNDER.role)}</cite>
+          “{FOUNDER.quote}”
+        </blockquote>
+      </Reveal>
+    </div>
+  );
+}
+
+export function AboutUs() {
+  return (
+    <section className="block" id="about">
       <div className="wrap">
-        <FeatureHead
-          img="/images/mock/why-head.webp" kicker="01. Why choose XSPACE"
-          title={<>Know before<br />you visit.</>}
-          lead="Checked information, videos and expert advice in one place, so you visit only what fits."
-          note={<>Verified properties.<br />Smarter decisions.</>}
-        />
-        <div className="why-grid">
-          {WHY_CARDS.map((c, i) => {
-            const go = c.intent
-              ? <button className="round-go" aria-label={c.title} onClick={() => openEnquiry(c.intent)}><Icon name="arrow" /></button>
-              : c.to.startsWith('#')
-                ? <a className="round-go" aria-label={c.title} href={c.to}><Icon name="arrow" /></a>
-                : <Link className="round-go" aria-label={c.title} to={c.to}><Icon name="arrow" /></Link>;
-            return (
-              <Reveal as="article" className="why-card" key={c.title} delay={i * 60}>
-                <div className="why-top">
-                  <span className="why-n">{String(i + 1).padStart(2, '0')}</span>
-                  <span className="icon-sq"><Icon name={c.icon} /></span>
-                </div>
-                <h3>{c.title}</h3>
-                <p>{c.text}</p>
-                <div className="why-vis"><WhyVisual card={c} />{go}</div>
-              </Reveal>
-            );
-          })}
-        </div>
-        <Stats />
+        <Founder />
       </div>
     </section>
   );
@@ -136,8 +147,7 @@ export function BookingModes() {
       <div className="wrap">
         <Reveal className="head split">
           <div>
-            <div className="kicker">02. Flexible consultation</div>
-            <h2>Book in 3<br />convenient modes</h2>
+            <h2>Connect in 3<br />convenient modes</h2>
             <p className="section-lead">{BOOKING_LEAD}</p>
           </div>
           <button className="btn btn-ghost" onClick={() => openEnquiry(BOOKING_INTENT)}>Schedule your session</button>
@@ -168,49 +178,33 @@ export function JourneySteps() {
     <section className="block" id="journey">
       <div className="wrap">
         <Reveal className="center-head">
-          <div className="kicker">03. The transformation</div>
           <h2>The 6-step<br />client journey</h2>
-          <p className="section-lead">From your first search to the deal.</p>
         </Reveal>
-        <ol className="steps9">
+        {/* The cards appear one after another once the grid scrolls into view. */}
+        <Reveal as="ol" className="steps9">
           {JOURNEY.map((s, i) => (
-            <Reveal as="li" className="step9" key={s.title} delay={(i % 3) * 70}>
-              <span className="outline-n">{String(i + 1).padStart(2, '0')}</span>
-              <h3>{s.title}</h3>
-              {/* Step copy is ours (content.js); <b> marks the key phrase. */}
-              <p dangerouslySetInnerHTML={{ __html: s.text }} />
-            </Reveal>
+            <li className="step9" key={s.title} style={{ '--i': i }} tabIndex={0}>
+              {/* Shows the step's character; turns over on hover or focus (tap on
+                  touch) to the details. */}
+              <div className="step9-inner">
+                <div className="step9-face step9-fig">
+                  <StepFigure index={i} />
+                  <h3><span className="step9-num">{String(i + 1).padStart(2, '0')}</span>{s.title}</h3>
+                </div>
+                <div className="step9-face step9-back why-card">
+                  <div className="why-top">
+                    <span className="why-n">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="icon-sq"><Icon name={s.icon} /></span>
+                  </div>
+                  <h3>{s.title}</h3>
+                  {/* Step copy is ours (content.js); <b> marks the key phrase. */}
+                  <p dangerouslySetInnerHTML={{ __html: s.text }} />
+                  <div className="why-vis"><WhyVisual card={s} /></div>
+                </div>
+              </div>
+            </li>
           ))}
-        </ol>
-      </div>
-    </section>
-  );
-}
-
-export function StudioTeaser() {
-  const openEnquiry = useEnquiry();
-  return (
-    <section className="block" id="studio">
-      <div className="wrap studio-split">
-        <Reveal className="studio-media dark-zone">
-          <img src="/images/hero-community.webp" alt="" loading="lazy" />
-          <span className="play big"><Icon name="play" /></span>
-          <span className="studio-tag">XSPACE Studio · representative image</span>
         </Reveal>
-        <div>
-          <Reveal>
-            <div className="kicker">04. XSPACE Studio</div>
-            <h2>Property, told differently.</h2>
-            <p className="section-lead">We film projects and areas so you can see them before you go.</p>
-          </Reveal>
-          <Reveal as="ul" className="studio-list">
-            {STUDIO_FORMATS.map((f) => <li key={f.title}><Icon name={f.icon} /><span><b>{f.title}</b>{f.text}</span></li>)}
-          </Reveal>
-          <Reveal className="hero-actions">
-            <button className="btn btn-primary btn-lg" onClick={() => openEnquiry('Video walkthrough')}>Get project content <Icon name="arrow" /></button>
-            <Link className="btn btn-ghost btn-lg" to="/studio">Visit the Studio</Link>
-          </Reveal>
-        </div>
       </div>
     </section>
   );
@@ -218,12 +212,10 @@ export function StudioTeaser() {
 
 export function SampleListings() {
   const openEnquiry = useEnquiry();
-  const [filter, setFilter] = useState(LISTING_FILTERS[0]);
   const [picked, setPicked] = useState([]);
   const [showCompare, setShowCompare] = useState(false);
   const table = useRef(null);
 
-  const shown = filter === LISTING_FILTERS[0] ? SAMPLE_LISTINGS : SAMPLE_LISTINGS.filter((l) => l.category === filter);
   const compared = useMemo(() => SAMPLE_LISTINGS.filter((l) => picked.includes(l.id)), [picked]);
 
   const toggle = (id) => setPicked((p) => (p.includes(id) ? p.filter((x) => x !== id) : p.length < 3 ? [...p, id] : p));
@@ -235,27 +227,17 @@ export function SampleListings() {
   return (
     <section className="block" id="listings">
       <div className="wrap">
-        <Reveal className="head split">
-          <div>
-            <div className="kicker">05. Sample listings</div>
-            <h2>See what a shortlist looks like.</h2>
-            <p className="section-lead">Tick up to three to compare them.</p>
-          </div>
-          <div className="chips" role="group" aria-label="Filter listings">
-            {LISTING_FILTERS.map((f) => (
-              <button key={f} type="button" className="chip" aria-pressed={filter === f} onClick={() => setFilter(f)}>{f}</button>
-            ))}
-          </div>
+        <Reveal className="center-head listings-head">
+          <h2>See what a shortlist looks like.</h2>
         </Reveal>
 
         <div className="listings">
-          {shown.map((l) => {
+          {SAMPLE_LISTINGS.map((l) => {
             const on = picked.includes(l.id);
             return (
               <article className={'listing' + (on ? ' on' : '')} key={l.id}>
                 <div className="listing-img">
                   <img src={l.img} alt="" loading="lazy" />
-                  <span className="listing-tag">Sample</span>
                 </div>
                 <div className="listing-body">
                   <span className="listing-area"><Icon name="pin" />{l.area} · {l.facts[3]}</span>
@@ -282,7 +264,6 @@ export function SampleListings() {
             );
           })}
         </div>
-        <p className="photo-note">Samples only, not live listings. Ask us for current options and prices.</p>
 
         {picked.length > 0 && (
           <div className="compare-bar" role="status">
@@ -335,7 +316,7 @@ export function AboutStory() {
     <section className="block" id="about">
       <div className="wrap">
         <FeatureHead
-          img="/images/mock/about-head.webp" kicker="06. About XSPACE & CO."
+          img="/images/mock/about-head.webp"
           title={<>Let&apos;s reimagine<br /><span className="grad">buying property.</span></>}
           lead="Buying property often means many visits, weeks of effort and still some doubt. We make it simpler."
           note={<>Better information.<br />Better decisions.</>}
@@ -376,36 +357,43 @@ export function AboutStory() {
   );
 }
 
+const PER_PAGE = 3;
+
 export function ClientStories() {
-  const [group, setGroup] = useState('All');
-  const shown = group === 'All' ? TESTIMONIALS : TESTIMONIALS.filter((t) => t.group === group);
+  const [page, setPage] = useState(0);
+  const pages = Math.max(1, Math.ceil(TESTIMONIALS.length / PER_PAGE));
+  const visible = TESTIMONIALS.slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE);
 
   return (
     <section className="block" id="clients">
       <div className="wrap">
-        <FeatureHead
-          img="/images/mock/clients-head.webp" kicker="07. What our clients say"
-          title={<>Real people.<br /><span className="grad">Better decisions.</span></>}
-          lead="We share only real reviews from real clients."
-          note={<>Informed clients<br />make better decisions.</>}
-        >
-          {TESTIMONIALS.length > 0 && (
-            <div className="chips" role="group" aria-label="Filter reviews">
-              {['All', ...CLIENT_GROUPS].map((g) => (
-                <button key={g} type="button" className="chip" aria-pressed={group === g} onClick={() => setGroup(g)}>{g}</button>
+        <Reveal className="center-head">
+          <h2>What our clients say</h2>
+        </Reveal>
+        {TESTIMONIALS.length > 0 ? (
+          <div className="quotes-slider">
+            <div className="quotes" aria-live="polite">
+              {visible.map((t) => (
+                <figure className="quote" key={t.name + t.quote.slice(0, 20)}>
+                  <blockquote>{t.quote}</blockquote>
+                  <figcaption><b>{t.name}</b><span>{t.role} · {t.place}</span></figcaption>
+                </figure>
               ))}
             </div>
-          )}
-        </FeatureHead>
-
-        {TESTIMONIALS.length > 0 ? (
-          <div className="quotes">
-            {shown.map((t) => (
-              <Reveal as="figure" className="quote" key={t.name + t.quote.slice(0, 20)}>
-                <blockquote>{t.quote}</blockquote>
-                <figcaption><b>{t.name}</b><span>{t.role} · {t.place}</span></figcaption>
-              </Reveal>
-            ))}
+            <div className="quotes-nav">
+         
+              {pages > 1 && (
+                <>
+                  <button type="button" className="quotes-arrow prev" aria-label="Previous reviews" disabled={page === 0} onClick={() => setPage(page - 1)}>
+                    <Icon name="arrow" />
+                  </button>
+                  <span className="quotes-count">{page + 1} / {pages}</span>
+                  <button type="button" className="quotes-arrow" aria-label="Next reviews" disabled={page === pages - 1} onClick={() => setPage(page + 1)}>
+                    <Icon name="arrow" />
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         ) : (
           <Reveal className="quotes-empty">

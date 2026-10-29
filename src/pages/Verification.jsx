@@ -13,7 +13,6 @@ export default function Verification() {
   return (
     <>
       <PageHeader
-        kicker="04 — Know before you own"
         title={<>Know the property <span className="grad">before you see it.</span></>}
         lead="Before spending your time visiting a project, understand what you're looking at."
       />

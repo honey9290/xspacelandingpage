@@ -65,7 +65,7 @@ export const INTENT_COPY = {
   'Free 24-hour shortlist': ["Tell us what you're looking for", 'We will call you back with a shortlist that fits, within 24 hours. No spam.', 'Get my free shortlist'],
   'Talk to XSPACE': ['Talk to XSPACE', 'Leave your number and someone from the XSPACE team will call you back.', 'Call me back'],
   'View verification': ["View a project's verification", "Tell us the project you're considering. We'll share the verification information we hold, with its status and the date it was checked.", 'Request verification details'],
-  [BOOKING_INTENT]: ['Book an appointment', 'Choose how you would like to meet and when suits you. The XSPACE team will confirm the slot with you.', 'Request appointment'],
+  [BOOKING_INTENT]: ['Book a consultation', 'Choose how you would like to meet and when suits you. The XSPACE team will confirm the slot with you.', 'Request appointment'],
   'Book a site visit': ['Plan a site visit', "Tell us what you've shortlisted. We coordinate the visit and walk you through it.", 'Plan my visit'],
   'Video walkthrough': ['Get project content', 'Walkthroughs, videos and location content for the projects you are considering, sent to your WhatsApp.', 'Send me content'],
   'Request a call back': ['Request a call back', 'Leave your number and the XSPACE team will call you back.', 'Call me back'],

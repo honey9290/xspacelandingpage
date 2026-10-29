@@ -18,7 +18,7 @@ export function FinalCta({ variant = 'home', kicker, tight, talk }) {
       <div className="wrap">
         <Reveal className="cta-panel">
           <div className="cta-copy">
-            <div className="kicker">{kicker || c.kicker || 'Start here'}</div>
+            {(kicker || c.kicker) && <div className="kicker">{kicker || c.kicker}</div>}
             <h2>{c.title[0]}<span className="grad">{c.title[1]}</span></h2>
             {c.lead && <p className="section-lead">{c.lead}</p>}
             <ul>

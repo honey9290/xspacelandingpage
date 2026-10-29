@@ -11,7 +11,6 @@ export default function Property() {
     <>
       <PageHero
         slides={HOME_SLIDES}
-        eyebrow="06 — Explore projects"
         title={<>Find what <span className="grad">fits you.</span></>}
         lead="Explore our growing collection of projects and properties across West Hyderabad. Pick what matters to you and we'll come back with the options that fit."
         aside={(
