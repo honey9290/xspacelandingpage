@@ -100,7 +100,7 @@ export function Footer() {
 }
 
 /* The chat box and a WhatsApp button, fixed to the corner on every size;
-   plus a Call / WhatsApp / Book dock on phones. */
+   plus a Call / Book dock on phones. */
 export function StickyContact() {
   const openEnquiry = useEnquiry();
   return (
@@ -112,7 +112,6 @@ export function StickyContact() {
       </div>
       <div className="mbar">
         <CallLink className="btn btn-ghost"><Icon name="phone" />Call</CallLink>
-        <WhatsAppLink className="btn wa"><Icon name="whatsapp" />WhatsApp</WhatsAppLink>
         <button className="btn btn-primary" onClick={() => openEnquiry(BOOKING_INTENT)}>Book</button>
       </div>
     </>
