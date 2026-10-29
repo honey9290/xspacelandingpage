@@ -1429,6 +1429,13 @@ footer .motto { text-transform: uppercase; }
 .chat-btn svg { width: 30px; height: 30px; }
 .chat:not(.open) .chat-btn svg { margin-top: 2px; } /* the tail makes the bubble sit high */
 .chat-btn .dot { fill: var(--fg); }
+/* WhatsApp in its own green, so it is recognised at a glance. */
+.chat-btn.wa-chat { background: #25d366; color: #fff; }
+.chat-btn.wa-chat::before { border-color: #25d366; }
+/* Stacked above the chat button; hidden while the chat is open. */
+.chat.wa-dock { bottom: calc(24px + 62px + 14px); }
+.chat.open ~ .wa-dock { display: none; }
+@media (max-width: 640px) { .chat.wa-dock { bottom: calc(84px + env(safe-area-inset-bottom) + 54px + 12px); } }
 .chat.open .chat-btn svg { width: 22px; height: 22px; }
 @media (hover: none) { .chat-label { display: none; } }
 .chat-label {

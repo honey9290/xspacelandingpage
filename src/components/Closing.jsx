@@ -99,13 +99,17 @@ export function Footer() {
   );
 }
 
-/* The chat box, fixed to the screen on every size; plus a Call /
-   WhatsApp / Book dock on phones. */
+/* The chat box and a WhatsApp button, fixed to the corner on every size;
+   plus a Call / WhatsApp / Book dock on phones. */
 export function StickyContact() {
   const openEnquiry = useEnquiry();
   return (
     <>
       <Chat />
+      <div className="chat wa-dock">
+        <span className="chat-label" aria-hidden="true">Chat on WhatsApp</span>
+        <WhatsAppLink className="chat-btn wa-chat" aria-label="Chat with us on WhatsApp"><Icon name="whatsapp" /></WhatsAppLink>
+      </div>
       <div className="mbar">
         <CallLink className="btn btn-ghost"><Icon name="phone" />Call</CallLink>
         <WhatsAppLink className="btn wa"><Icon name="whatsapp" />WhatsApp</WhatsAppLink>
