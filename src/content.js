@@ -55,7 +55,7 @@ export const PATHS = [
 export const SECTION_LINKS = [
   ['why', 'Why XSPACE'],
   ['booking', '3 Booking Modes'],
-  ['journey', 'The 9-Step Journey'],
+  ['journey', 'The 6-Step Journey'],
   ['studio', 'XSPACE Studio'],
   ['listings', 'Sample Listings'],
   ['about', 'About Us'],
@@ -76,7 +76,7 @@ export const WHY_CHECKS = ['RERA', 'HMDA', 'Approvals', 'Developer'];
 /* Facts about how Xspace works, not performance claims. Add real client
    numbers here only once they can be backed up. */
 export const STATS = [
-  ['9', 'Steps from discovery to after-deal'],
+  ['6', 'Steps from discovery to deal'],
   ['7', 'Growth corridors in West Hyderabad'],
   ['24 hrs', 'For a free, personal shortlist'],
   ['360°', 'Project walkthroughs & location insights'],
@@ -102,17 +102,14 @@ export const BOOKING_CARDS = [
   },
 ];
 
-/* 03: The 9-step client journey */
+/* 03: The 6-step client journey */
 export const JOURNEY = [
   { title: 'Discover', text: 'Start online, not by driving around.' },
   { title: 'Explore', text: 'Watch videos, see prices and floor plans.' },
   { title: 'Verify', text: 'Check RERA, approvals and the developer.' },
-  { title: 'Shortlist', text: 'Narrow it down to a few good options.' },
-  { title: 'Compare', text: 'Compare them side by side.' },
+  { title: 'Compare', text: 'Compare your options side by side.' },
   { title: 'Experience (Visit)', text: 'Visit only your <b>final choices</b>, with us.' },
-  { title: 'Decide', text: 'Clear every doubt before you pay a token.' },
   { title: 'Deal', text: 'We help with the negotiation and paperwork.' },
-  { title: 'After deal', text: 'We stay with you through handover and beyond.' },
 ];
 
 /* 05: Sample listings. They show what an Xspace shortlist looks like, not

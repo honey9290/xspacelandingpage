@@ -1,6 +1,6 @@
 import { FinalCta } from '../components/Closing';
 import {
-  AboutStory, BookingModes, ClientStories, HomeHero, NineSteps, SampleListings, StudioTeaser, WhyXSPACE,
+  AboutStory, BookingModes, ClientStories, HomeHero, JourneySteps, SampleListings, StudioTeaser, WhyXSPACE,
 } from '../components/HomeSections';
 import usePageTitle from '../lib/usePageTitle';
 
@@ -12,7 +12,7 @@ export default function Home() {
       <HomeHero />
       <WhyXSPACE />
       <BookingModes />
-      <NineSteps />
+      <JourneySteps />
       <StudioTeaser />
       <SampleListings />
       <AboutStory />

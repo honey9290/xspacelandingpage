@@ -50,7 +50,7 @@ export function HomeHero() {
           >
             Book discovery consultation <Icon name="arrow" />
           </button>
-          <a className="btn btn-ghost btn-lg" href="#journey"><Icon name="route" />Explore the 9-step journey</a>
+          <a className="btn btn-ghost btn-lg" href="#journey"><Icon name="route" />Explore the 6-step journey</a>
         </Reveal>
       </div>
     </section>
@@ -163,14 +163,14 @@ export function BookingModes() {
   );
 }
 
-export function NineSteps() {
+export function JourneySteps() {
   return (
     <section className="block" id="journey">
       <div className="wrap">
         <Reveal className="center-head">
           <div className="kicker">03. The transformation</div>
-          <h2>The 9-step<br />client journey</h2>
-          <p className="section-lead">From your first search to after you move in.</p>
+          <h2>The 6-step<br />client journey</h2>
+          <p className="section-lead">From your first search to the deal.</p>
         </Reveal>
         <ol className="steps9">
           {JOURNEY.map((s, i) => (

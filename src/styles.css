@@ -1157,7 +1157,7 @@ footer .motto { text-transform: uppercase; }
 .mode p { color: var(--muted); font-size: 14px; margin: 0 0 32px; line-height: 1.6; flex: 1; }
 .mode .btn { width: 100%; border-radius: 12px; padding: 15px; }
 
-/* 03 Nine steps */
+/* 03 Journey steps */
 .steps9 { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
 .step9 { padding: 26px 22px 28px; border-radius: 18px; border: 1px solid var(--line); background: var(--panel); transition: border-color .25s; }
 .step9:hover { border-color: rgb(var(--fg-rgb) / .55); }
